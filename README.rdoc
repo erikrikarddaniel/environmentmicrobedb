@@ -1,0 +1,4 @@
+environmentmicrobedb
+====================
+
+A Ruby on Rails application to hold data from microbial communities in natural environments.
