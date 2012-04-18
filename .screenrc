@@ -1,0 +1,29 @@
+sessionname environmentmicrobedb
+screen -t environmentmicrobedb
+screen -t server
+screen -t autotest
+chdir db
+screen -t psql 
+chdir ..
+chdir test
+screen -t test0
+chdir ..
+chdir spec
+screen -t spec
+chdir ..
+chdir app
+chdir models
+screen -t models
+chdir ../controllers
+screen -t controllers
+chdir ../views
+screen -t views
+chdir ../..
+chdir config
+screen -t config
+chdir ../log
+screen -t log
+chdir ..
+screen -t man
+screen -t console
+screen -t root
