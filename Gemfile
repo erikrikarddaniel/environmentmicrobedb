@@ -1,12 +1,28 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
-
+gem 'bootstrap-sass', '2.0.0'
+gem 'faker', '1.0.1'
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.5'
+gem 'bio'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 
+group :development, :test do
+	gem 'rspec-rails', '2.8.1'
+	gem 'annotate', '~> 2.4.1.beta'
+end
+
+group :test do
+  gem 'capybara', '1.1.2'
+  gem 'factory_girl_rails', '1.4.0'
+  gem 'autotest-standalone', :require => 'autotest'
+  gem 'autotest-rails-pure'
+  gem 'term-ansicolor'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,3 +52,5 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+gem 'therubyracer'
+gem 'bio'

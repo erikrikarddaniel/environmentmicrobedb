@@ -14,5 +14,11 @@
 /log/*.log
 /tmp
 
-# Vim stuff
+# Ignore text editor temporary files
+*~
 .*.sw?
+
+# Ignore database settings file
+config/database.yml
+
+Gemfile.lock
