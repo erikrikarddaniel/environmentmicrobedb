@@ -16,6 +16,7 @@ group :development, :test do
 	gem 'rspec-rails', '2.8.1'
 	gem 'annotate', '~> 2.4.1.beta'
 	gem 'watchr'
+	gem 'spork', '~> 0.9.0.rc'
 end
 
 group :test do
