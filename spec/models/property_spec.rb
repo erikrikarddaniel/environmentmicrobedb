@@ -12,5 +12,11 @@
 require 'spec_helper'
 
 describe Property do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "Can be created" do
+    Property.new.should be_an_instance_of(Property)
+  end
+  it "Can be saved successfully" do
+    Property.create.should be_persisted
+  end
+
 end
