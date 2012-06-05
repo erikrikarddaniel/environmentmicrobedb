@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605163442) do
+ActiveRecord::Schema.define(:version => 20120605200907) do
 
   create_table "properties", :force => true do |t|
-    t.integer  "property"
+    t.string   "property"
     t.string   "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
