@@ -13,7 +13,7 @@ require 'spec_helper'
 
 describe Property do
   before(:each) do
-    @property = Property.new("prop_type","prop_value")
+    @property = Property.new(:property=>"prop_type",:value=>"prop_value")
   end
   it "Can be created" do
     @property.should be_an_instance_of(Property)

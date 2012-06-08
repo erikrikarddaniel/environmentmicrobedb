@@ -10,10 +10,5 @@
 #
 
 class Property < ActiveRecord::Base
-  attr_accessor :property, :value
-  
-  def initialize(property,value)
-    @property = property
-    @value = value
-  end 
+
 end
