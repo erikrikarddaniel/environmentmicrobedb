@@ -12,15 +12,13 @@ require 'spec_helper'
 
 describe Project do
   before(:each) do
-    @project = Project.create!(:name=> "test project1")
+    @project = FactoryGirl.create(:project)
   end
-  it "Should be created" do
-    @project.should be_an_instance_of(Project)
+  it "has name" do
+    @project.name.should be
   end
-  it "Should have a name" do
-    @project.name.should eql("test project1")
-  end
-  it "Should have many properties" do
-    @project.should have_many(Property)
+  it "has properties" do
+    @project = FactoryGirl.create(:project_with_property)
+    @project.properties.should have(1).Property
   end
 end

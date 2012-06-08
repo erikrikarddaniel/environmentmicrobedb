@@ -7,22 +7,21 @@
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #  value      :string(255)
+#  project_id :integer
 #
 
 require 'spec_helper'
 
-describe Property do
+describe Property do  
   before(:each) do
-    @property = Property.new(:property=>"prop_type",:value=>"prop_value")
+    @property = FactoryGirl.create(:property)
   end
-  it "Can be created" do
-    @property.should be_an_instance_of(Property)
+  describe "#attributes" do
+    it "has :property" do
+      @property.property.should be
+    end
+    it "has :value" do
+      @property.value.should be
+    end
   end
-  it "Should have a property type" do
-    @property.property.should == "prop_type"
-  end
-  it "Should have a property value" do
-    @property.value.should == "prop_value"
-  end
-
 end

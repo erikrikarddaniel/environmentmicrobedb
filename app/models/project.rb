@@ -9,5 +9,5 @@
 #
 
 class Project < ActiveRecord::Base
-  validate  :name
+  has_many :properties, :foreign_key => 'project_id', :class_name => "Property", :dependent => :destroy
 end
