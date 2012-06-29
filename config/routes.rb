@@ -1,4 +1,6 @@
 Environmentmicrobedb::Application.routes.draw do
+  resources :observations
+
   resources :subjects
 
   resources :people
