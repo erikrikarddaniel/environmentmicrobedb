@@ -1,4 +1,6 @@
 Environmentmicrobedb::Application.routes.draw do
+  resources :people
+
   resources :samples
 
   resources :sample_sets
