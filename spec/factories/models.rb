@@ -1,7 +1,8 @@
 FactoryGirl.define do
-  factory :property do
+  factory :property2, :class => :property do
     property "prop_type"
     value "prop_value"
+    project
   end
 
   factory :project do

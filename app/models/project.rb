@@ -9,5 +9,6 @@
 #
 
 class Project < ActiveRecord::Base
-  has_many :properties, :foreign_key => 'project_id', :class_name => "Property", :dependent => :destroy
+  has_many :properties, :dependent => :destroy
 end
+
