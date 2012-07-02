@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @sample_property.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @sample_property.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_sample_property_path(@sample_property) %> |
+<%= link_to 'Back', sample_properties_path %>
