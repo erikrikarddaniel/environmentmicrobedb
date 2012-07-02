@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @subject_property.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @subject_property.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_subject_property_path(@subject_property) %> |
+<%= link_to 'Back', subject_properties_path %>
