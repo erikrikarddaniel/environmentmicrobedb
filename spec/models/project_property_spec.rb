@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe "project/show.html.erb" do
+describe ProjectProperty do
   pending "add some examples to (or delete) #{__FILE__}"
 end
