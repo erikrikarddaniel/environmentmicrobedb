@@ -5,10 +5,21 @@
 #  id         :integer         not null, primary key
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
+#  code       :string(255)
 #
 
 require 'spec_helper'
 
 describe Subject do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:subject) { FactoryGirl.create(:subject) }
+
+  let!(:subject_property){ FactoryGirl.create(:subject_property, subject: subject) }
+  describe "#attributes" do
+    it "has :code" do
+      subject.code.should be
+    end
+    it "has :properties" do
+      subject.properties.length.should  == 1
+    end
+  end
 end

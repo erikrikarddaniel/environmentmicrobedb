@@ -13,7 +13,7 @@ require 'spec_helper'
 describe Project do
   let!(:project) { FactoryGirl.create(:project) }
 
-  let!(:property){ FactoryGirl.create(:property, project: project) }
+  let!(:project_property){ FactoryGirl.create(:project_property, project: project) }
   describe "#attributes" do
     it "has :name" do
       project.name.should be

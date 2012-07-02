@@ -7,11 +7,20 @@
 #  value      :string(255)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
-#  sample_id  :string(255)
+#  subject_id :integer
 #
 
 require 'spec_helper'
 
 describe SubjectProperty do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let!(:subject_property) { FactoryGirl.create(:subject_property) }
+
+  describe "#attributes" do
+    it "has :name" do
+      subject_property.name.should be
+    end
+    it "has :value" do
+      subject_property.value.should be
+    end
+  end
 end

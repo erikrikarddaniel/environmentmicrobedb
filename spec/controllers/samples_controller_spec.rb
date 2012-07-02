@@ -24,7 +24,7 @@ describe SamplesController do
   # Sample. As you add validations to Sample, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:code=>"Sample_Code"}
   end
   
   # This should return the minimal set of values that should be in the session

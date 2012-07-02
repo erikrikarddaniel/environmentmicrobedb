@@ -7,8 +7,11 @@
 #  value      :string(255)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
-#  sample_id  :string(255)
+#  subject_id :integer
 #
 
 class SubjectProperty < ActiveRecord::Base
+  belongs_to :subject
+  validates_presence_of :name
+  validates_presence_of :value
 end

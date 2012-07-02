@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120702100837) do
+ActiveRecord::Schema.define(:version => 20120702140839) do
 
   create_table "observations", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20120702100837) do
     t.string   "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "project_id"
+    t.integer  "project_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(:version => 20120702100837) do
   create_table "sample_properties", :force => true do |t|
     t.string   "name"
     t.string   "value"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "sample_set_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "sample_id"
   end
 
   create_table "sample_sets", :force => true do |t|
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20120702100837) do
   create_table "samples", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "code"
   end
 
   create_table "subject_properties", :force => true do |t|
@@ -60,12 +61,13 @@ ActiveRecord::Schema.define(:version => 20120702100837) do
     t.string   "value"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "sample_id"
+    t.integer  "subject_id"
   end
 
   create_table "subjects", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "code"
   end
 
 end
