@@ -13,8 +13,6 @@ Environmentmicrobedb::Application.routes.draw do
 
   resources :project
 
-  resources :properties
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

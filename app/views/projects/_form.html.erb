@@ -12,8 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :string %><br />
-    <%= f.text_field :string %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+    <%= f.fields_for :properties do |builder| %>
+      <%= render "properties_fields", :f => builder %>
+  	<% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
