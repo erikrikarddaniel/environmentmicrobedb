@@ -24,7 +24,7 @@ describe SubjectsController do
   # Subject. As you add validations to Subject, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:code=>"Subject_Code"}
+    {code: "Subject_Code"}
   end
   
   # This should return the minimal set of values that should be in the session

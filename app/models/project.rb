@@ -9,7 +9,7 @@
 #
 
 class Project < ActiveRecord::Base
-  has_many :properties, :class_name => "ProjectProperty", :dependent => :destroy
+  has_many :properties, class_name: "ProjectProperty", dependent: :destroy
   validates_presence_of :name
-  accepts_nested_attributes_for :properties, :reject_if => lambda { |a| a[:name].blank? }, :allow_destroy => true
+  accepts_nested_attributes_for :properties, reject_if: lambda { |a| a[:name].blank? }, allow_destroy: true
 end

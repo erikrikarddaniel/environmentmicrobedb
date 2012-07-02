@@ -24,7 +24,7 @@ describe SamplePropertiesController do
   # SampleProperty. As you add validations to SampleProperty, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {:name => "sample_prop_name", :value => "sample_prop_value"}
+    {name: "sample_prop_name", value: "sample_prop_value"}
   end
   
   # This should return the minimal set of values that should be in the session

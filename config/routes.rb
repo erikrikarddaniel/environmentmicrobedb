@@ -1,23 +1,21 @@
 Environmentmicrobedb::Application.routes.draw do
-  resources :subject_properties
+  
 
-  resources :sample_properties
-
-  resources :project_properties
-
-  resources :projects
+  resources :projects do
+    resources :properties, :controller => "ProjectProperty"
+  end
 
   resources :observations
 
-  resources :subjects
+  resources :subjects do
+    resources :properties, :controller => "SubjectProperty"
+  end
 
-  resources :people
-
-  resources :samples
-
+  resources :samples do
+    resources :properties, :controller => "SampleProperty"
+  end
+    
   resources :sample_sets
-
-  resources :project
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
