@@ -3,19 +3,23 @@ Environmentmicrobedb::Application.routes.draw do
   match '/about', to: 'static#about'
   match '/help', to: 'static#help'
   
-  resources :projects do
-    resources :properties, :controller => "ProjectProperty"
+  resources :project_properties
+  resources :projects  do
+    resources :properties, :controller => "project_properties"
   end
 
   resources :observations
 
+  resources :subject_properties
   resources :subjects do
-    resources :properties, :controller => "SubjectProperty"
+    resources :properties, :controller => "subject_properties"
   end
 
+  resources :sample_properties
   resources :samples do
-    resources :properties, :controller => "SampleProperty"
+    resources :properties, :controller => "sample_properties"
   end
+
     
   resources :sample_sets
 
