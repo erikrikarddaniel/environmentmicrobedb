@@ -1,9 +1,29 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Project:</b>
   <%= @project.name %>
 </p>
+
+<div>
+  <h3 id="properties">Properties (<%= @project.properties.count %>)</h3>
+  <div id="project_properties">
+  	<ol >
+  	  <li>
+        <%= render 'project_properties/form' %>
+  	  </li>
+    <% if @project.properties.any? %>
+      
+        <%= render @project_properties %>
+      
+    <% end %>
+    </ol>
+  </div>
+  <div id="project_properties_form" >
+  	Add a property:
+
+  </div>
+</div>
 
 
 <%= link_to 'Edit', edit_project_path(@project) %> |

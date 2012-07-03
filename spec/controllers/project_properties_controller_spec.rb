@@ -19,7 +19,11 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ProjectPropertiesController do
-
+  let!(:project) { FactoryGirl.create(:project) }
+  let!(:project_property) { FactoryGirl.create(:project_property) }
+  before(:each) do
+    @project = Project.create!(name: "Test Project")
+  end
   # This should return the minimal set of attributes required to create a valid
   # ProjectProperty. As you add validations to ProjectProperty, be sure to
   # update the return value of this method accordingly.
@@ -31,12 +35,12 @@ describe ProjectPropertiesController do
   # in order to pass any filters (e.g. authentication) defined in
   # ProjectPropertiesController. Be sure to keep this updated too.
   def valid_session
-    {}
+    { }
   end
 
   describe "GET index" do
     it "assigns all project_properties as @project_properties" do
-      project_property = ProjectProperty.create! valid_attributes
+      project_property = @project.properties.create! valid_attributes
       get :index, {}, valid_session
       assigns(:project_properties).should eq([project_property])
     end
@@ -44,7 +48,7 @@ describe ProjectPropertiesController do
 
   describe "GET show" do
     it "assigns the requested project_property as @project_property" do
-      project_property = ProjectProperty.create! valid_attributes
+      project_property = @project.properties.create! valid_attributes
       get :show, {:id => project_property.to_param}, valid_session
       assigns(:project_property).should eq(project_property)
     end
@@ -59,7 +63,7 @@ describe ProjectPropertiesController do
 
   describe "GET edit" do
     it "assigns the requested project_property as @project_property" do
-      project_property = ProjectProperty.create! valid_attributes
+      project_property = @project.properties.create! valid_attributes
       get :edit, {:id => project_property.to_param}, valid_session
       assigns(:project_property).should eq(project_property)
     end

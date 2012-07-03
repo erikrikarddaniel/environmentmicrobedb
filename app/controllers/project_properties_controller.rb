@@ -40,15 +40,17 @@ class ProjectPropertiesController < ApplicationController
   # POST /project_properties
   # POST /project_properties.json
   def create
+    @project = Project.find(params[:project_id])
     @project_property = ProjectProperty.new(params[:project_property])
-
+    @project_property.project_id = @project.id
+    
     respond_to do |format|
       if @project_property.save
-        format.html { redirect_to @project_property, notice: 'Project property was successfully created.' }
-        format.json { render json: @project_property, status: :created, location: @project_property }
+        format.html { redirect_to project_path(@project), notice: 'Project property was successfully created.' }
+        format.json { render json: project_path(@project), status: :created, location: @project_property }
       else
-        format.html { render action: "new" }
-        format.json { render json: @project_property.errors, status: :unprocessable_entity }
+        format.html { redirect_to project_path(@project), notice: 'Could not create property'}
+        format.json { render json: project_path(@project).errors, status: :unprocessable_entity }
       end
     end
   end

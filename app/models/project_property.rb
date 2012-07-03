@@ -11,7 +11,7 @@
 #
 
 class ProjectProperty < ActiveRecord::Base
+  attr_accessible :name, :value
   belongs_to :project
-  validates_presence_of :name
-  validates_presence_of :value
+  validates_presence_of :name, :value, :project_id
 end
