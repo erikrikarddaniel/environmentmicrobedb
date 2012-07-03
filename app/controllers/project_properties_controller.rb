@@ -75,10 +75,11 @@ class ProjectPropertiesController < ApplicationController
   # DELETE /project_properties/1.json
   def destroy
     @project_property = ProjectProperty.find(params[:id])
+    @project = Project.find(@project_property.project_id)
     @project_property.destroy
-
+    
     respond_to do |format|
-      format.html { redirect_to project_properties_url }
+      format.html { redirect_to project_path(@project), notice: 'Project property was successfully deleted.' }
       format.json { head :no_content }
     end
   end
