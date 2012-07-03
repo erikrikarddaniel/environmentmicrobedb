@@ -1,25 +1,8 @@
-<%= form_for(@project_property) do |f| %>
-  <% if @project_property.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@project_property.errors.count, "error") %> prohibited this project_property from being saved:</h2>
-
-      <ul>
-      <% @project_property.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_for([@project,@project.properties.build], :html => { :class => "form-inline"}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :value %><br />
-    <%= f.text_field :value %>
-  </div>
-  <div class="actions">
+    <%= f.text_field :name, :placeholder => "Type" %>
+    <%= f.text_field :value, :placeholder => "Value" %>
     <%= f.submit %>
   </div>
 <% end %>

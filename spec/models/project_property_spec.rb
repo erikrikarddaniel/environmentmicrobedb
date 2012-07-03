@@ -22,5 +22,10 @@ describe ProjectProperty do
     it "has :value" do
       project_property.value.should be
     end
+    it "should not allow access to project_id" do
+      expect do
+        ProjectProperty.new(project_id: 10)
+      end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end    
   end
 end
