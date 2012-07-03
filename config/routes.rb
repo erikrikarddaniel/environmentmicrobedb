@@ -3,40 +3,23 @@ Environmentmicrobedb::Application.routes.draw do
   match '/about', to: 'static#about'
   match '/help', to: 'static#help'
   
-<<<<<<< HEAD
   resources :project_properties
   resources :projects  do
-    resources :properties, :controller => "project_properties"
-=======
-  resources :projects do
-    resources :project_properties, only: [:new, :edit, :create, :delete]
->>>>>>> experiment
+    resources :project_properties
   end
-  resources :project_properties
   
   resources :observations
 
-<<<<<<< HEAD
   resources :subject_properties
   resources :subjects do
-    resources :properties, :controller => "subject_properties"
+    resources :subject_properties
   end
 
   resources :sample_properties
   resources :samples do
-    resources :properties, :controller => "sample_properties"
+    resources :sample_properties
   end
 
-    
-=======
-  resources :subjects
-  resources :subject_properties
-  
-
-  resources :samples
-  resources :sample_properties
-      
->>>>>>> experiment
   resources :sample_sets
 
   # The priority is based upon order of creation:
