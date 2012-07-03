@@ -11,6 +11,7 @@
 #
 
 class SampleProperty < ActiveRecord::Base
+  attr_accessible :name, :value
   belongs_to :sample
   validates_presence_of :name
   validates_presence_of :value

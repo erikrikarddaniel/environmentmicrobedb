@@ -11,6 +11,7 @@
 #
 
 class SubjectProperty < ActiveRecord::Base
+  attr_accessible :name, :value
   belongs_to :subject
   validates_presence_of :name
   validates_presence_of :value
