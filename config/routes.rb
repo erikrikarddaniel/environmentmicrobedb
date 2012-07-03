@@ -1,6 +1,8 @@
 Environmentmicrobedb::Application.routes.draw do
+  root to: 'static#home'
+  match '/about', to: 'static#about'
+  match '/help', to: 'static#help'
   
-
   resources :projects do
     resources :properties, :controller => "ProjectProperty"
   end

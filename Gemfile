@@ -5,25 +5,24 @@ gem 'bootstrap-sass', '2.0.0'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
-gem 'bio'
-gem 'rb-readline'
+gem 'rb-readline', '0.4.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
+gem 'pg', '0.14.0'
 
 group :development, :test do
 	gem 'rspec-rails', '2.8.1'
 	gem 'annotate', '~> 2.4.1.beta'
-	gem 'watchr'
+	gem 'watchr', '0.7'
 	gem 'spork', '~> 0.9.0.rc'
 end
 
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails', '1.4.0'
-  gem 'term-ansicolor'
+  gem 'term-ansicolor', '1.0.7'
 end
 
 # Gems used only for assets and not required
@@ -38,7 +37,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '2.0.2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -54,5 +53,4 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-gem 'therubyracer'
-gem 'bio'
+gem 'therubyracer', '0.10.1'
