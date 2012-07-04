@@ -1,6 +1,6 @@
 <li>
-<%= project_property.name %>
-<%= project_property.value %>
+<strong><%= best_in_place project_property, :name %>:</strong>
+<%= best_in_place project_property, :value %>
 
 <%= link_to 'Destroy', project_property, confirm: 'Are you sure?', method: :delete %>
 </li>

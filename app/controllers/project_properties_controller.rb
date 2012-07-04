@@ -59,10 +59,11 @@ class ProjectPropertiesController < ApplicationController
   # PUT /project_properties/1.json
   def update
     @project_property = ProjectProperty.find(params[:id])
-
+    @project = Project.find(@project_property.project_id)
+    
     respond_to do |format|
       if @project_property.update_attributes(params[:project_property])
-        format.html { redirect_to @project_property, notice: 'Project property was successfully updated.' }
+        format.html { redirect_to project_path(@project), notice: 'Project property was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

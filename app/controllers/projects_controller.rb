@@ -15,6 +15,8 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @project_properties = @project.properties
+    @project_properties.sort! { |a,b| a.name.downcase <=> b.name.downcase }
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }

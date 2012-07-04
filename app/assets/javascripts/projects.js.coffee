@@ -4,5 +4,5 @@
 
 $(document).ready ->
   #This is needed since if the project_properties_form is rendered before the project_properties we get an empty property.
-  $("#project_properties_form").insertBefore('#properties');
+  $("#project_properties").prepend($('#properties'));
   
