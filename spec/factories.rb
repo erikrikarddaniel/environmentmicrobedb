@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :project_property do
     name "proj_prop_type"
     value "proj_prop_value"
+    datatype :string
     project
   end
   

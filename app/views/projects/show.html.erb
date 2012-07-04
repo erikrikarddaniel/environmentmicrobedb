@@ -2,9 +2,9 @@
 
 <h2>Project: <%= @project.name %></h2>
 
-<div id="project_properties">
+<div>
   <h3>Properties (<%= @project.properties.count %>)</h3>
-  <div>
+  <div id="project_properties">
     <% if @project.properties.any? %>
       <ol>
         <%= render @project_properties %>

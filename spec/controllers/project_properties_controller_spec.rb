@@ -28,7 +28,7 @@ describe ProjectPropertiesController do
   # ProjectProperty. As you add validations to ProjectProperty, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {name: "proj_prop_name", value: "proj_prop_value"}
+    {name: "proj_prop_name", value: "proj_prop_value", datatype: :string}
   end
   
   # This should return the minimal set of values that should be in the session

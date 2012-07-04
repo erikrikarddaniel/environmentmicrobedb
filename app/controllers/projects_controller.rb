@@ -15,8 +15,12 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @project_properties = @project.properties
-    @project_properties.sort! { |a,b| a.name.downcase <=> b.name.downcase }
+    @project_properties.sort! { |a,b| 
+      comp = (a.name.downcase <=> b.name.downcase)
+      comp.zero? ? (a.value.downcase <=> b.value.downcase) :comp }
     
+    @property_types = GlobalConstants::PROPERTY_TYPE.keys.map{|i| i.to_s}
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
