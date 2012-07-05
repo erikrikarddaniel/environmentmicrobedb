@@ -13,4 +13,11 @@ module GlobalConstants
     return false if value == false || value.blank? || value =~ (/(false|f|no|n|0)$/i)
     raise ArgumentError.new("invalid value for Boolean: \"#{value}\"")
   end
+  def self.convert(datatype,value)
+    if GlobalConstants::PROPERTY_TYPE[datatype][:can_convert?].call(value) == :error
+      return :error
+    else
+      return GlobalConstants::PROPERTY_TYPE[datatype][:can_convert?].call(value)
+    end
+  end
 end

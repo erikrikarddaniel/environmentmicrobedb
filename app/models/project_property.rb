@@ -19,10 +19,10 @@ class ProjectProperty < ActiveRecord::Base
     :message => "%{value} is not a valid data type" }
   validate :convert_value
   def convert_value
-    if GlobalConstants::PROPERTY_TYPE[self.datatype][:can_convert?].call(self.value) == :error
-      errors.add(:error,"can't convert to #{self.datatype}")
+    if GlobalConstants::convert(self.datatype,self.value) == :error
+      errors.add(:error,"can't convert to #{datatype}")
     else
-      GlobalConstants::PROPERTY_TYPE[self.datatype][:can_convert?].call(self.value)
+      GlobalConstants::convert(self.datatype,self.value)
     end
   end
 end
