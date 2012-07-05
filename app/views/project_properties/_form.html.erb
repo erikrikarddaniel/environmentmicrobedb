@@ -3,7 +3,7 @@
   <div class="field">
     <%= f.text_field :name, :placeholder => "Type" %>
     <%= f.text_field :value, :placeholder => "Value" %>
-    <%= f.collection_select :datatype, @property_types, :downcase,:to_sym, :prompt => true  %>
+    <%= f.collection_select :datatype, GlobalConstants::PROPERTY_TYPE.keys, :downcase,:to_sym, :prompt => true  %>
     <%= f.submit %>
   </div>
 <% end %>

@@ -15,6 +15,6 @@ class ProjectProperty < ActiveRecord::Base
   attr_accessible :name, :value, :datatype
   belongs_to :project
   validates_presence_of :name, :value, :project_id, :datatype
-  validates :datatype,  :inclusion => { :in => GlobalConstants::PROPERTY_TYPE.keys.map{|i| i.to_s},
+  validates :datatype,  :inclusion => { :in => GlobalConstants::PROPERTY_TYPE.keys,
     :message => "%{value} is not a valid data type" }
 end
