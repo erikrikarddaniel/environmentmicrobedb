@@ -5,7 +5,7 @@ FactoryGirl.define do
     datatype "string"
     project
   end
-  
+
   factory :project do
     name "test project"
   end

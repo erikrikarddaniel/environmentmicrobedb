@@ -15,7 +15,6 @@ require 'spec_helper'
 
 describe ProjectProperty do
   let!(:project_property) { FactoryGirl.create(:project_property) }
-
   describe "#attributes" do
     it "has :name" do
       project_property.name.should be
@@ -23,10 +22,13 @@ describe ProjectProperty do
     it "has :value" do
       project_property.value.should be
     end
+    it "has :datatype" do
+      project_property.datatype.should be
+    end 
     it "should not allow access to project_id" do
       expect do
         ProjectProperty.new(project_id: 10)
       end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
-    end    
+    end
   end
 end
