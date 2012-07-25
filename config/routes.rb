@@ -4,8 +4,13 @@ Environmentmicrobedb::Application.routes.draw do
   match '/help', to: 'static#help'
   
   resources :project_properties
+  
+  resources :sample_sets do
+    resources :samples
+  end
   resources :projects  do
     resources :project_properties
+    resources :sample_sets
   end
   
   resources :observations
@@ -20,7 +25,7 @@ Environmentmicrobedb::Application.routes.draw do
     resources :sample_properties
   end
 
-  resources :sample_sets
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

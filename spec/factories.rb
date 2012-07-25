@@ -16,6 +16,10 @@ FactoryGirl.define do
     sample
   end
   
+  factory :sample_set do
+    name "Test sample"
+    project
+  end
   factory :sample do
     code "Test sample"
   end

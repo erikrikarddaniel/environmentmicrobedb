@@ -1,20 +1,29 @@
 <p id="notice"><%= notice %></p>
-
-<h2>Project: <%= @project.name %></h2>
-
-<div>
+<h2>Project: <%= @project.name %>
+	<span class="header_links">
+		<%= link_to 'Edit', edit_project_path(@project) %> |
+		<%= link_to 'Back', projects_path %>
+	</span>
+</h2>
+<div id="properties_form">
+  <%= render 'project_properties/form' %>
+</div>
+<div id="properties">
   <h3>Properties (<%= @project.properties.count %>)</h3>
   <div id="project_properties">
-    <% if @project.properties.any? %>
-      <ol>
-        <%= render @project_properties %>
+    <% if @project.properties.all.any? %>
+      <ol id="project_prop">
+        <%= render @project_properties.all %>
       </ol>  
     <% end %>
   </div>
 </div>
-<div id="properties">
-  <%= render 'project_properties/form' %>
-</div>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<div id="sample_set">
+  <%= render @project.sample_sets[0]%>
+</div>
+<h3>Samples</h3>
+<div id="samples">
+	<%= link_to_function "New", "url_replace('#sample_set_id',\'#{new_sample_path(ss_id: '_r_')}\','_r_')" %>
+	<%= render @sample %>
+</div>

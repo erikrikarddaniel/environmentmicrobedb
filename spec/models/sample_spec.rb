@@ -2,10 +2,11 @@
 #
 # Table name: samples
 #
-#  id         :integer         not null, primary key
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#  code       :string(255)
+#  id            :integer         not null, primary key
+#  created_at    :datetime        not null
+#  updated_at    :datetime        not null
+#  code          :string(255)
+#  sample_set_id :integer
 #
 
 require 'spec_helper'

@@ -24,8 +24,7 @@ class SamplesController < ApplicationController
   # GET /samples/new
   # GET /samples/new.json
   def new
-    @sample = Sample.new
-
+    @sample_set = SampleSet.find(params[:ss_id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @sample }
@@ -40,14 +39,15 @@ class SamplesController < ApplicationController
   # POST /samples
   # POST /samples.json
   def create
+    @sample_set = SampleSet.find(params[:sample_set_id])
     @sample = Sample.new(params[:sample])
-
+    @sample.sample_set_id = @sample_set.id
     respond_to do |format|
       if @sample.save
-        format.html { redirect_to @sample, notice: 'Sample was successfully created.' }
+        format.html { redirect_to edit_sample_path(@sample), notice: 'Sample was successfully created.' }
         format.json { render json: @sample, status: :created, location: @sample }
       else
-        format.html { render action: "new" }
+        format.html { render action: "new", notice: 'Sample was not created.' }
         format.json { render json: @sample.errors, status: :unprocessable_entity }
       end
     end
@@ -57,10 +57,11 @@ class SamplesController < ApplicationController
   # PUT /samples/1.json
   def update
     @sample = Sample.find(params[:id])
-
+    @sample_set = SampleSet.find(@sample.sample_set_id)
+    
     respond_to do |format|
       if @sample.update_attributes(params[:sample])
-        format.html { redirect_to @sample, notice: 'Sample was successfully updated.' }
+        format.html { redirect_to project_path(@sample_set.project_id), notice: 'Sample was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,10 +74,11 @@ class SamplesController < ApplicationController
   # DELETE /samples/1.json
   def destroy
     @sample = Sample.find(params[:id])
+    @sample_set = SampleSet.find(@sample.sample_set_id)
     @sample.destroy
-
+    
     respond_to do |format|
-      format.html { redirect_to samples_url }
+      format.html { redirect_to project_path(@sample_set.project_id) }
       format.json { head :no_content }
     end
   end

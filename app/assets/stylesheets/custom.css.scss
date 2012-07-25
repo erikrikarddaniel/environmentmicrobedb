@@ -46,7 +46,6 @@ h2 {
   font-weight: normal;
   color: #999;
 }
-
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -109,6 +108,9 @@ footer ul li {
     list-style: none; 
   }
 }
+#properties {
+	padding-bottom: 10px;
+}
 .purr {
   position: fixed;
   top: 30px;
@@ -118,4 +120,17 @@ footer ul li {
   background-color: #FCC;
   border: solid 2px #C66;
   &:first-letter { text-transform: uppercase; }
+}
+.header_links {
+  padding-left: 30px;
+  font-size: 0.8em;
+  
+}
+#sample_set {
+  visibility: hidden;
+}
+#samples {
+  li {
+    list-style: none; 
+  }
 }

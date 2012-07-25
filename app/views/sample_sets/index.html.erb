@@ -9,6 +9,7 @@
 
 <% @sample_sets.each do |sample_set| %>
   <tr>
+  	<td><%= sample_set.name %></td>
     <td><%= link_to 'Show', sample_set %></td>
     <td><%= link_to 'Edit', edit_sample_set_path(sample_set) %></td>
     <td><%= link_to 'Destroy', sample_set, confirm: 'Are you sure?', method: :delete %></td>

@@ -1,13 +1,10 @@
 <footer class="footer">
-  <small>
-    <a href="http://railstutorial.org/">Rails Tutorial</a>
-    by Michael Hartl
-  </small>
+  
   <nav>
+  	<%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
     <ul>
       <li><%= link_to "About",   about_path %></li>
       <li><%= link_to "Contact", '#' %></li>
-      <li><a href="http://news.railstutorial.org/">News</a></li>
     </ul>
   </nav>
 </footer>

@@ -1,7 +1,7 @@
-<li>
-<strong><%= best_in_place project_property, :name %>:</strong>
-<%= best_in_place project_property, :value %>
-<%= best_in_place project_property, :datatype, type: :select, collection: GlobalConstants::PROPERTY_TYPE.keys.map{|i| [i.to_s,i.to_s] } %>
-<span id="convert_value"><%= project_property.convert_value %></span>
-<%= link_to 'Destroy', project_property, confirm: 'Are you sure?', method: :delete %>
+<li id="projprop_<%= project_property.id %>">
+	<%= link_to 'Edit', edit_project_property_path(project_property) %>
+	<%= link_to 'Destroy', project_property, confirm: 'Are you sure?', method: :delete %>
+	<strong><%= project_property.name %>:</strong>
+	<%= project_property.convert_value %>
+
 </li>

@@ -15,6 +15,8 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @project_properties = @project.properties
+    @sample_set = @project.sample_sets[0]
+    @sample = Sample.where(sample_set_id: @sample_set.id)
     @project_properties.sort! { |a,b| 
       comp = (a.name.downcase <=> b.name.downcase)
       comp.zero? ? (a.value.downcase <=> b.value.downcase) :comp }
@@ -46,9 +48,11 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
-
     respond_to do |format|
       if @project.save
+        
+        @project.sample_sets.create(name: "Set 1")
+        
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render json: @project, status: :created, location: @project }
       else
@@ -84,5 +88,5 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url }
       format.json { head :no_content }
     end
-  end
+  end  
 end

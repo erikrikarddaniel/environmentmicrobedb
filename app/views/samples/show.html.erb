@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
-
+<div id="properties_form">
+  <%= render 'sample_properties/form' %>
+</div>
+<div id="properties">
+  <h3>Properties (<%= @sample.properties.count %>)</h3>
+  <div id="sample_properties">
+    <% if @sample.properties.all.any? %>
+      <ol id="sample_prop">
+        <%= render @sample_properties.all %>
+      </ol>  
+    <% end %>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_sample_path(@sample) %> |
 <%= link_to 'Back', samples_path %>

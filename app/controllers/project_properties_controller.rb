@@ -14,7 +14,7 @@ class ProjectPropertiesController < ApplicationController
   # GET /project_properties/1.json
   def show
     @project_property = ProjectProperty.find(params[:id])
-
+        logger.debug("PARAMS SHOW: #{params.inspect}")
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project_property }
@@ -64,7 +64,9 @@ class ProjectPropertiesController < ApplicationController
     respond_to do |format|
       if @project_property.update_attributes(params[:project_property])
         format.html { redirect_to project_path(@project), notice: 'Project property was successfully updated.' }
-        format.json { head :no_content }
+        format.js { render :partial => 'project_properties/project_property', :object => @project_property, :content_type => 'text/html'}
+        #format.json { render json: @project_property }
+        
       else
         format.html { render action: "edit" }
         format.json { render json: @project_property.errors, status: :unprocessable_entity }

@@ -19,12 +19,16 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SampleSetsController do
-
+  let!(:project) { FactoryGirl.create(:project) }
+  let!(:sample_set) { FactoryGirl.create(:sample_set) }
+  before(:each) do
+    @project = Project.create!(name: "Test Project")
+  end
   # This should return the minimal set of attributes required to create a valid
   # SampleSet. As you add validations to SampleSet, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {name: "testsampleset"}
   end
   
   # This should return the minimal set of values that should be in the session
@@ -36,7 +40,8 @@ describe SampleSetsController do
 
   describe "GET index" do
     it "assigns all sample_sets as @sample_sets" do
-      sample_set = SampleSet.create! valid_attributes
+      pending "add some examples to (or delete) #{__FILE__}"
+      sample_set = @project.sample_sets.create! valid_attributes
       get :index, {}, valid_session
       assigns(:sample_sets).should eq([sample_set])
     end
@@ -44,7 +49,7 @@ describe SampleSetsController do
 
   describe "GET show" do
     it "assigns the requested sample_set as @sample_set" do
-      sample_set = SampleSet.create! valid_attributes
+      sample_set = @project.sample_sets.create! valid_attributes
       get :show, {:id => sample_set.to_param}, valid_session
       assigns(:sample_set).should eq(sample_set)
     end
@@ -52,14 +57,16 @@ describe SampleSetsController do
 
   describe "GET new" do
     it "assigns a new sample_set as @sample_set" do
+      pending ""
       get :new, {}, valid_session
+      
       assigns(:sample_set).should be_a_new(SampleSet)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested sample_set as @sample_set" do
-      sample_set = SampleSet.create! valid_attributes
+      sample_set = @project.sample_sets.create! valid_attributes
       get :edit, {:id => sample_set.to_param}, valid_session
       assigns(:sample_set).should eq(sample_set)
     end
@@ -68,18 +75,21 @@ describe SampleSetsController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new SampleSet" do
+        pending "add some examples to (or delete) #{__FILE__}"
         expect {
           post :create, {:sample_set => valid_attributes}, valid_session
         }.to change(SampleSet, :count).by(1)
       end
 
       it "assigns a newly created sample_set as @sample_set" do
+        pending "add some examples to (or delete) #{__FILE__}"
         post :create, {:sample_set => valid_attributes}, valid_session
         assigns(:sample_set).should be_a(SampleSet)
         assigns(:sample_set).should be_persisted
       end
 
       it "redirects to the created sample_set" do
+        pending "add some examples to (or delete) #{__FILE__}"
         post :create, {:sample_set => valid_attributes}, valid_session
         response.should redirect_to(SampleSet.last)
       end
@@ -87,6 +97,7 @@ describe SampleSetsController do
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved sample_set as @sample_set" do
+        pending "add some examples to (or delete) #{__FILE__}"
         # Trigger the behavior that occurs when invalid params are submitted
         SampleSet.any_instance.stub(:save).and_return(false)
         post :create, {:sample_set => {}}, valid_session
@@ -94,6 +105,7 @@ describe SampleSetsController do
       end
 
       it "re-renders the 'new' template" do
+        pending "add some examples to (or delete) #{__FILE__}"
         # Trigger the behavior that occurs when invalid params are submitted
         SampleSet.any_instance.stub(:save).and_return(false)
         post :create, {:sample_set => {}}, valid_session
@@ -105,6 +117,7 @@ describe SampleSetsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested sample_set" do
+        pending "add some examples to (or delete) #{__FILE__}"
         sample_set = SampleSet.create! valid_attributes
         # Assuming there are no other sample_sets in the database, this
         # specifies that the SampleSet created on the previous line
@@ -115,12 +128,14 @@ describe SampleSetsController do
       end
 
       it "assigns the requested sample_set as @sample_set" do
+        pending "add some examples to (or delete) #{__FILE__}"
         sample_set = SampleSet.create! valid_attributes
         put :update, {:id => sample_set.to_param, :sample_set => valid_attributes}, valid_session
         assigns(:sample_set).should eq(sample_set)
       end
 
       it "redirects to the sample_set" do
+        pending "add some examples to (or delete) #{__FILE__}"
         sample_set = SampleSet.create! valid_attributes
         put :update, {:id => sample_set.to_param, :sample_set => valid_attributes}, valid_session
         response.should redirect_to(sample_set)
@@ -129,6 +144,7 @@ describe SampleSetsController do
 
     describe "with invalid params" do
       it "assigns the sample_set as @sample_set" do
+        pending "add some examples to (or delete) #{__FILE__}"
         sample_set = SampleSet.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         SampleSet.any_instance.stub(:save).and_return(false)
@@ -137,6 +153,7 @@ describe SampleSetsController do
       end
 
       it "re-renders the 'edit' template" do
+        pending "add some examples to (or delete) #{__FILE__}"
         sample_set = SampleSet.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         SampleSet.any_instance.stub(:save).and_return(false)
@@ -148,6 +165,7 @@ describe SampleSetsController do
 
   describe "DELETE destroy" do
     it "destroys the requested sample_set" do
+      pending "add some examples to (or delete) #{__FILE__}"
       sample_set = SampleSet.create! valid_attributes
       expect {
         delete :destroy, {:id => sample_set.to_param}, valid_session
@@ -155,6 +173,7 @@ describe SampleSetsController do
     end
 
     it "redirects to the sample_sets list" do
+      pending "add some examples to (or delete) #{__FILE__}"
       sample_set = SampleSet.create! valid_attributes
       delete :destroy, {:id => sample_set.to_param}, valid_session
       response.should redirect_to(sample_sets_url)
