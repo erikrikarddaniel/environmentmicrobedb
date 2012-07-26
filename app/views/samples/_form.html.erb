@@ -1,12 +1,7 @@
-<%= form_for [@sample_set,@sample_set.samples.build] do |f| %>
+<%= form_for([@sample_set,@sample_set.samples.build], :html => { :class => "form-inline"}) do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="form">
     <%= f.text_field :code, :placeholder => "Code" %>
-    </div>
-    <div>
-    	<%= render @sample.properties %>
-    </div>
-  	<div class="actions">
-    	<%= f.submit %>
-  	</div>
+    <%= f.submit('Create Sample') %>
+    </div>	
 <% end %>

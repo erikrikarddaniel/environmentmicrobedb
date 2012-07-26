@@ -6,6 +6,7 @@
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #  code       :string(255)
+#  project_id :integer
 #
 
 require 'spec_helper'

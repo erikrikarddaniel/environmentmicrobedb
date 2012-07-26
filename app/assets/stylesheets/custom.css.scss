@@ -103,13 +103,16 @@ footer ul li {
 
 
 /* Custom */
-#project_properties {
+.no_numbers {
   li {
     list-style: none; 
   }
 }
-#properties {
-	padding-bottom: 10px;
+.inline_property {
+	color: green;
+}
+.inline_value {
+	color: blue;
 }
 .purr {
   position: fixed;
@@ -129,8 +132,4 @@ footer ul li {
 #sample_set {
   visibility: hidden;
 }
-#samples {
-  li {
-    list-style: none; 
-  }
-}
+

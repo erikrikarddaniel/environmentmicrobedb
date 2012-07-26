@@ -1,6 +1,5 @@
-<h1>Editing sample_property</h1>
+<h2>Editing Sample property: <%= @sample_property.name%></h2>
 
-<%= render 'form' %>
+<%= render 'edit_form' %>
 
-<%= link_to 'Show', @sample_property %> |
-<%= link_to 'Back', sample_properties_path %>
+<%= link_to 'Back', edit_sample_path(@sample) %>

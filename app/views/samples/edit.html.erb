@@ -1,6 +1,6 @@
-<h1>Editing sample</h1>
-<%= link_to 'Show', @sample %> |
-<%= link_to 'Back', samples_path %>
-<%= render 'edit_form' %>
-
+<div>
+	<h2>Editing sample: <%= @sample.code %></h2>
+	<%= render 'edit_form' %>
+</div>
+<%= link_to 'Back', sample_path(@sample) %>
 

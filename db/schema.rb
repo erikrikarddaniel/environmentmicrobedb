@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120710135413) do
+ActiveRecord::Schema.define(:version => 20120726132607) do
 
   create_table "observations", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20120710135413) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "sample_id"
+    t.string   "datatype"
   end
 
   create_table "sample_sets", :force => true do |t|
@@ -53,7 +54,10 @@ ActiveRecord::Schema.define(:version => 20120710135413) do
     t.datetime "updated_at",    :null => false
     t.string   "code"
     t.integer  "sample_set_id"
+    t.integer  "subject_id"
   end
+
+  add_index "samples", ["subject_id"], :name => "index_samples_on_subject_id"
 
   create_table "subject_properties", :force => true do |t|
     t.string   "name"
@@ -67,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20120710135413) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "code"
+    t.integer  "project_id"
   end
 
 end

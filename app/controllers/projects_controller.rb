@@ -3,7 +3,8 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = Project.all
-
+    @project = Project.new
+    @project.properties.build
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -17,6 +18,7 @@ class ProjectsController < ApplicationController
     @project_properties = @project.properties
     @sample_set = @project.sample_sets[0]
     @sample = Sample.where(sample_set_id: @sample_set.id)
+    
     @project_properties.sort! { |a,b| 
       comp = (a.name.downcase <=> b.name.downcase)
       comp.zero? ? (a.value.downcase <=> b.value.downcase) :comp }

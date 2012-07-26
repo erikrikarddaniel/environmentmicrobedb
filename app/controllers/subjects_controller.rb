@@ -24,8 +24,9 @@ class SubjectsController < ApplicationController
   # GET /subjects/new
   # GET /subjects/new.json
   def new
-    @subject = Subject.new
-
+    @subject = Subject.new()
+    @subject.project_id = params[:project_id]
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @subject }
@@ -41,7 +42,6 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(params[:subject])
-
     respond_to do |format|
       if @subject.save
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }

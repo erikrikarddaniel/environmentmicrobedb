@@ -1,12 +1,7 @@
 <%= form_for @sample do |f| %>
 	<%= render 'shared/error_messages', object: f.object %>
 	<div class="form">
-    <%= f.text_field :code, :placeholder => "Code" %>
-    </div>
-    <div>
-    	<%= render @sample.properties %>
-    </div>
-  	<div class="actions">
-    	<%= f.submit %>
+    	<%= f.text_field :code, :placeholder => "Code" %>
+    	<%= f.submit('Update Code') %>
   	</div>
 <% end %>

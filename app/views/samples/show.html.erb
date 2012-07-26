@@ -1,17 +1,19 @@
-<p id="notice"><%= notice %></p>
-<div id="properties_form">
-  <%= render 'sample_properties/form' %>
-</div>
-<div id="properties">
-  <h3>Properties (<%= @sample.properties.count %>)</h3>
-  <div id="sample_properties">
-    <% if @sample.properties.all.any? %>
-      <ol id="sample_prop">
-        <%= render @sample_properties.all %>
-      </ol>  
-    <% end %>
-  </div>
-</div>
+<h2>Sample: <%= @sample.code %></h2>
+<%= render 'sample_properties/form' %>
+<h3>Properties (<%= @sample.properties.count %>)</h3>
+<% if @sample.properties.all.any? %>
+	<ol class="no_numbers">
+		<%= render @sample_properties.all %>
+	</ol>  
+<% end %>
 
-<%= link_to 'Edit', edit_sample_path(@sample) %> |
-<%= link_to 'Back', samples_path %>
+<% if @sample.subject_id.nil? %>
+	<%= render 'subjects/select_form' %>
+<% else %>
+<h3>Subject</h3>
+	<ol class="no_numbers">
+		<%= render @subject %>
+	</ol>
+<% end%>
+<%= link_to 'Back', project_path(@project) %> |
+<%= link_to 'Edit', edit_sample_path(@sample) %> 

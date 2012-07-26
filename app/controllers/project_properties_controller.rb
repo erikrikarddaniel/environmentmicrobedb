@@ -14,7 +14,6 @@ class ProjectPropertiesController < ApplicationController
   # GET /project_properties/1.json
   def show
     @project_property = ProjectProperty.find(params[:id])
-        logger.debug("PARAMS SHOW: #{params.inspect}")
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project_property }
@@ -35,6 +34,7 @@ class ProjectPropertiesController < ApplicationController
   # GET /project_properties/1/edit
   def edit
     @project_property = ProjectProperty.find(params[:id])
+    @project = Project.find(@project_property.project_id)
   end
 
   # POST /project_properties

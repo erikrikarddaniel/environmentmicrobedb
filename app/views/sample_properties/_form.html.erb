@@ -1,25 +1,9 @@
-<%= form_for(@sample_property) do |f| %>
-  <% if @sample_property.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@sample_property.errors.count, "error") %> prohibited this sample_property from being saved:</h2>
-
-      <ul>
-      <% @sample_property.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_for([@sample,@sample.properties.build], :html => { :class => "form-inline"}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :value %><br />
-    <%= f.text_field :value %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+    <%= f.text_field :name, :placeholder => "Type" %> 
+    <%= f.text_field :value, :placeholder => "Value" %> 
+    <%= f.collection_select :datatype, GlobalConstants::PROPERTY_TYPE.keys, :downcase,:downcase  %>
+    <%= f.submit('Create property') %>
   </div>
 <% end %>

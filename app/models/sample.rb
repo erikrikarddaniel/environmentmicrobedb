@@ -7,10 +7,11 @@
 #  updated_at    :datetime        not null
 #  code          :string(255)
 #  sample_set_id :integer
+#  subject_id    :integer
 #
 
 class Sample < ActiveRecord::Base
-  attr_accessible :code
+  attr_accessible :code, :subject_id
   has_many :properties, class_name: "SampleProperty", dependent: :destroy
   belongs_to :sample_set
   validates_presence_of :code, :sample_set_id

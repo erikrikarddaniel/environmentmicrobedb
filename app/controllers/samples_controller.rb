@@ -14,7 +14,13 @@ class SamplesController < ApplicationController
   # GET /samples/1.json
   def show
     @sample = Sample.find(params[:id])
-
+    @sample_set = SampleSet.find(@sample.sample_set_id)
+    @project = Project.find(@sample_set.project_id)
+    @sample_properties = @sample.properties
+    @subjects = Subject.where(project_id: @project.id).select(:code).map(&:code)
+    if not @sample.subject_id.nil?
+      @subject = Subject.find(@sample.subject_id)
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @sample }
@@ -25,6 +31,7 @@ class SamplesController < ApplicationController
   # GET /samples/new.json
   def new
     @sample_set = SampleSet.find(params[:ss_id])
+    @project = Project.find(@sample_set.project_id)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @sample }
@@ -34,6 +41,10 @@ class SamplesController < ApplicationController
   # GET /samples/1/edit
   def edit
     @sample = Sample.find(params[:id])
+    @sample_set = SampleSet.find(@sample.sample_set_id)
+    @project = Project.find(@sample_set.project_id)
+    @sample_properties = @sample.properties
+    
   end
 
   # POST /samples
@@ -44,7 +55,7 @@ class SamplesController < ApplicationController
     @sample.sample_set_id = @sample_set.id
     respond_to do |format|
       if @sample.save
-        format.html { redirect_to edit_sample_path(@sample), notice: 'Sample was successfully created.' }
+        format.html { redirect_to sample_path(@sample), notice: 'Sample was successfully created.' }
         format.json { render json: @sample, status: :created, location: @sample }
       else
         format.html { render action: "new", notice: 'Sample was not created.' }
@@ -61,7 +72,7 @@ class SamplesController < ApplicationController
     
     respond_to do |format|
       if @sample.update_attributes(params[:sample])
-        format.html { redirect_to project_path(@sample_set.project_id), notice: 'Sample was successfully updated.' }
+        format.html { redirect_to sample_path(@sample), notice: 'Sample was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

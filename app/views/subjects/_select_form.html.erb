@@ -1,0 +1,8 @@
+<%= form_for(@sample, :html => { :class => "form-inline"}) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="form">
+    <%= f.text_field :subject_id, data: { source: @subjects, provide: 'typeahead', items: 8} %>
+    <%= f.submit('Link to Subject') %>
+    <%=link_to 'Create Subject', new_subject_path(project_id: @project.id)%>
+    </div>
+<% end %>

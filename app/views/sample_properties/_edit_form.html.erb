@@ -1,9 +1,9 @@
-<%= form_for([@project,@project.properties.build], :html => { :class => "form-inline"}) do |f| %>
+<%= form_for(@sample_property) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :name, :placeholder => "Type" %>
     <%= f.text_field :value, :placeholder => "Value" %>
     <%= f.collection_select :datatype, GlobalConstants::PROPERTY_TYPE.keys, :downcase,:downcase  %>
-    <%= f.submit('Create Property') %>
+    <%= f.submit %>
   </div>
 <% end %>

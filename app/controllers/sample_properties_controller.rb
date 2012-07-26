@@ -35,19 +35,23 @@ class SamplePropertiesController < ApplicationController
   # GET /sample_properties/1/edit
   def edit
     @sample_property = SampleProperty.find(params[:id])
+    @sample = Sample.find(@sample_property.sample_id)
   end
 
   # POST /sample_properties
   # POST /sample_properties.json
   def create
+    @sample = Sample.find(params[:sample_id])
     @sample_property = SampleProperty.new(params[:sample_property])
-
+    @sample_property.sample_id = @sample.id
+    logger.info("PARAMS SP: #{@sample_property.inspect}")
     respond_to do |format|
       if @sample_property.save
-        format.html { redirect_to @sample_property, notice: 'Sample property was successfully created.' }
+        format.html { redirect_to sample_path(@sample), notice: 'Sample property was successfully created.' }
         format.json { render json: @sample_property, status: :created, location: @sample_property }
       else
-        format.html { render action: "new" }
+        flash[:error] = "Sample property was not created: #{@sample_property.errors.messages[:error][0]}."
+        format.html { redirect_to sample_path(@sample) }
         format.json { render json: @sample_property.errors, status: :unprocessable_entity }
       end
     end
@@ -57,13 +61,14 @@ class SamplePropertiesController < ApplicationController
   # PUT /sample_properties/1.json
   def update
     @sample_property = SampleProperty.find(params[:id])
-
+    @sample = Sample.find(@sample_property.sample_id)
     respond_to do |format|
       if @sample_property.update_attributes(params[:sample_property])
-        format.html { redirect_to @sample_property, notice: 'Sample property was successfully updated.' }
+        format.html { redirect_to sample_path(@sample), notice: 'Sample property was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        flash[:error] = "Property was not Updated: #{@sample_property.errors.messages[:error][0]}."
+        format.html { redirect_to sample_property_path(@sample_property) }
         format.json { render json: @sample_property.errors, status: :unprocessable_entity }
       end
     end
@@ -73,10 +78,11 @@ class SamplePropertiesController < ApplicationController
   # DELETE /sample_properties/1.json
   def destroy
     @sample_property = SampleProperty.find(params[:id])
+    @sample = Sample.find(@sample_property.sample_id)
     @sample_property.destroy
 
     respond_to do |format|
-      format.html { redirect_to sample_properties_url }
+      format.html { redirect_to edit_sample_path(@sample) }
       format.json { head :no_content }
     end
   end

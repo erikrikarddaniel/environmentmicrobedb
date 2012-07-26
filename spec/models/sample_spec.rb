@@ -7,6 +7,7 @@
 #  updated_at    :datetime        not null
 #  code          :string(255)
 #  sample_set_id :integer
+#  subject_id    :integer
 #
 
 require 'spec_helper'
