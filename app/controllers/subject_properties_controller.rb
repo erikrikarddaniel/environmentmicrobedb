@@ -35,19 +35,24 @@ class SubjectPropertiesController < ApplicationController
   # GET /subject_properties/1/edit
   def edit
     @subject_property = SubjectProperty.find(params[:id])
+    @subject = Subject.find(@subject_property.subject_id)
   end
 
   # POST /subject_properties
   # POST /subject_properties.json
   def create
+    
+    @subject = Subject.find(params[:subject_id])
     @subject_property = SubjectProperty.new(params[:subject_property])
+    @subject_property.subject_id = @subject.id
 
     respond_to do |format|
       if @subject_property.save
-        format.html { redirect_to @subject_property, notice: 'Subject property was successfully created.' }
+        format.html { redirect_to subject_path(@subject, sample_id: params[:sample_id]), notice: 'Subject property was successfully created.' }
         format.json { render json: @subject_property, status: :created, location: @subject_property }
       else
-        format.html { render action: "new" }
+        flash[:error] = "Subject property was not created: #{@subject_property.errors.messages[:error][0]}."
+        format.html { redirect_to subject_path(@subject) }
         format.json { render json: @subject_property.errors, status: :unprocessable_entity }
       end
     end
@@ -57,10 +62,10 @@ class SubjectPropertiesController < ApplicationController
   # PUT /subject_properties/1.json
   def update
     @subject_property = SubjectProperty.find(params[:id])
-
+    @subject = Subject.find(@subject_property.subject_id)
     respond_to do |format|
       if @subject_property.update_attributes(params[:subject_property])
-        format.html { redirect_to @subject_property, notice: 'Subject property was successfully updated.' }
+        format.html { redirect_to subject_path(@subject, sample_id: params[:sample_id]), notice: 'Subject property was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,10 +78,11 @@ class SubjectPropertiesController < ApplicationController
   # DELETE /subject_properties/1.json
   def destroy
     @subject_property = SubjectProperty.find(params[:id])
+    @subject = Subject.find(@subject_property.subject_id)
     @subject_property.destroy
 
     respond_to do |format|
-      format.html { redirect_to subject_properties_url }
+      format.html { redirect_to subject_path(@subject, sample_id: params[:sample_id]) }
       format.json { head :no_content }
     end
   end

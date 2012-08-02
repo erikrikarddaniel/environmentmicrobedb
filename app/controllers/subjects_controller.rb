@@ -14,7 +14,8 @@ class SubjectsController < ApplicationController
   # GET /subjects/1.json
   def show
     @subject = Subject.find(params[:id])
-
+    @subject_properties = @subject.properties
+    @sample = Sample.find(params[:sample_id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @subject }
@@ -42,9 +43,11 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(params[:subject])
+    @sample = Sample.find(params[:sample_id])
+    logger.debug("PARAMS12341234: #{params.inspect}")
     respond_to do |format|
       if @subject.save
-        format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
+        format.html { redirect_to sample_path(@sample), notice: 'Subject was successfully created.' }
         format.json { render json: @subject, status: :created, location: @subject }
       else
         format.html { render action: "new" }

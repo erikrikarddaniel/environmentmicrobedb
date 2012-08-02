@@ -3,7 +3,6 @@
 	<div class="form">
     <%= f.text_field :code, :placeholder => "Code" %>
     <%= f.hidden_field :project_id, value: params[:project_id]%>
-    <%= hidden_field_tag :sample_id, params[:sample_id]%>
-    <%= f.submit('Create Subject') %>
+    <%= f.submit('Update Subject') %>
     </div>
 <% end %>

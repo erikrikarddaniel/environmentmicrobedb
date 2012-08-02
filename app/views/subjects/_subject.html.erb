@@ -1,0 +1,5 @@
+<li>
+	<strong><%= subject.code%></strong>
+	<%= link_to 'Show', subject_path(@subject, {sample_id: @sample.id})%> |
+	<%= link_to 'Unlink', sample_remove_subject_path(@sample)%>
+</li>

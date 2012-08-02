@@ -1,2 +1,11 @@
+<% logger.debug("SUBJECT_SHOW: #{@sample.inspect}, #{params.inspect}") %>
+<h2>Subject: <%= @subject.code %></h2>
+<%= render 'subject_properties/form' %>
+<h3>Properties (<%= @subject.properties.count %>)</h3>
+<% if @subject.properties.all.any? %>
+	<ol class="no_numbers">
+		<%= render @subject_properties.all %>
+	</ol>  
+<% end %>
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
-<%= link_to 'Back', subjects_path %>
+<%= link_to 'Back', sample_path(@sample) %>

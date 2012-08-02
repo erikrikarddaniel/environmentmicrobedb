@@ -23,6 +23,8 @@ Environmentmicrobedb::Application.routes.draw do
   resources :sample_properties
   resources :samples do
     resources :sample_properties
+    post 'add_subject', :as => :add_subject
+    get 'remove_subject', :as => :remove_subject
   end
 
   

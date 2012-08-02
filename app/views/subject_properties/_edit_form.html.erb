@@ -1,10 +1,10 @@
-<%= form_for([@subject,@subject.properties.build], :html => { :class => "form-inline"}) do |f| %>
+<%= form_for(@subject_property) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :name, :placeholder => "Type" %> 
     <%= f.text_field :value, :placeholder => "Value" %> 
     <%= f.collection_select :datatype, GlobalConstants::PROPERTY_TYPE.keys, :downcase,:downcase  %>
     <%= hidden_field_tag :sample_id, params[:sample_id]%>
-    <%= f.submit('Create property') %>
+    <%= f.submit('Update property') %>
   </div>
 <% end %>

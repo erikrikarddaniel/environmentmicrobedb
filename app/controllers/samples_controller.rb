@@ -17,7 +17,7 @@ class SamplesController < ApplicationController
     @sample_set = SampleSet.find(@sample.sample_set_id)
     @project = Project.find(@sample_set.project_id)
     @sample_properties = @sample.properties
-    @subjects = Subject.where(project_id: @project.id).select(:code).map(&:code)
+    @subjects = Subject.where(project_id: @project.id).select([:id,:code])
     if not @sample.subject_id.nil?
       @subject = Subject.find(@sample.subject_id)
     end
@@ -30,8 +30,6 @@ class SamplesController < ApplicationController
   # GET /samples/new
   # GET /samples/new.json
   def new
-    @sample_set = SampleSet.find(params[:ss_id])
-    @project = Project.find(@sample_set.project_id)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @sample }
@@ -91,6 +89,42 @@ class SamplesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to project_path(@sample_set.project_id) }
       format.json { head :no_content }
+    end
+  end
+  
+  # PUT /samples/1/add_subject
+  # PUT /samples/1/add_subject.json
+  def add_subject
+    @sample = Sample.find(params[:sample_id])
+    @sample.subject_id = params[:subject_id]
+    
+    respond_to do |format|
+      if @sample.save
+        format.html { redirect_to sample_path(@sample), notice: 'Subject was successfully added to sample.' }
+        format.json { head :no_content }
+      else
+        flash[:error] = 'Could not add subject to sample' 
+        format.html { redirect_to sample_path(@sample)}
+        format.json { render json: @sample.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /samples/1/remove_subject
+  # PUT /samples/1/remove_subject.json
+  def remove_subject
+    @sample = Sample.find(params[:sample_id])
+    @sample.subject_id = nil
+    
+    respond_to do |format|
+      if @sample.save
+        format.html { redirect_to sample_path(@sample), notice: 'Subject was successfully unlinked from sample.' }
+        format.json { head :no_content }
+      else
+        flash[:error] = 'Could not remove subject from sample' 
+        format.html { redirect_to sample_path(@sample)}
+        format.json { render json: @sample.errors, status: :unprocessable_entity }
+      end
     end
   end
 end
