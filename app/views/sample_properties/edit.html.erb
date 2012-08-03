@@ -2,4 +2,4 @@
 
 <%= render 'edit_form' %>
 
-<%= link_to 'Back', sample_path(@sample) %>
+<%= link_to 'Back', project_sample_set_sample_path(params[:project_id], params[:sample_set_id], params[:sample_id]) %>

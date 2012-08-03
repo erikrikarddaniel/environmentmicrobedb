@@ -1,5 +1,5 @@
 <li>
 	<strong><%= subject.code%></strong>
-	<%= link_to 'Show', subject_path(@subject, {sample_id: @sample.id})%> |
-	<%= link_to 'Unlink', sample_remove_subject_path(@sample)%>
+	<%= link_to 'Show', project_sample_set_sample_subject_path(params[:project_id], params[:sample_set_id], @sample,subject)%> |
+	<%= link_to 'Unlink', project_sample_set_sample_remove_subject_path(params[:project_id], params[:sample_set_id],@sample)%>
 </li>

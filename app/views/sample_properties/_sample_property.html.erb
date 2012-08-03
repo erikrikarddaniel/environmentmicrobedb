@@ -1,6 +1,6 @@
 <li id="samprop_<%= sample_property.id %>">
-	<%= link_to 'Edit', edit_sample_property_path(sample_property) %>
-	<%= link_to 'Destroy', sample_property, confirm: 'Are you sure?', method: :delete %>
+	<%= link_to 'Edit', edit_project_sample_set_sample_property_path(params[:project_id],params[:sample_set_id],params[:id],sample_property) %>
+	<%= link_to 'Destroy', project_sample_set_sample_property_path(params[:project_id],params[:sample_set_id],params[:id],sample_property), confirm: 'Are you sure?', method: :delete %>
 	<strong><%= sample_property.name %>:</strong>
 	<%= sample_property.convert_value %>
 

@@ -48,11 +48,11 @@ class SubjectPropertiesController < ApplicationController
 
     respond_to do |format|
       if @subject_property.save
-        format.html { redirect_to subject_path(@subject, sample_id: params[:sample_id]), notice: 'Subject property was successfully created.' }
+        format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject), notice: 'Subject property was successfully created.' }
         format.json { render json: @subject_property, status: :created, location: @subject_property }
       else
         flash[:error] = "Subject property was not created: #{@subject_property.errors.messages[:error][0]}."
-        format.html { redirect_to subject_path(@subject) }
+        format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject) }
         format.json { render json: @subject_property.errors, status: :unprocessable_entity }
       end
     end
@@ -65,7 +65,7 @@ class SubjectPropertiesController < ApplicationController
     @subject = Subject.find(@subject_property.subject_id)
     respond_to do |format|
       if @subject_property.update_attributes(params[:subject_property])
-        format.html { redirect_to subject_path(@subject, sample_id: params[:sample_id]), notice: 'Subject property was successfully updated.' }
+        format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject), notice: 'Subject property was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,7 +82,7 @@ class SubjectPropertiesController < ApplicationController
     @subject_property.destroy
 
     respond_to do |format|
-      format.html { redirect_to subject_path(@subject, sample_id: params[:sample_id]) }
+      format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject) }
       format.json { head :no_content }
     end
   end

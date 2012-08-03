@@ -1,10 +1,10 @@
-<%= form_tag(sample_add_subject_path(@sample), :html => { :class => "form-inline"}) do -%>
+<%= form_tag(project_sample_set_sample_add_subject_path(params[:project_id],params[:sample_set_id],@sample), :html => { :class => "form-inline"}) do -%>
 	<div class="form">
 <!--    	<%= text_field_tag :subject_code, nil, placeholder: "Link to subject", data: { source: @subjects, provide: 'typeahead', items: 8} %>
 -->
     	<%= select_tag :subject_id, options_from_collection_for_select(@subjects, :id, :code), class: "combobox-container add-on"%>
     	<%= hidden_field_tag :project_id, @project.id%>
     	<%= submit_tag('Link to Subject') %>
-    	<%=link_to 'Create Subject', new_subject_path(project_id: @project.id, sample_id: @sample.id)%>
+    	<%=link_to 'Create Subject', new_project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],@sample)%>
     </div>
 <% end -%>

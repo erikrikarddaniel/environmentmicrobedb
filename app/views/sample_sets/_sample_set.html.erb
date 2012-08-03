@@ -3,6 +3,5 @@
   <%= collection_select(:sample_set, :id, @project.sample_sets, :id, :name) %>
 </div>
 <span class="header_links">
-	<%= link_to_function "Edit","url_replace('#sample_set_id',\'#{edit_sample_set_path('_%_')}\','_%_')" %>  |
-	<%= link_to 'New', new_sample_set_path(:project_id => @project.id) %>
+	<%= link_to 'New', new_project_sample_set_path(@project.id) %>
 </span>

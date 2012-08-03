@@ -1,4 +1,4 @@
-<%= form_for(@sample_property) do |f| %>
+<%= form_for(@sample_property, :url => project_sample_set_sample_property_path(params[:project_id],params[:sample_set_id],params[:sample_id],@sample_property), :method => "put") do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :name, :placeholder => "Type" %>

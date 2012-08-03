@@ -15,9 +15,11 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
-    @project_properties = @project.properties
+    @project_property = @project.properties.build
+    @project_properties = @project.properties.all
     @sample_set = @project.sample_sets[0]
-    @sample = Sample.where(sample_set_id: @sample_set.id)
+    @sample = @sample_set.samples.build
+    @samples = Sample.where(sample_set_id: @sample_set.id)
     
     @project_properties.sort! { |a,b| 
       comp = (a.name.downcase <=> b.name.downcase)

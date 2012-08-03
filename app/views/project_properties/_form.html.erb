@@ -1,4 +1,4 @@
-<%= form_for([@project,@project.properties.build], :html => { :class => "form-inline"}) do |f| %>
+<%= form_for(@project_property, :url => project_properties_path(params[:id],@project_property),:method => "post", :html => { :class => "form-inline"}) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.text_field :name, :placeholder => "Type" %>

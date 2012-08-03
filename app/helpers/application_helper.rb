@@ -1,6 +1,6 @@
 module ApplicationHelper
   def full_title(page_title)
-    base_title = "Title for this project"
+    base_title = "Microbial DB"
     if page_title.empty?
       base_title
     else

@@ -13,6 +13,7 @@ FactoryGirl.define do
   factory :sample_property do
     name "sample_prop_type"
     value "sample_prop_value"
+    datatype "string"
     sample
   end
   
@@ -22,15 +23,18 @@ FactoryGirl.define do
   end
   factory :sample do
     code "Test sample"
+    sample_set
   end
   
   factory :subject_property do
     name "sub_prop_type"
     value "sub_prop_value"
+    datatype "string"
     subject
   end
   
   factory :subject do
     code "Test subject"
+    sample
   end
 end

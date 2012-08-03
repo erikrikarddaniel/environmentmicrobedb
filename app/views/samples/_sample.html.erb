@@ -1,5 +1,5 @@
 <li>
-	<%= link_to 'Show', sample %>
-	<%= link_to 'Destroy', sample, confirm: 'Are you sure?', method: :delete %>
+	<%= link_to 'Show', project_sample_set_sample_path(@project.id,@sample_set.id,sample) %>
+	<%= link_to 'Destroy', project_sample_set_sample_path(@project.id,@sample_set.id,sample), confirm: 'Are you sure?', method: :delete %>
 	<strong><%= sample.code %>  </strong><%= sample.properties.each.map {|prop| "<span class='inline_property'>#{prop.name}</span>:<span class='inline_value'>#{prop.value}</span>" }.join('|').html_safe %>
 </li>

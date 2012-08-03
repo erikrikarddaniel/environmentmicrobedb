@@ -1,6 +1,6 @@
 <li id="subprop_<%= subject_property.id %>">
-	<%= link_to 'Edit', edit_subject_property_path(subject_property, sample_id: params[:sample_id]) %>
-	<%= link_to 'Destroy', subject_property_path(subject_property, sample_id: params[:sample_id]), confirm: 'Are you sure?', method: :delete %>
+	<%= link_to 'Edit', edit_project_sample_set_sample_subject_property_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject,subject_property) %>
+	<%= link_to 'Destroy', project_sample_set_sample_subject_property_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject,subject_property), confirm: 'Are you sure?', method: :delete %>
 	<strong><%= subject_property.name %>:</strong>
 	<%= subject_property.convert_value %>
 </li>

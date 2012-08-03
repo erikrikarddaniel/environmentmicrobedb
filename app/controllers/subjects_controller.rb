@@ -2,7 +2,7 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = Subject.where(project_id: params[:project_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,9 @@ class SubjectsController < ApplicationController
   # GET /subjects/1.json
   def show
     @subject = Subject.find(params[:id])
-    @subject_properties = @subject.properties
+    @subject_property = @subject.properties.build
+    @subject_properties = @subject.properties.all
+    
     @sample = Sample.find(params[:sample_id])
     respond_to do |format|
       format.html # show.html.erb
@@ -47,7 +49,11 @@ class SubjectsController < ApplicationController
     logger.debug("PARAMS12341234: #{params.inspect}")
     respond_to do |format|
       if @subject.save
-        format.html { redirect_to sample_path(@sample), notice: 'Subject was successfully created.' }
+        if (not params[:sample_id].nil?)
+          format.html { redirect_to project_sample_set_sample_path(params[:project_id],params[:sample_set_id], params[:sample_id]), notice: 'Subject was successfully created.' }
+        else
+          format.html { redirect_to project_path(params[:project_id]), notice: 'Subject was successfully created.' }
+        end
         format.json { render json: @subject, status: :created, location: @subject }
       else
         format.html { render action: "new" }
@@ -60,10 +66,13 @@ class SubjectsController < ApplicationController
   # PUT /subjects/1.json
   def update
     @subject = Subject.find(params[:id])
-    @sample = Sample.find(params[:sample_id])
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
-        format.html { redirect_to subject_path(@subject, sample_id: @sample.id), notice: 'Subject was successfully updated.' }
+        if (not params[:sample_id].nil?)
+          format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id], params[:sample_id],@subject), notice: 'Subject was successfully updated.' }
+        else
+          format.html { redirect_to project_path(params[:project_id]), notice: 'Subject was successfully updated.' }
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -79,7 +88,11 @@ class SubjectsController < ApplicationController
     @subject.destroy
 
     respond_to do |format|
-      format.html { redirect_to subjects_url }
+      if (not params[:sample_id].nil?)
+          format.html { redirect_to project_sample_set_sample_path(params[:project_id],params[:sample_set_id], params[:sample_id]), notice: 'Subject was successfully deleted.' }
+        else
+          format.html { redirect_to project_path(params[:project_id]), notice: 'Subject was successfully deleted.' }
+        end
       format.json { head :no_content }
     end
   end

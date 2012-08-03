@@ -1,6 +1,6 @@
 <li id="projprop_<%= project_property.id %>">
-	<%= link_to 'Edit', edit_project_property_path(project_property) %>
-	<%= link_to 'Destroy', project_property, confirm: 'Are you sure?', method: :delete %>
+	<%= link_to 'Edit', edit_project_property_path(params[:id],project_property) %>
+	<%= link_to 'Destroy', project_property_path(params[:id],project_property), confirm: 'Are you sure?', method: :delete %>
 	<strong><%= project_property.name %>:</strong>
 	<%= project_property.convert_value %>
 </li>

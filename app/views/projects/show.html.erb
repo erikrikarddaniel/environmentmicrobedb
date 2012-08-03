@@ -3,9 +3,9 @@
 	<%= render 'project_properties/form' %>
 </div>
 <h3>Properties (<%= @project.properties.count %>)</h3>
-<% if @project.properties.all.any? %>
+<% if @project_properties.any? %>
 <ol class="no_numbers">
-	<%= render @project_properties.all %>
+	<%= render @project_properties %>
 </ol>  
 <% end %>
 
@@ -16,8 +16,9 @@
 <h3>Samples (<%= @sample_set.samples.count %>)</h3>
 <div>
 	<ol class="no_numbers">
-		<%= render @sample %>
+		<%= render @samples %>
 	</ol>
 </div>
 <%= link_to 'Back', projects_path %> |
-<%= link_to 'Edit', edit_project_path(@project) %>
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Manage subjects', project_subjects_path(@project) %> 
