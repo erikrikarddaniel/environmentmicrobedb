@@ -60,10 +60,10 @@ class SubjectsController < ApplicationController
   # PUT /subjects/1.json
   def update
     @subject = Subject.find(params[:id])
-
+    @sample = Sample.find(params[:sample_id])
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
-        format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
+        format.html { redirect_to subject_path(@subject, sample_id: @sample.id), notice: 'Subject was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

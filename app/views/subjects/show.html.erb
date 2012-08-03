@@ -7,5 +7,5 @@
 		<%= render @subject_properties.all %>
 	</ol>  
 <% end %>
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
+<%= link_to 'Edit', edit_subject_path(@subject, sample_id: @sample.id) %> |
 <%= link_to 'Back', sample_path(@sample) %>

@@ -2,5 +2,4 @@
 
 <%= render 'edit_form' %>
 
-<%= link_to 'Show', @subject %> |
-<%= link_to 'Back', subjects_path %>
+<%= link_to 'Back', subject_path(@subject, sample_id: params[:sample_id]) %>
