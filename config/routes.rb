@@ -2,8 +2,11 @@ Environmentmicrobedb::Application.routes.draw do
   root to: 'static#home'
   match '/about', to: 'static#about'
   match '/help', to: 'static#help'
-  
-  resources :projects  do
+
+  resources :projects do
+    resources :subjects do
+      resources :properties, :controller => "subject_properties"
+    end
     resources :properties, :controller => "project_properties"
     resources :sample_sets do
       resources :samples do
@@ -14,9 +17,6 @@ Environmentmicrobedb::Application.routes.draw do
         post 'add_subject', :as => :add_subject
         get 'remove_subject', :as => :remove_subject
       end
-    end
-    resources :subjects do
-      resources :properties, :controller => "subject_properties"
     end
   end
   

@@ -1,0 +1,9 @@
+<%= form_for(@subject, :method => "put", :url=> project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject), :html => { :class => "form-inline"}) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="form">
+    <%= f.text_field :code, :placeholder => "Code" %>
+    <%= f.hidden_field :project_id, value: params[:project_id]%>
+    <%= hidden_field_tag :sample_id, params[:sample_id]%>
+    <%= f.submit('Update Subject') %>
+    </div>
+<% end %>

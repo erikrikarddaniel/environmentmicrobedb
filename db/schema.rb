@@ -11,11 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120726234108) do
+ActiveRecord::Schema.define(:version => 20120806130151) do
 
   create_table "observations", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "sample_id"
+    t.string   "observation_type"
   end
 
   create_table "project_properties", :force => true do |t|
