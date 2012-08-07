@@ -1,7 +1,7 @@
-<h1>Listing subjects</h1>
+<h2>Listing subjects</h2>
 <% @subjects.each do |subject| %>
   <tr>
-    <td><%= link_to 'Edit', edit_project_subject_path(params[:project_id],subject.id) %></td>
+    <td><%= link_to 'Show', project_subject_path(params[:project_id],subject.id) %></td>
     <td><%= link_to 'Destroy', project_subject_path(params[:project_id], subject.id), confirm: 'Are you sure?', method: :delete %></td>
     <td><%= subject.code%></td>
   </tr>
@@ -10,5 +10,6 @@
 </table>
 
 <br />
-
+<%= link_to 'Back', project_path(params[:project_id])%> |
 <%= link_to 'New Subject', new_project_subject_path %>
+

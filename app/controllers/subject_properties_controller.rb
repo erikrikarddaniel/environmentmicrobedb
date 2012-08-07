@@ -41,14 +41,17 @@ class SubjectPropertiesController < ApplicationController
   # POST /subject_properties
   # POST /subject_properties.json
   def create
-    
     @subject = Subject.find(params[:subject_id])
     @subject_property = SubjectProperty.new(params[:subject_property])
     @subject_property.subject_id = @subject.id
 
     respond_to do |format|
       if @subject_property.save
-        format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject), notice: 'Subject property was successfully created.' }
+        if (not params[:sample_id].nil?)
+          format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject), notice: 'Subject property was successfully created.' }
+        else
+          format.html { redirect_to project_subject_path(params[:project_id],@subject), notice: 'Subject property was successfully created.' }
+        end
         format.json { render json: @subject_property, status: :created, location: @subject_property }
       else
         flash[:error] = "Subject property was not created: #{@subject_property.errors.messages[:error][0]}."
@@ -65,7 +68,11 @@ class SubjectPropertiesController < ApplicationController
     @subject = Subject.find(@subject_property.subject_id)
     respond_to do |format|
       if @subject_property.update_attributes(params[:subject_property])
-        format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject), notice: 'Subject property was successfully updated.' }
+        if (not params[:sample_id].nil?)
+          format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject), notice: 'Subject property was successfully updated.' }
+        else
+          format.html { redirect_to project_subject_path(params[:project_id],@subject), notice: 'Subject property was successfully updated.' }
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,7 +89,11 @@ class SubjectPropertiesController < ApplicationController
     @subject_property.destroy
 
     respond_to do |format|
-      format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject) }
+      if (not params[:sample_id].nil?)
+        format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject) }
+      else
+        format.html { redirect_to project_subject_path(params[:project_id],@subject) }
+      end
       format.json { head :no_content }
     end
   end

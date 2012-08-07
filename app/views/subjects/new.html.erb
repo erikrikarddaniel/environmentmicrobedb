@@ -1,5 +1,8 @@
 <h1>New subject</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', project_sample_set_sample_path(params[:project_id], params[:sample_set_id], params[:sample_id]) %>
+<% if (not params[:sample_id].nil?) %>
+	<%= render 'form' %>
+	<%= link_to 'Back', project_sample_set_sample_path(params[:project_id], params[:sample_set_id], params[:sample_id]) %>
+<% else %>
+	<%= render 'form_project' %>
+	<%= link_to 'Back', project_subjects_path(params[:project_id]) %>
+<% end%>

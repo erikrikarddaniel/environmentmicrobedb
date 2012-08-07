@@ -54,7 +54,7 @@ class SubjectsController < ApplicationController
         if (not params[:sample_id].nil?)
           format.html { redirect_to project_sample_set_sample_path(params[:project_id],params[:sample_set_id], params[:sample_id]), notice: 'Subject was successfully created.' }
         else
-          format.html { redirect_to project_subject_path(params[:project_id],@subject), notice: 'Subject was successfully created.' }
+          format.html { redirect_to project_subjects_path(params[:project_id]), notice: 'Subject was successfully created.' }
         end
         format.json { render json: @subject, status: :created, location: @subject }
       else
@@ -73,7 +73,7 @@ class SubjectsController < ApplicationController
         if (not params[:sample_id].nil?)
           format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id], params[:sample_id],@subject), notice: 'Subject was successfully updated.' }
         else
-          format.html { redirect_to project_subjects_path(params[:project_id]), notice: 'Subject was successfully updated.' }
+          format.html { redirect_to project_subject_path(params[:project_id],@subject), notice: 'Subject was successfully updated.' }
         end
         format.json { head :no_content }
       else
@@ -98,4 +98,5 @@ class SubjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end

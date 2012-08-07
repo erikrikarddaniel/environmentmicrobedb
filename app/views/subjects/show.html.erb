@@ -1,11 +1,20 @@
 <% logger.debug("SUBJECT_SHOW: #{@sample.inspect}, #{params.inspect}") %>
 <h2>Subject: <%= @subject.code %></h2>
-<%= render 'subject_properties/form' %>
+<% if ( not params[:subject_id].nil?)%>
+	<%= render 'subject_properties/form' %>
+<% else %>
+	<%= render 'subject_properties/form_project' %>
+<% end %>
 <h3>Properties (<%= @subject_properties.count %>)</h3>
 <% if @subject_properties %>
 	<ol class="no_numbers">
 		<%= render @subject_properties %>
 	</ol>  
 <% end %>
-<%= link_to 'Edit', edit_project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject) %> |
-<%= link_to 'Back', project_sample_set_sample_path(params[:project_id],params[:sample_set_id],params[:sample_id]) %>
+<% if (not params[:sample_id].nil?) %>
+	<%= link_to 'Edit', edit_project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id],params[:sample_id],@subject) %> |
+	<%= link_to 'Back', project_sample_set_sample_path(params[:project_id],params[:sample_set_id],params[:sample_id]) %>
+<% else%>
+	<%= link_to 'Edit', edit_project_subject_path(params[:project_id],@subject) %> |
+	<%= link_to 'Back', project_subjects_path(params[:project_id]) %>
+<%end%>
