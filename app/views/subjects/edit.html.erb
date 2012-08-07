@@ -1,5 +1,8 @@
 <h2>Editing subject</h2>
-
+<% if (not params[:sample_id].nil?) %>
 <%= render 'edit_form' %>
-
 <%= link_to 'Back', project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id], params[:sample_id], @subject) %>
+<% else %>
+<%= render 'edit_form_project' %>
+<%= link_to 'Back', project_subject_path(params[:project_id],@subject) %>
+<% end%>

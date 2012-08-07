@@ -1,0 +1,9 @@
+<%= form_for(@subject_property, :url=> project_subject_properties_path(params[:project_id],params[:id],@subject_property), :method => "post", :html => { :class => "form-inline"}) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name, :placeholder => "Type" %> 
+    <%= f.text_field :value, :placeholder => "Value" %> 
+    <%= f.collection_select :datatype, GlobalConstants::PROPERTY_TYPE.keys, :downcase,:downcase  %>
+    <%= f.submit('Create property') %>
+  </div>
+<% end %>

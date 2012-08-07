@@ -16,8 +16,9 @@ class SubjectsController < ApplicationController
     @subject = Subject.find(params[:id])
     @subject_property = @subject.properties.build
     @subject_properties = @subject.properties.all
-    
-    @sample = Sample.find(params[:sample_id])
+    if (not params[:sample_id].nil?)
+      @sample = Sample.find(params[:sample_id])
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @subject }
@@ -45,14 +46,15 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(params[:subject])
-    @sample = Sample.find(params[:sample_id])
-    logger.debug("PARAMS12341234: #{params.inspect}")
+    if (not params[:sample_id].nil?)
+      @sample = Sample.find(params[:sample_id])
+    end
     respond_to do |format|
       if @subject.save
         if (not params[:sample_id].nil?)
           format.html { redirect_to project_sample_set_sample_path(params[:project_id],params[:sample_set_id], params[:sample_id]), notice: 'Subject was successfully created.' }
         else
-          format.html { redirect_to project_path(params[:project_id]), notice: 'Subject was successfully created.' }
+          format.html { redirect_to project_subjects_path(params[:project_id]), notice: 'Subject was successfully created.' }
         end
         format.json { render json: @subject, status: :created, location: @subject }
       else
@@ -71,7 +73,7 @@ class SubjectsController < ApplicationController
         if (not params[:sample_id].nil?)
           format.html { redirect_to project_sample_set_sample_subject_path(params[:project_id],params[:sample_set_id], params[:sample_id],@subject), notice: 'Subject was successfully updated.' }
         else
-          format.html { redirect_to project_path(params[:project_id]), notice: 'Subject was successfully updated.' }
+          format.html { redirect_to project_subject_path(params[:project_id],@subject), notice: 'Subject was successfully updated.' }
         end
         format.json { head :no_content }
       else
@@ -91,9 +93,10 @@ class SubjectsController < ApplicationController
       if (not params[:sample_id].nil?)
           format.html { redirect_to project_sample_set_sample_path(params[:project_id],params[:sample_set_id], params[:sample_id]), notice: 'Subject was successfully deleted.' }
         else
-          format.html { redirect_to project_path(params[:project_id]), notice: 'Subject was successfully deleted.' }
+          format.html { redirect_to project_subjects_path(params[:project_id]), notice: 'Subject was successfully deleted.' }
         end
       format.json { head :no_content }
     end
   end
+
 end
