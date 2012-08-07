@@ -1,0 +1,8 @@
+<%= form_for(@subject, :method => "post", :url=> project_subjects_path(params[:project_id],@subject), :html => { :class => "form-inline"}) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="form">
+    <%= f.text_field :code, :placeholder => "Code" %>
+    <%= f.hidden_field :project_id, value: params[:project_id]%>
+    <%= f.submit('Create Subject') %>
+    </div>
+<% end %>

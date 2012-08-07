@@ -1,0 +1,9 @@
+<%= form_for(@subject_property, :method => "put", :url=> project_subject_property_path(params[:project_id],params[:subject_id],@subject_property)) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_field :name, :placeholder => "Type" %> 
+    <%= f.text_field :value, :placeholder => "Value" %> 
+    <%= f.collection_select :datatype, GlobalConstants::PROPERTY_TYPE.keys, :downcase,:downcase  %>
+    <%= f.submit('Update property') %>
+  </div>
+<% end %>
