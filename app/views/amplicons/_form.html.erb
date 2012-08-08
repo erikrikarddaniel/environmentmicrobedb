@@ -1,0 +1,29 @@
+<%= form_for(@amplicon) do |f| %>
+  <% if @amplicon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@amplicon.errors.count, "error") %> prohibited this amplicon from being saved:</h2>
+
+      <ul>
+      <% @amplicon.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sample_id %><br />
+    <%= f.number_field :sample_id %>
+  </div>
+  <div class="field">
+    <%= f.label :n_specific %><br />
+    <%= f.number_field :n_specific %>
+  </div>
+  <div class="field">
+    <%= f.label :n_unspecific %><br />
+    <%= f.text_field :n_unspecific %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

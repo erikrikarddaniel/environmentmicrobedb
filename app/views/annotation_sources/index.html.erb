@@ -1,0 +1,31 @@
+<h1>Listing annotation_sources</h1>
+
+<table>
+  <tr>
+    <th>Bio observation</th>
+    <th>Dbname</th>
+    <th>Dbversion</th>
+    <th>Algorithm</th>
+    <th>Algorithm parameters</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @annotation_sources.each do |annotation_source| %>
+  <tr>
+    <td><%= annotation_source.bio_observation_id %></td>
+    <td><%= annotation_source.dbname %></td>
+    <td><%= annotation_source.dbversion %></td>
+    <td><%= annotation_source.algorithm %></td>
+    <td><%= annotation_source.algorithm_parameters %></td>
+    <td><%= link_to 'Show', annotation_source %></td>
+    <td><%= link_to 'Edit', edit_annotation_source_path(annotation_source) %></td>
+    <td><%= link_to 'Destroy', annotation_source, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Annotation source', new_annotation_source_path %>

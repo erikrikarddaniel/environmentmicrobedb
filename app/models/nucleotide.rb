@@ -1,15 +1,18 @@
 # == Schema Information
 #
-# Table name: observations
 #
 #  id               :integer         not null, primary key
 #  created_at       :datetime        not null
 #  updated_at       :datetime        not null
 #  sample_id        :integer
+#  n_specific       :integer
+#  n_unspecific     :double
 #
 
-class Observation < ActiveRecord::Base
+class Nucleotide < BioObservation
   self.abstract_class = true
-  attr_accessible :sample_id
-  belongs_to :sample
 end
+
+
+
+

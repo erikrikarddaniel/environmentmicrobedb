@@ -11,13 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120806130151) do
+ActiveRecord::Schema.define(:version => 20120807214952) do
 
-  create_table "observations", :force => true do |t|
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+  create_table "amplicons", :force => true do |t|
     t.integer  "sample_id"
-    t.string   "observation_type"
+    t.integer  "n_specific"
+    t.float    "n_unspecific"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "annotation_sources", :force => true do |t|
+    t.string   "dbname"
+    t.string   "dbversion"
+    t.string   "algorithm"
+    t.string   "algorithm_parameters"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "project_properties", :force => true do |t|

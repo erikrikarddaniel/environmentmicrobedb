@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Bio observation:</b>
+  <%= @annotation_source.bio_observation_id %>
+</p>
+
+<p>
+  <b>Dbname:</b>
+  <%= @annotation_source.dbname %>
+</p>
+
+<p>
+  <b>Dbversion:</b>
+  <%= @annotation_source.dbversion %>
+</p>
+
+<p>
+  <b>Algorithm:</b>
+  <%= @annotation_source.algorithm %>
+</p>
+
+<p>
+  <b>Algorithm parameters:</b>
+  <%= @annotation_source.algorithm_parameters %>
+</p>
+
+
+<%= link_to 'Edit', edit_annotation_source_path(@annotation_source) %> |
+<%= link_to 'Back', annotation_sources_path %>

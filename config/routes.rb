@@ -1,4 +1,10 @@
 Environmentmicrobedb::Application.routes.draw do
+  resources :create_otus
+
+  resources :annotation_sources
+
+  resources :amplicons
+
   root to: 'static#home'
   match '/about', to: 'static#about'
   match '/help', to: 'static#help'

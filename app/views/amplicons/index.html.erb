@@ -1,0 +1,27 @@
+<h1>Listing amplicons</h1>
+
+<table>
+  <tr>
+    <th>Sample</th>
+    <th>N specific</th>
+    <th>N unspecific</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @amplicons.each do |amplicon| %>
+  <tr>
+    <td><%= amplicon.sample_id %></td>
+    <td><%= amplicon.n_specific %></td>
+    <td><%= amplicon.n_unspecific %></td>
+    <td><%= link_to 'Show', amplicon %></td>
+    <td><%= link_to 'Edit', edit_amplicon_path(amplicon) %></td>
+    <td><%= link_to 'Destroy', amplicon, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Amplicon', new_amplicon_path %>

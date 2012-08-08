@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sample:</b>
+  <%= @amplicon.sample_id %>
+</p>
+
+<p>
+  <b>N specific:</b>
+  <%= @amplicon.n_specific %>
+</p>
+
+<p>
+  <b>N unspecific:</b>
+  <%= @amplicon.n_unspecific %>
+</p>
+
+
+<%= link_to 'Edit', edit_amplicon_path(@amplicon) %> |
+<%= link_to 'Back', amplicons_path %>

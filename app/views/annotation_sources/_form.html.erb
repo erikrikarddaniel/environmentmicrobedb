@@ -1,0 +1,37 @@
+<%= form_for(@annotation_source) do |f| %>
+  <% if @annotation_source.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@annotation_source.errors.count, "error") %> prohibited this annotation_source from being saved:</h2>
+
+      <ul>
+      <% @annotation_source.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bio_observation_id %><br />
+    <%= f.number_field :bio_observation_id %>
+  </div>
+  <div class="field">
+    <%= f.label :dbname %><br />
+    <%= f.text_field :dbname %>
+  </div>
+  <div class="field">
+    <%= f.label :dbversion %><br />
+    <%= f.text_field :dbversion %>
+  </div>
+  <div class="field">
+    <%= f.label :algorithm %><br />
+    <%= f.text_field :algorithm %>
+  </div>
+  <div class="field">
+    <%= f.label :algorithm_parameters %><br />
+    <%= f.text_field :algorithm_parameters %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
