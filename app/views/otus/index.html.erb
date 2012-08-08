@@ -1,0 +1,21 @@
+<h1>Listing otus</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @otus.each do |otu| %>
+  <tr>
+    <td><%= link_to 'Show', otu %></td>
+    <td><%= link_to 'Edit', edit_otu_path(otu) %></td>
+    <td><%= link_to 'Destroy', otu, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Otu', new_otu_path %>
