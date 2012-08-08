@@ -1,15 +1,11 @@
 Environmentmicrobedb::Application.routes.draw do
-  resources :create_otus
-
-  resources :annotation_sources
-
-  resources :amplicons
-
   root to: 'static#home'
   match '/about', to: 'static#about'
   match '/help', to: 'static#help'
 
   resources :projects do
+    get 'upload', :as => :upload 
+    post 'file_upload', :as => :file_upload
     resources :subjects do
       resources :properties, :controller => "subject_properties"
     end

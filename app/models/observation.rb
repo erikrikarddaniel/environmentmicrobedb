@@ -12,4 +12,5 @@ class Observation < ActiveRecord::Base
   self.abstract_class = true
   attr_accessible :sample_id
   belongs_to :sample
+  validates :sample_id, :presence => true
 end
