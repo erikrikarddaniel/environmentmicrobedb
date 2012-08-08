@@ -126,23 +126,32 @@ class ProjectsController < ApplicationController
     require 'fileutils'
     properties = {}
     alg_params = {}
+    samples = {}
     counts = []
     File.open("#{params[:file_upload][:my_file].path}", "r").each_with_index do |line,index|
       if (line[0] != "#" && line.split.length > 0)
         counts.append(line.split())
+        #create a dictionary of sets with algorithm_parameter as key, otus as values of set
         if (alg_params.has_key?(counts.last[1]))
           alg_params[counts.last[1]].add(counts.last[2])
         else
           alg_params[counts.last[1]] = Set.new([counts.last[2]])
         end
+        #add samples codes
+        if (samples.has_key?(counts.last[0]))
+          samples[counts.last[0]].add(counts.last[2])
+        else
+          samples[counts.last[0]] = Set.new([[count.last[2..4]]])
+        end
       elsif (line[0] == "#" && index < 3)
+        #process the properties, add them as symbols to an dictionary, used for lookup and creation of annotation source.
         prop = line.split[1,2]
         properties["#{prop[0].sub(":","")}".to_sym] = prop[1]
       end
     end
     FileUtils.rm params[:file_upload][:my_file].tempfile
-    
-    @annotation_sources = []
+        
+    #Create annotation source and otus for each annotation source. If exists, do nothing.
     alg_params.each do |p|
       @annotation_source = AnnotationSource.where(dbname: properties[:dbname], dbversion: properties[:dbversion], algorithm: properties[:algorithm], algorithm_parameters: p[0]).first
       if (@annotation_source.nil?)
@@ -152,14 +161,27 @@ class ProjectsController < ApplicationController
         @otu = Otu.where(name: o, annotation_source_id: @annotation_source.id).first
         if (@otu.nil?)
           @otu = Otu.create(name: o, annotation_source_id: @annotation_source.id)
-        end
-        
+        end    
       end
     end
+
+    #If sample does not exists, create
+    @project = Project.find(params[:project_id])
+    @sample_set = @project.sample_sets.first
     
-    respond_to do |format|
-      format.html {project_path(params[:project_id])}
-      format.json { head :no_content }
+    samples.each do |s|
+      @sample = @sample_set.samples.where(code: s[0]).first
+      if (@sample.nil?)
+        @sample = @sample_set.samples.create(code: s[0])
+      end
+      @sample.amplicons.delete_all
+      
+      s[1].each do |parameters|
+        
+        @sample.amplicons.create(n_specific: parameters[1])
+      end
     end
+
+    redirect_to project_path(params[:project_id])
   end
 end
