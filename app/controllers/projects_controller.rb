@@ -124,9 +124,13 @@ class ProjectsController < ApplicationController
 #    map2otucounts.00.sample02 99  OTU99_003 0 0.25
 ###############################################################
     require 'fileutils'
+    #will look like: properties = {:algorithm => "CD-HIT:ssaha2", :dbname => "Silva", :dbversion => "108Ref"}
     properties = {}
+    #will look like: alg_params = {"97" => Set.new(["OTU97_000"]), "98" => Set.new(["OTU98_000","OTU98_001"])...etc} 
     alg_params = {}
-    samples = {}
+    #will look like: otus = {"OTU97_000" => [[map2otucounts.00.sample00,1,1.0], [map2otucounts.00.sample02,6,6.0]],"OTU98_000" => [[map2otucounts.00.sample00,1,1.0],[map2otucounts.00.sample02,5,5.5]] ... etc}
+    otus = {}
+    #will look like: counts = [[map2otucounts.00.sample00, 97 , OTU97_000, 1, 1.0], [map2otucounts.00.sample00, 98 , OTU98_000, 1, 1.0] ... etc] 
     counts = []
     File.open("#{params[:file_upload][:my_file].path}", "r").each_with_index do |line,index|
       if (line[0] != "#" && line.split.length > 0)
@@ -137,11 +141,11 @@ class ProjectsController < ApplicationController
         else
           alg_params[counts.last[1]] = Set.new([counts.last[2]])
         end
-        #add samples codes
-        if (samples.has_key?(counts.last[0]))
-          samples[counts.last[0]].add(counts.last[2])
+        #add samples to the otus
+        if (otus.has_key?(counts.last[2]))
+          otus[counts.last[2]].append([counts.last[0],counts.last[3],counts.last[4]] )
         else
-          samples[counts.last[0]] = Set.new([[count.last[2..4]]])
+          otus[counts.last[2]] = [[counts.last[0],counts.last[3],counts.last[4]]]
         end
       elsif (line[0] == "#" && index < 3)
         #process the properties, add them as symbols to an dictionary, used for lookup and creation of annotation source.
@@ -150,7 +154,12 @@ class ProjectsController < ApplicationController
       end
     end
     FileUtils.rm params[:file_upload][:my_file].tempfile
-        
+
+
+    @project = Project.find(params[:project_id])
+    @sample_set = @project.sample_sets.first
+
+
     #Create annotation source and otus for each annotation source. If exists, do nothing.
     alg_params.each do |p|
       @annotation_source = AnnotationSource.where(dbname: properties[:dbname], dbversion: properties[:dbversion], algorithm: properties[:algorithm], algorithm_parameters: p[0]).first
@@ -161,24 +170,16 @@ class ProjectsController < ApplicationController
         @otu = Otu.where(name: o, annotation_source_id: @annotation_source.id).first
         if (@otu.nil?)
           @otu = Otu.create(name: o, annotation_source_id: @annotation_source.id)
-        end    
-      end
-    end
-
-    #If sample does not exists, create
-    @project = Project.find(params[:project_id])
-    @sample_set = @project.sample_sets.first
-    
-    samples.each do |s|
-      @sample = @sample_set.samples.where(code: s[0]).first
-      if (@sample.nil?)
-        @sample = @sample_set.samples.create(code: s[0])
-      end
-      @sample.amplicons.delete_all
-      
-      s[1].each do |parameters|
-        
-        @sample.amplicons.create(n_specific: parameters[1])
+        end
+        otus[@otu.name].each do |samp|
+          @sample = @sample_set.samples.where(code: samp[0]).first
+          if (@sample.nil?)
+            @sample = @sample_set.samples.create(code: samp[0])
+          end
+          #I assume that when you upload a data with the same otus and annotation source, you mean to throwout amplicons and use the new ones.
+          @sample.amplicons.where(otu_id: @otu.id).delete_all
+          @amplicon = @sample.amplicons.create(n_specific: samp[1],n_unspecific: samp[2], otu_id: @otu.id)
+        end
       end
     end
 

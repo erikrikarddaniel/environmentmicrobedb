@@ -12,7 +12,7 @@
 
 class BioObservation < Observation
   self.abstract_class = true
-  attr_accessible :n_specific,:n_unspecific
+  attr_accessible :n_specific,:n_unspecific, :otu_id
   belongs_to :otu
   validates :otu_id,:n_specific,:n_unspecific, :presence => true
 end
