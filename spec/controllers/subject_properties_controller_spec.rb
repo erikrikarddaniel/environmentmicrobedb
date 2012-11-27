@@ -20,145 +20,145 @@ require 'spec_helper'
 
 describe SubjectPropertiesController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # SubjectProperty. As you add validations to SubjectProperty, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {name: "subj_prop_name", value: "subj_prop_value"}
-  end
-  
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # SubjectPropertiesController. Be sure to keep this updated too.
-  def valid_session
-    {}
-  end
-
-  describe "GET index" do
-    it "assigns all subject_properties as @subject_properties" do
-      subject_property = SubjectProperty.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:subject_properties).should eq([subject_property])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested subject_property as @subject_property" do
-      subject_property = SubjectProperty.create! valid_attributes
-      get :show, {:id => subject_property.to_param}, valid_session
-      assigns(:subject_property).should eq(subject_property)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new subject_property as @subject_property" do
-      get :new, {}, valid_session
-      assigns(:subject_property).should be_a_new(SubjectProperty)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested subject_property as @subject_property" do
-      subject_property = SubjectProperty.create! valid_attributes
-      get :edit, {:id => subject_property.to_param}, valid_session
-      assigns(:subject_property).should eq(subject_property)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new SubjectProperty" do
-        expect {
-          post :create, {:subject_property => valid_attributes}, valid_session
-        }.to change(SubjectProperty, :count).by(1)
-      end
-
-      it "assigns a newly created subject_property as @subject_property" do
-        post :create, {:subject_property => valid_attributes}, valid_session
-        assigns(:subject_property).should be_a(SubjectProperty)
-        assigns(:subject_property).should be_persisted
-      end
-
-      it "redirects to the created subject_property" do
-        post :create, {:subject_property => valid_attributes}, valid_session
-        response.should redirect_to(SubjectProperty.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved subject_property as @subject_property" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        SubjectProperty.any_instance.stub(:save).and_return(false)
-        post :create, {:subject_property => {}}, valid_session
-        assigns(:subject_property).should be_a_new(SubjectProperty)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        SubjectProperty.any_instance.stub(:save).and_return(false)
-        post :create, {:subject_property => {}}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested subject_property" do
-        subject_property = SubjectProperty.create! valid_attributes
-        # Assuming there are no other subject_properties in the database, this
-        # specifies that the SubjectProperty created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        SubjectProperty.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => subject_property.to_param, :subject_property => {'these' => 'params'}}, valid_session
-      end
-
-      it "assigns the requested subject_property as @subject_property" do
-        subject_property = SubjectProperty.create! valid_attributes
-        put :update, {:id => subject_property.to_param, :subject_property => valid_attributes}, valid_session
-        assigns(:subject_property).should eq(subject_property)
-      end
-
-      it "redirects to the subject_property" do
-        subject_property = SubjectProperty.create! valid_attributes
-        put :update, {:id => subject_property.to_param, :subject_property => valid_attributes}, valid_session
-        response.should redirect_to(subject_property)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the subject_property as @subject_property" do
-        subject_property = SubjectProperty.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        SubjectProperty.any_instance.stub(:save).and_return(false)
-        put :update, {:id => subject_property.to_param, :subject_property => {}}, valid_session
-        assigns(:subject_property).should eq(subject_property)
-      end
-
-      it "re-renders the 'edit' template" do
-        subject_property = SubjectProperty.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        SubjectProperty.any_instance.stub(:save).and_return(false)
-        put :update, {:id => subject_property.to_param, :subject_property => {}}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested subject_property" do
-      subject_property = SubjectProperty.create! valid_attributes
-      expect {
-        delete :destroy, {:id => subject_property.to_param}, valid_session
-      }.to change(SubjectProperty, :count).by(-1)
-    end
-
-    it "redirects to the subject_properties list" do
-      subject_property = SubjectProperty.create! valid_attributes
-      delete :destroy, {:id => subject_property.to_param}, valid_session
-      response.should redirect_to(subject_properties_url)
-    end
-  end
+#  # This should return the minimal set of attributes required to create a valid
+#  # SubjectProperty. As you add validations to SubjectProperty, be sure to
+#  # update the return value of this method accordingly.
+#  def valid_attributes
+#    {name: "subj_prop_name", value: "subj_prop_value"}
+#  end
+#  
+#  # This should return the minimal set of values that should be in the session
+#  # in order to pass any filters (e.g. authentication) defined in
+#  # SubjectPropertiesController. Be sure to keep this updated too.
+#  def valid_session
+#    {}
+#  end
+#
+#  describe "GET index" do
+#    it "assigns all subject_properties as @subject_properties" do
+#      subject_property = SubjectProperty.create! valid_attributes
+#      get :index, {}, valid_session
+#      assigns(:subject_properties).should eq([subject_property])
+#    end
+#  end
+#
+#  describe "GET show" do
+#    it "assigns the requested subject_property as @subject_property" do
+#      subject_property = SubjectProperty.create! valid_attributes
+#      get :show, {:id => subject_property.to_param}, valid_session
+#      assigns(:subject_property).should eq(subject_property)
+#    end
+#  end
+#
+#  describe "GET new" do
+#    it "assigns a new subject_property as @subject_property" do
+#      get :new, {}, valid_session
+#      assigns(:subject_property).should be_a_new(SubjectProperty)
+#    end
+#  end
+#
+#  describe "GET edit" do
+#    it "assigns the requested subject_property as @subject_property" do
+#      subject_property = SubjectProperty.create! valid_attributes
+#      get :edit, {:id => subject_property.to_param}, valid_session
+#      assigns(:subject_property).should eq(subject_property)
+#    end
+#  end
+#
+#  describe "POST create" do
+#    describe "with valid params" do
+#      it "creates a new SubjectProperty" do
+#        expect {
+#          post :create, {:subject_property => valid_attributes}, valid_session
+#        }.to change(SubjectProperty, :count).by(1)
+#      end
+#
+#      it "assigns a newly created subject_property as @subject_property" do
+#        post :create, {:subject_property => valid_attributes}, valid_session
+#        assigns(:subject_property).should be_a(SubjectProperty)
+#        assigns(:subject_property).should be_persisted
+#      end
+#
+#      it "redirects to the created subject_property" do
+#        post :create, {:subject_property => valid_attributes}, valid_session
+#        response.should redirect_to(SubjectProperty.last)
+#      end
+#    end
+#
+#    describe "with invalid params" do
+#      it "assigns a newly created but unsaved subject_property as @subject_property" do
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        SubjectProperty.any_instance.stub(:save).and_return(false)
+#        post :create, {:subject_property => {}}, valid_session
+#        assigns(:subject_property).should be_a_new(SubjectProperty)
+#      end
+#
+#      it "re-renders the 'new' template" do
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        SubjectProperty.any_instance.stub(:save).and_return(false)
+#        post :create, {:subject_property => {}}, valid_session
+#        response.should render_template("new")
+#      end
+#    end
+#  end
+#
+#  describe "PUT update" do
+#    describe "with valid params" do
+#      it "updates the requested subject_property" do
+#        subject_property = SubjectProperty.create! valid_attributes
+#        # Assuming there are no other subject_properties in the database, this
+#        # specifies that the SubjectProperty created on the previous line
+#        # receives the :update_attributes message with whatever params are
+#        # submitted in the request.
+#        SubjectProperty.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+#        put :update, {:id => subject_property.to_param, :subject_property => {'these' => 'params'}}, valid_session
+#      end
+#
+#      it "assigns the requested subject_property as @subject_property" do
+#        subject_property = SubjectProperty.create! valid_attributes
+#        put :update, {:id => subject_property.to_param, :subject_property => valid_attributes}, valid_session
+#        assigns(:subject_property).should eq(subject_property)
+#      end
+#
+#      it "redirects to the subject_property" do
+#        subject_property = SubjectProperty.create! valid_attributes
+#        put :update, {:id => subject_property.to_param, :subject_property => valid_attributes}, valid_session
+#        response.should redirect_to(subject_property)
+#      end
+#    end
+#
+#    describe "with invalid params" do
+#      it "assigns the subject_property as @subject_property" do
+#        subject_property = SubjectProperty.create! valid_attributes
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        SubjectProperty.any_instance.stub(:save).and_return(false)
+#        put :update, {:id => subject_property.to_param, :subject_property => {}}, valid_session
+#        assigns(:subject_property).should eq(subject_property)
+#      end
+#
+#      it "re-renders the 'edit' template" do
+#        subject_property = SubjectProperty.create! valid_attributes
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        SubjectProperty.any_instance.stub(:save).and_return(false)
+#        put :update, {:id => subject_property.to_param, :subject_property => {}}, valid_session
+#        response.should render_template("edit")
+#      end
+#    end
+#  end
+#
+#  describe "DELETE destroy" do
+#    it "destroys the requested subject_property" do
+#      subject_property = SubjectProperty.create! valid_attributes
+#      expect {
+#        delete :destroy, {:id => subject_property.to_param}, valid_session
+#      }.to change(SubjectProperty, :count).by(-1)
+#    end
+#
+#    it "redirects to the subject_properties list" do
+#      subject_property = SubjectProperty.create! valid_attributes
+#      delete :destroy, {:id => subject_property.to_param}, valid_session
+#      response.should redirect_to(subject_properties_url)
+#    end
+#  end
 
 end

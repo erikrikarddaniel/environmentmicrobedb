@@ -35,6 +35,5 @@ FactoryGirl.define do
   
   factory :subject do
     code "Test subject"
-    sample
   end
 end

@@ -47,28 +47,28 @@ describe ProjectPropertiesController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested project_property as @project_property" do
-      project_property = @project.properties.create! valid_attributes
-      get :show, {:id => project_property.to_param}, valid_session
-      assigns(:project_property).should eq(project_property)
-    end
-  end
+#  describe "GET show" do
+#    it "assigns the requested project_property as @project_property" do
+#      project_property = @project.properties.create! valid_attributes
+#      get :show, {:id => project_property.to_param}, valid_session
+#      assigns(:project_property).should eq(project_property)
+#    end
+#  end
 
-  describe "GET new" do
-    it "assigns a new project_property as @project_property" do
-      get :new, {}, valid_session
-      assigns(:project_property).should be_a_new(ProjectProperty)
-    end
-  end
+#  describe "GET new" do
+#    it "assigns a new project_property as @project_property" do
+#      get :new, {}, valid_session
+#      assigns(:project_property).should be_a_new(ProjectProperty)
+#    end
+#  end
 
-  describe "GET edit" do
-    it "assigns the requested project_property as @project_property" do
-      project_property = @project.properties.create! valid_attributes
-      get :edit, {:id => project_property.to_param}, valid_session
-      assigns(:project_property).should eq(project_property)
-    end
-  end
+#  describe "GET edit" do
+#    it "assigns the requested project_property as @project_property" do
+#      project_property = @project.properties.create! valid_attributes
+#      get :edit, {:id => project_property.to_param}, valid_session
+#      assigns(:project_property).should eq(project_property)
+#    end
+#  end
 
   describe "POST create" do
     describe "with valid params" do

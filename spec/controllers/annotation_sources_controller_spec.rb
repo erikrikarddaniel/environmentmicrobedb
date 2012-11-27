@@ -20,145 +20,145 @@ require 'spec_helper'
 
 describe AnnotationSourcesController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # AnnotationSource. As you add validations to AnnotationSource, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {}
-  end
-  
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # AnnotationSourcesController. Be sure to keep this updated too.
-  def valid_session
-    {}
-  end
-
-  describe "GET index" do
-    it "assigns all annotation_sources as @annotation_sources" do
-      annotation_source = AnnotationSource.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:annotation_sources).should eq([annotation_source])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested annotation_source as @annotation_source" do
-      annotation_source = AnnotationSource.create! valid_attributes
-      get :show, {:id => annotation_source.to_param}, valid_session
-      assigns(:annotation_source).should eq(annotation_source)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new annotation_source as @annotation_source" do
-      get :new, {}, valid_session
-      assigns(:annotation_source).should be_a_new(AnnotationSource)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested annotation_source as @annotation_source" do
-      annotation_source = AnnotationSource.create! valid_attributes
-      get :edit, {:id => annotation_source.to_param}, valid_session
-      assigns(:annotation_source).should eq(annotation_source)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new AnnotationSource" do
-        expect {
-          post :create, {:annotation_source => valid_attributes}, valid_session
-        }.to change(AnnotationSource, :count).by(1)
-      end
-
-      it "assigns a newly created annotation_source as @annotation_source" do
-        post :create, {:annotation_source => valid_attributes}, valid_session
-        assigns(:annotation_source).should be_a(AnnotationSource)
-        assigns(:annotation_source).should be_persisted
-      end
-
-      it "redirects to the created annotation_source" do
-        post :create, {:annotation_source => valid_attributes}, valid_session
-        response.should redirect_to(AnnotationSource.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved annotation_source as @annotation_source" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        AnnotationSource.any_instance.stub(:save).and_return(false)
-        post :create, {:annotation_source => {}}, valid_session
-        assigns(:annotation_source).should be_a_new(AnnotationSource)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        AnnotationSource.any_instance.stub(:save).and_return(false)
-        post :create, {:annotation_source => {}}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested annotation_source" do
-        annotation_source = AnnotationSource.create! valid_attributes
-        # Assuming there are no other annotation_sources in the database, this
-        # specifies that the AnnotationSource created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        AnnotationSource.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => annotation_source.to_param, :annotation_source => {'these' => 'params'}}, valid_session
-      end
-
-      it "assigns the requested annotation_source as @annotation_source" do
-        annotation_source = AnnotationSource.create! valid_attributes
-        put :update, {:id => annotation_source.to_param, :annotation_source => valid_attributes}, valid_session
-        assigns(:annotation_source).should eq(annotation_source)
-      end
-
-      it "redirects to the annotation_source" do
-        annotation_source = AnnotationSource.create! valid_attributes
-        put :update, {:id => annotation_source.to_param, :annotation_source => valid_attributes}, valid_session
-        response.should redirect_to(annotation_source)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the annotation_source as @annotation_source" do
-        annotation_source = AnnotationSource.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        AnnotationSource.any_instance.stub(:save).and_return(false)
-        put :update, {:id => annotation_source.to_param, :annotation_source => {}}, valid_session
-        assigns(:annotation_source).should eq(annotation_source)
-      end
-
-      it "re-renders the 'edit' template" do
-        annotation_source = AnnotationSource.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        AnnotationSource.any_instance.stub(:save).and_return(false)
-        put :update, {:id => annotation_source.to_param, :annotation_source => {}}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested annotation_source" do
-      annotation_source = AnnotationSource.create! valid_attributes
-      expect {
-        delete :destroy, {:id => annotation_source.to_param}, valid_session
-      }.to change(AnnotationSource, :count).by(-1)
-    end
-
-    it "redirects to the annotation_sources list" do
-      annotation_source = AnnotationSource.create! valid_attributes
-      delete :destroy, {:id => annotation_source.to_param}, valid_session
-      response.should redirect_to(annotation_sources_url)
-    end
-  end
+#  # This should return the minimal set of attributes required to create a valid
+#  # AnnotationSource. As you add validations to AnnotationSource, be sure to
+#  # update the return value of this method accordingly.
+#  def valid_attributes
+#    {}
+#  end
+#  
+#  # This should return the minimal set of values that should be in the session
+#  # in order to pass any filters (e.g. authentication) defined in
+#  # AnnotationSourcesController. Be sure to keep this updated too.
+#  def valid_session
+#    {}
+#  end
+#
+#  describe "GET index" do
+#    it "assigns all annotation_sources as @annotation_sources" do
+#      annotation_source = AnnotationSource.create! valid_attributes
+#      get :index, {}, valid_session
+#      assigns(:annotation_sources).should eq([annotation_source])
+#    end
+#  end
+#
+#  describe "GET show" do
+#    it "assigns the requested annotation_source as @annotation_source" do
+#      annotation_source = AnnotationSource.create! valid_attributes
+#      get :show, {:id => annotation_source.to_param}, valid_session
+#      assigns(:annotation_source).should eq(annotation_source)
+#    end
+#  end
+#
+#  describe "GET new" do
+#    it "assigns a new annotation_source as @annotation_source" do
+#      get :new, {}, valid_session
+#      assigns(:annotation_source).should be_a_new(AnnotationSource)
+#    end
+#  end
+#
+#  describe "GET edit" do
+#    it "assigns the requested annotation_source as @annotation_source" do
+#      annotation_source = AnnotationSource.create! valid_attributes
+#      get :edit, {:id => annotation_source.to_param}, valid_session
+#      assigns(:annotation_source).should eq(annotation_source)
+#    end
+#  end
+#
+#  describe "POST create" do
+#    describe "with valid params" do
+#      it "creates a new AnnotationSource" do
+#        expect {
+#          post :create, {:annotation_source => valid_attributes}, valid_session
+#        }.to change(AnnotationSource, :count).by(1)
+#      end
+#
+#      it "assigns a newly created annotation_source as @annotation_source" do
+#        post :create, {:annotation_source => valid_attributes}, valid_session
+#        assigns(:annotation_source).should be_a(AnnotationSource)
+#        assigns(:annotation_source).should be_persisted
+#      end
+#
+#      it "redirects to the created annotation_source" do
+#        post :create, {:annotation_source => valid_attributes}, valid_session
+#        response.should redirect_to(AnnotationSource.last)
+#      end
+#    end
+#
+#    describe "with invalid params" do
+#      it "assigns a newly created but unsaved annotation_source as @annotation_source" do
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        AnnotationSource.any_instance.stub(:save).and_return(false)
+#        post :create, {:annotation_source => {}}, valid_session
+#        assigns(:annotation_source).should be_a_new(AnnotationSource)
+#      end
+#
+#      it "re-renders the 'new' template" do
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        AnnotationSource.any_instance.stub(:save).and_return(false)
+#        post :create, {:annotation_source => {}}, valid_session
+#        response.should render_template("new")
+#      end
+#    end
+#  end
+#
+#  describe "PUT update" do
+#    describe "with valid params" do
+#      it "updates the requested annotation_source" do
+#        annotation_source = AnnotationSource.create! valid_attributes
+#        # Assuming there are no other annotation_sources in the database, this
+#        # specifies that the AnnotationSource created on the previous line
+#        # receives the :update_attributes message with whatever params are
+#        # submitted in the request.
+#        AnnotationSource.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+#        put :update, {:id => annotation_source.to_param, :annotation_source => {'these' => 'params'}}, valid_session
+#      end
+#
+#      it "assigns the requested annotation_source as @annotation_source" do
+#        annotation_source = AnnotationSource.create! valid_attributes
+#        put :update, {:id => annotation_source.to_param, :annotation_source => valid_attributes}, valid_session
+#        assigns(:annotation_source).should eq(annotation_source)
+#      end
+#
+#      it "redirects to the annotation_source" do
+#        annotation_source = AnnotationSource.create! valid_attributes
+#        put :update, {:id => annotation_source.to_param, :annotation_source => valid_attributes}, valid_session
+#        response.should redirect_to(annotation_source)
+#      end
+#    end
+#
+#    describe "with invalid params" do
+#      it "assigns the annotation_source as @annotation_source" do
+#        annotation_source = AnnotationSource.create! valid_attributes
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        AnnotationSource.any_instance.stub(:save).and_return(false)
+#        put :update, {:id => annotation_source.to_param, :annotation_source => {}}, valid_session
+#        assigns(:annotation_source).should eq(annotation_source)
+#      end
+#
+#      it "re-renders the 'edit' template" do
+#        annotation_source = AnnotationSource.create! valid_attributes
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        AnnotationSource.any_instance.stub(:save).and_return(false)
+#        put :update, {:id => annotation_source.to_param, :annotation_source => {}}, valid_session
+#        response.should render_template("edit")
+#      end
+#    end
+#  end
+#
+#  describe "DELETE destroy" do
+#    it "destroys the requested annotation_source" do
+#      annotation_source = AnnotationSource.create! valid_attributes
+#      expect {
+#        delete :destroy, {:id => annotation_source.to_param}, valid_session
+#      }.to change(AnnotationSource, :count).by(-1)
+#    end
+#
+#    it "redirects to the annotation_sources list" do
+#      annotation_source = AnnotationSource.create! valid_attributes
+#      delete :destroy, {:id => annotation_source.to_param}, valid_session
+#      response.should redirect_to(annotation_sources_url)
+#    end
+#  end
 
 end

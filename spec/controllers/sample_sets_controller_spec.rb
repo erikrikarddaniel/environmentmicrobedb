@@ -47,13 +47,13 @@ describe SampleSetsController do
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested sample_set as @sample_set" do
-      sample_set = @project.sample_sets.create! valid_attributes
-      get :show, {:id => sample_set.to_param}, valid_session
-      assigns(:sample_set).should eq(sample_set)
-    end
-  end
+#  describe "GET show" do
+#    it "assigns the requested sample_set as @sample_set" do
+#      sample_set = @project.sample_sets.create! valid_attributes
+#      get :show, {:id => sample_set.to_param}, valid_session
+#      assigns(:sample_set).should eq(sample_set)
+#    end
+#  end
 
   describe "GET new" do
     it "assigns a new sample_set as @sample_set" do
@@ -64,13 +64,13 @@ describe SampleSetsController do
     end
   end
 
-  describe "GET edit" do
-    it "assigns the requested sample_set as @sample_set" do
-      sample_set = @project.sample_sets.create! valid_attributes
-      get :edit, {:id => sample_set.to_param}, valid_session
-      assigns(:sample_set).should eq(sample_set)
-    end
-  end
+#  describe "GET edit" do
+#    it "assigns the requested sample_set as @sample_set" do
+#      sample_set = @project.sample_sets.create! valid_attributes
+#      get :edit, {:id => sample_set.to_param}, valid_session
+#      assigns(:sample_set).should eq(sample_set)
+#    end
+#  end
 
   describe "POST create" do
     describe "with valid params" do
