@@ -1,4 +1,6 @@
 Environmentmicrobedb::Application.routes.draw do
+  resources :orf_aas
+
   resources :assemblies
 
   root to: 'static#home'

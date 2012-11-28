@@ -1,0 +1,25 @@
+<h1>Listing orf_aas</h1>
+
+<table>
+  <tr>
+    <th>Identifier</th>
+    <th>Assembly</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orf_aas.each do |orf_aa| %>
+  <tr>
+    <td><%= orf_aa.identifier %></td>
+    <td><%= orf_aa.assembly_id %></td>
+    <td><%= link_to 'Show', orf_aa %></td>
+    <td><%= link_to 'Edit', edit_orf_aa_path(orf_aa) %></td>
+    <td><%= link_to 'Destroy', orf_aa, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Orf aa', new_orf_aa_path %>

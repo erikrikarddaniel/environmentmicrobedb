@@ -42,4 +42,9 @@ FactoryGirl.define do
     description "Just for tests"
     project
   end
+
+  factory :orf_aa do
+    identifier "Test ORF"
+    assembly
+  end
 end

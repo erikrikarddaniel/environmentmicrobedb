@@ -13,4 +13,9 @@
 class Assembly < ActiveRecord::Base
   belongs_to :project
   validates :name, presence: true, uniqueness: { :scope => :project_id }
+  validates :project_id, presence: true
+
+  def list_name
+    "#{project.name}:#{name}"
+  end
 end
