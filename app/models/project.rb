@@ -12,6 +12,7 @@ class Project < ActiveRecord::Base
   attr_accessible :name
   has_many :properties, class_name: "ProjectProperty", dependent: :destroy
   has_many :sample_sets, class_name: "SampleSet", dependent: :destroy
+  has_many :assemblies
   validates_presence_of :name
   accepts_nested_attributes_for :properties, reject_if: lambda { |a| a[:name].blank? }, allow_destroy: true
 end

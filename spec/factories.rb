@@ -36,4 +36,10 @@ FactoryGirl.define do
   factory :subject do
     code "Test subject"
   end
+
+  factory :assembly do
+    name "Test assembly"
+    description "Just for tests"
+    project
+  end
 end
