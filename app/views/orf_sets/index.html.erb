@@ -1,0 +1,27 @@
+<h1>Listing orf_sets</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Assembly</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orf_sets.each do |orf_set| %>
+  <tr>
+    <td><%= orf_set.name %></td>
+    <td><%= orf_set.description %></td>
+    <td><%= orf_set.assembly_id %></td>
+    <td><%= link_to 'Show', orf_set %></td>
+    <td><%= link_to 'Edit', edit_orf_set_path(orf_set) %></td>
+    <td><%= link_to 'Destroy', orf_set, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Orf set', new_orf_set_path %>

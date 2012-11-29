@@ -41,7 +41,8 @@ class AssembliesController < ApplicationController
   # POST /assemblies.json
   def create
     logger.debug "params[:assembly]: #{params[:assembly].inspect}"
-    @assembly = Assembly.new(params[:assembly])
+    project_id = params[:assembly].delete(:project_id)
+    @assembly = Project.find(project_id).assemblies.new(params[:assembly])
 
     respond_to do |format|
       if @assembly.save
@@ -57,6 +58,7 @@ class AssembliesController < ApplicationController
   # PUT /assemblies/1
   # PUT /assemblies/1.json
   def update
+    project_id = params[:assembly].delete(:project_id)
     @assembly = Assembly.find(params[:id])
 
     respond_to do |format|

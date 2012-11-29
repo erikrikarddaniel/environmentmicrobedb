@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128101237) do
+ActiveRecord::Schema.define(:version => 20121129083057) do
 
   create_table "amplicons", :force => true do |t|
     t.integer  "sample_id"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(:version => 20121128101237) do
     t.string   "name"
     t.string   "description"
     t.integer  "project_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "orf_sets", :force => true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.integer  "assembly_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

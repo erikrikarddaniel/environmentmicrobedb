@@ -19,14 +19,16 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe AssembliesController do
+  before do
+    @project = FactoryGirl.create(:project)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Assembly. As you add validations to Assembly, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
     {
-      name: 'Test assembly',
-      project_id: FactoryGirl.create(:project).id
+      name: 'Test assembly'
     }
   end
   
@@ -39,7 +41,7 @@ describe AssembliesController do
 
   describe "GET index" do
     it "assigns all assemblies as @assemblies" do
-      assembly = Assembly.create! valid_attributes
+      assembly = @project.assemblies.create! valid_attributes
       get :index, {}, valid_session
       assigns(:assemblies).should eq([assembly])
     end
@@ -47,7 +49,7 @@ describe AssembliesController do
 
   describe "GET show" do
     it "assigns the requested assembly as @assembly" do
-      assembly = Assembly.create! valid_attributes
+      assembly = @project.assemblies.create! valid_attributes
       get :show, {:id => assembly.to_param}, valid_session
       assigns(:assembly).should eq(assembly)
     end
@@ -62,7 +64,7 @@ describe AssembliesController do
 
   describe "GET edit" do
     it "assigns the requested assembly as @assembly" do
-      assembly = Assembly.create! valid_attributes
+      assembly = @project.assemblies.create! valid_attributes
       get :edit, {:id => assembly.to_param}, valid_session
       assigns(:assembly).should eq(assembly)
     end
@@ -72,18 +74,18 @@ describe AssembliesController do
     describe "with valid params" do
       it "creates a new Assembly" do
         expect {
-          post :create, {:assembly => valid_attributes}, valid_session
+          post :create, {:assembly => valid_attributes.merge(project_id: @project.id)}, valid_session
         }.to change(Assembly, :count).by(1)
       end
 
       it "assigns a newly created assembly as @assembly" do
-        post :create, {:assembly => valid_attributes}, valid_session
+        post :create, {:assembly => valid_attributes.merge(project_id: @project.id)}, valid_session
         assigns(:assembly).should be_a(Assembly)
         assigns(:assembly).should be_persisted
       end
 
       it "redirects to the created assembly" do
-        post :create, {:assembly => valid_attributes}, valid_session
+        post :create, {:assembly => valid_attributes.merge(project_id: @project.id)}, valid_session
         response.should redirect_to(Assembly.last)
       end
     end
@@ -92,14 +94,14 @@ describe AssembliesController do
       it "assigns a newly created but unsaved assembly as @assembly" do
         # Trigger the behavior that occurs when invalid params are submitted
         Assembly.any_instance.stub(:save).and_return(false)
-        post :create, {:assembly => {}}, valid_session
+        post :create, {:assembly => {project_id: @project.id}}, valid_session
         assigns(:assembly).should be_a_new(Assembly)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Assembly.any_instance.stub(:save).and_return(false)
-        post :create, {:assembly => {}}, valid_session
+        post :create, {:assembly => {project_id: @project.id}}, valid_session
         response.should render_template("new")
       end
     end
@@ -108,7 +110,7 @@ describe AssembliesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested assembly" do
-        assembly = Assembly.create! valid_attributes
+        assembly = @project.assemblies.create! valid_attributes
         # Assuming there are no other assemblies in the database, this
         # specifies that the Assembly created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -118,21 +120,21 @@ describe AssembliesController do
       end
 
       it "assigns the requested assembly as @assembly" do
-        assembly = Assembly.create! valid_attributes
-        put :update, {:id => assembly.to_param, :assembly => valid_attributes}, valid_session
+        assembly = @project.assemblies.create! valid_attributes
+        put :update, {:id => assembly.to_param, :assembly => valid_attributes.merge(project_id: @project.id)}, valid_session
         assigns(:assembly).should eq(assembly)
       end
 
       it "redirects to the assembly" do
-        assembly = Assembly.create! valid_attributes
-        put :update, {:id => assembly.to_param, :assembly => valid_attributes}, valid_session
+        assembly = @project.assemblies.create! valid_attributes
+        put :update, {:id => assembly.to_param, :assembly => valid_attributes.merge(project_id: @project.id)}, valid_session
         response.should redirect_to(assembly)
       end
     end
 
     describe "with invalid params" do
       it "assigns the assembly as @assembly" do
-        assembly = Assembly.create! valid_attributes
+        assembly = @project.assemblies.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Assembly.any_instance.stub(:save).and_return(false)
         put :update, {:id => assembly.to_param, :assembly => {}}, valid_session
@@ -140,7 +142,7 @@ describe AssembliesController do
       end
 
       it "re-renders the 'edit' template" do
-        assembly = Assembly.create! valid_attributes
+        assembly = @project.assemblies.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Assembly.any_instance.stub(:save).and_return(false)
         put :update, {:id => assembly.to_param, :assembly => {}}, valid_session
@@ -151,14 +153,14 @@ describe AssembliesController do
 
   describe "DELETE destroy" do
     it "destroys the requested assembly" do
-      assembly = Assembly.create! valid_attributes
+      assembly = @project.assemblies.create! valid_attributes
       expect {
         delete :destroy, {:id => assembly.to_param}, valid_session
       }.to change(Assembly, :count).by(-1)
     end
 
     it "redirects to the assemblies list" do
-      assembly = Assembly.create! valid_attributes
+      assembly = @project.assemblies.create! valid_attributes
       delete :destroy, {:id => assembly.to_param}, valid_session
       response.should redirect_to(assemblies_url)
     end
