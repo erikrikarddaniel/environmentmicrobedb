@@ -13,6 +13,7 @@
 class OrfSet < ActiveRecord::Base
   attr_accessible :name, :description
   belongs_to :assembly
+  has_many :orfs, dependent: :destroy
   validates :name, presence: true, uniqueness: { :scope => :assembly_id }
   validates :assembly_id, presence: true
 end

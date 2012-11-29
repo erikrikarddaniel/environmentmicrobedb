@@ -4,20 +4,20 @@ module FileParsers
   def import_frag_gene_scan(assembly, io)
     nseqs = 0
     Assembly.transaction do
-      @orf_aas = []
+      @orfs = []
       File.open(io.path, "r").each_with_index do |line, i|
 	line.chomp!
 	if line[0] == '>'
 	  nseqs += 1
-	  @orf_aas << OrfAa.new(identifier: line[1..-1], assembly_id: assembly.id)
+	  @orfs << Orf.new(identifier: line[1..-1], assembly_id: assembly.id)
 	end
 
-	if @orf_aas.length > 0 and @orf_aas.length % IMPORT_N_SEQS == 0
-	  OrfAa.import @orf_aas
-	  @orf_aas = []
+	if @orfs.length > 0 and @orfs.length % IMPORT_N_SEQS == 0
+	  Orf.import @orfs
+	  @orfs = []
 	end
       end
-      OrfAa.import @orf_aas
+      Orf.import @orfs
     end
 
     nseqs
