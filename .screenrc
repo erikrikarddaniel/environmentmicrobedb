@@ -9,9 +9,9 @@ chdir ..
 chdir test
 screen -t test0
 chdir ..
-#chdir spec
-#screen -t spec
-#chdir ..
+chdir spec
+screen -t spec
+chdir ..
 chdir app
 chdir models
 screen -t models

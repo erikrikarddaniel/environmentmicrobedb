@@ -12,9 +12,10 @@ require 'spec_helper'
 
 describe Project do
   let!(:project) { FactoryGirl.create(:project) }
-
   let!(:project_property){ FactoryGirl.create(:project_property, project: project) }
   let!(:sample_set) { FactoryGirl.create(:sample_set ,project: project)}
+  let!(:assembly) { FactoryGirl.create(:assembly, project: project) }
+
   describe "#attributes" do
     it "has :name" do
       project.name.should be
@@ -38,9 +39,20 @@ describe Project do
       prop.should_not be_valid
     end
   end
+
   describe "#sample sets" do
     it "has sample set" do
       project.sample_sets.count.should be > 0
+    end
+  end
+
+  describe "assemblies" do
+    it "responds to assemblies" do
+      project.should respond_to(:assemblies)
+    end
+
+    it "should have a single assembly" do
+      project.assemblies.length == 1
     end
   end
 end

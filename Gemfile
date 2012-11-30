@@ -7,6 +7,7 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
 gem 'rb-readline', '0.4.2'
 gem 'best_in_place', '1.1.1'
+gem 'activerecord-import'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -17,13 +18,15 @@ group :development, :test do
 	gem 'rspec-rails', '2.8.1'
 	gem 'annotate', '~> 2.4.1.beta'
 	gem 'watchr', '0.7'
-	gem 'spork', '~> 0.9.0.rc'
+	#gem 'spork', '~> 0.9.0.rc'
 end
 
 group :test do
   gem 'capybara', '1.1.2'
   gem 'factory_girl_rails', '1.4.0'
   gem 'term-ansicolor', '1.0.7'
+  gem 'autotest-standalone', :require => 'autotest'
+  gem 'autotest-rails-pure'
 end
 
 # Gems used only for assets and not required

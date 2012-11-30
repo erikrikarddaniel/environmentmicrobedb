@@ -35,6 +35,16 @@ FactoryGirl.define do
   
   factory :subject do
     code "Test subject"
-    sample
+  end
+
+  factory :assembly do
+    name "Test assembly"
+    description "Just for tests"
+    project
+  end
+
+  factory :orf_aa do
+    identifier "Test ORF"
+    assembly
   end
 end

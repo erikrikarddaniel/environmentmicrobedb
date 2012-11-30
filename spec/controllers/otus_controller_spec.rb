@@ -20,145 +20,145 @@ require 'spec_helper'
 
 describe OtusController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Otu. As you add validations to Otu, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {}
-  end
-  
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # OtusController. Be sure to keep this updated too.
-  def valid_session
-    {}
-  end
-
-  describe "GET index" do
-    it "assigns all otus as @otus" do
-      otu = Otu.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:otus).should eq([otu])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested otu as @otu" do
-      otu = Otu.create! valid_attributes
-      get :show, {:id => otu.to_param}, valid_session
-      assigns(:otu).should eq(otu)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new otu as @otu" do
-      get :new, {}, valid_session
-      assigns(:otu).should be_a_new(Otu)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested otu as @otu" do
-      otu = Otu.create! valid_attributes
-      get :edit, {:id => otu.to_param}, valid_session
-      assigns(:otu).should eq(otu)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Otu" do
-        expect {
-          post :create, {:otu => valid_attributes}, valid_session
-        }.to change(Otu, :count).by(1)
-      end
-
-      it "assigns a newly created otu as @otu" do
-        post :create, {:otu => valid_attributes}, valid_session
-        assigns(:otu).should be_a(Otu)
-        assigns(:otu).should be_persisted
-      end
-
-      it "redirects to the created otu" do
-        post :create, {:otu => valid_attributes}, valid_session
-        response.should redirect_to(Otu.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved otu as @otu" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Otu.any_instance.stub(:save).and_return(false)
-        post :create, {:otu => {}}, valid_session
-        assigns(:otu).should be_a_new(Otu)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Otu.any_instance.stub(:save).and_return(false)
-        post :create, {:otu => {}}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested otu" do
-        otu = Otu.create! valid_attributes
-        # Assuming there are no other otus in the database, this
-        # specifies that the Otu created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Otu.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => otu.to_param, :otu => {'these' => 'params'}}, valid_session
-      end
-
-      it "assigns the requested otu as @otu" do
-        otu = Otu.create! valid_attributes
-        put :update, {:id => otu.to_param, :otu => valid_attributes}, valid_session
-        assigns(:otu).should eq(otu)
-      end
-
-      it "redirects to the otu" do
-        otu = Otu.create! valid_attributes
-        put :update, {:id => otu.to_param, :otu => valid_attributes}, valid_session
-        response.should redirect_to(otu)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the otu as @otu" do
-        otu = Otu.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Otu.any_instance.stub(:save).and_return(false)
-        put :update, {:id => otu.to_param, :otu => {}}, valid_session
-        assigns(:otu).should eq(otu)
-      end
-
-      it "re-renders the 'edit' template" do
-        otu = Otu.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Otu.any_instance.stub(:save).and_return(false)
-        put :update, {:id => otu.to_param, :otu => {}}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested otu" do
-      otu = Otu.create! valid_attributes
-      expect {
-        delete :destroy, {:id => otu.to_param}, valid_session
-      }.to change(Otu, :count).by(-1)
-    end
-
-    it "redirects to the otus list" do
-      otu = Otu.create! valid_attributes
-      delete :destroy, {:id => otu.to_param}, valid_session
-      response.should redirect_to(otus_url)
-    end
-  end
+#  # This should return the minimal set of attributes required to create a valid
+#  # Otu. As you add validations to Otu, be sure to
+#  # update the return value of this method accordingly.
+#  def valid_attributes
+#    {}
+#  end
+#  
+#  # This should return the minimal set of values that should be in the session
+#  # in order to pass any filters (e.g. authentication) defined in
+#  # OtusController. Be sure to keep this updated too.
+#  def valid_session
+#    {}
+#  end
+#
+#  describe "GET index" do
+#    it "assigns all otus as @otus" do
+#      otu = Otu.create! valid_attributes
+#      get :index, {}, valid_session
+#      assigns(:otus).should eq([otu])
+#    end
+#  end
+#
+#  describe "GET show" do
+#    it "assigns the requested otu as @otu" do
+#      otu = Otu.create! valid_attributes
+#      get :show, {:id => otu.to_param}, valid_session
+#      assigns(:otu).should eq(otu)
+#    end
+#  end
+#
+#  describe "GET new" do
+#    it "assigns a new otu as @otu" do
+#      get :new, {}, valid_session
+#      assigns(:otu).should be_a_new(Otu)
+#    end
+#  end
+#
+#  describe "GET edit" do
+#    it "assigns the requested otu as @otu" do
+#      otu = Otu.create! valid_attributes
+#      get :edit, {:id => otu.to_param}, valid_session
+#      assigns(:otu).should eq(otu)
+#    end
+#  end
+#
+#  describe "POST create" do
+#    describe "with valid params" do
+#      it "creates a new Otu" do
+#        expect {
+#          post :create, {:otu => valid_attributes}, valid_session
+#        }.to change(Otu, :count).by(1)
+#      end
+#
+#      it "assigns a newly created otu as @otu" do
+#        post :create, {:otu => valid_attributes}, valid_session
+#        assigns(:otu).should be_a(Otu)
+#        assigns(:otu).should be_persisted
+#      end
+#
+#      it "redirects to the created otu" do
+#        post :create, {:otu => valid_attributes}, valid_session
+#        response.should redirect_to(Otu.last)
+#      end
+#    end
+#
+#    describe "with invalid params" do
+#      it "assigns a newly created but unsaved otu as @otu" do
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        Otu.any_instance.stub(:save).and_return(false)
+#        post :create, {:otu => {}}, valid_session
+#        assigns(:otu).should be_a_new(Otu)
+#      end
+#
+#      it "re-renders the 'new' template" do
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        Otu.any_instance.stub(:save).and_return(false)
+#        post :create, {:otu => {}}, valid_session
+#        response.should render_template("new")
+#      end
+#    end
+#  end
+#
+#  describe "PUT update" do
+#    describe "with valid params" do
+#      it "updates the requested otu" do
+#        otu = Otu.create! valid_attributes
+#        # Assuming there are no other otus in the database, this
+#        # specifies that the Otu created on the previous line
+#        # receives the :update_attributes message with whatever params are
+#        # submitted in the request.
+#        Otu.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+#        put :update, {:id => otu.to_param, :otu => {'these' => 'params'}}, valid_session
+#      end
+#
+#      it "assigns the requested otu as @otu" do
+#        otu = Otu.create! valid_attributes
+#        put :update, {:id => otu.to_param, :otu => valid_attributes}, valid_session
+#        assigns(:otu).should eq(otu)
+#      end
+#
+#      it "redirects to the otu" do
+#        otu = Otu.create! valid_attributes
+#        put :update, {:id => otu.to_param, :otu => valid_attributes}, valid_session
+#        response.should redirect_to(otu)
+#      end
+#    end
+#
+#    describe "with invalid params" do
+#      it "assigns the otu as @otu" do
+#        otu = Otu.create! valid_attributes
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        Otu.any_instance.stub(:save).and_return(false)
+#        put :update, {:id => otu.to_param, :otu => {}}, valid_session
+#        assigns(:otu).should eq(otu)
+#      end
+#
+#      it "re-renders the 'edit' template" do
+#        otu = Otu.create! valid_attributes
+#        # Trigger the behavior that occurs when invalid params are submitted
+#        Otu.any_instance.stub(:save).and_return(false)
+#        put :update, {:id => otu.to_param, :otu => {}}, valid_session
+#        response.should render_template("edit")
+#      end
+#    end
+#  end
+#
+#  describe "DELETE destroy" do
+#    it "destroys the requested otu" do
+#      otu = Otu.create! valid_attributes
+#      expect {
+#        delete :destroy, {:id => otu.to_param}, valid_session
+#      }.to change(Otu, :count).by(-1)
+#    end
+#
+#    it "redirects to the otus list" do
+#      otu = Otu.create! valid_attributes
+#      delete :destroy, {:id => otu.to_param}, valid_session
+#      response.should redirect_to(otus_url)
+#    end
+#  end
 
 end

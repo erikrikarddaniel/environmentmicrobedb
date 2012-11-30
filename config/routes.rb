@@ -1,4 +1,8 @@
 Environmentmicrobedb::Application.routes.draw do
+  resources :orf_aas
+
+  resources :assemblies
+
   root to: 'static#home'
   match '/about', to: 'static#about'
   match '/help', to: 'static#help'
