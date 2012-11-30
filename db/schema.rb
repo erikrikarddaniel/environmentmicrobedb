@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808195459) do
+ActiveRecord::Schema.define(:version => 20120808113854) do
 
   create_table "amplicons", :force => true do |t|
     t.integer  "sample_id"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 20120808195459) do
     t.float    "n_unspecific"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "otu_id"
   end
 
   create_table "annotation_sources", :force => true do |t|
@@ -32,10 +31,10 @@ ActiveRecord::Schema.define(:version => 20120808195459) do
   end
 
   create_table "otus", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false
     t.integer  "annotation_source_id"
-    t.string   "name"
   end
 
   create_table "project_properties", :force => true do |t|
@@ -45,12 +44,6 @@ ActiveRecord::Schema.define(:version => 20120808195459) do
     t.datetime "updated_at", :null => false
     t.integer  "project_id"
     t.string   "datatype"
-  end
-
-  create_table "projects", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "sample_properties", :force => true do |t|

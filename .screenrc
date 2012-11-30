@@ -1,4 +1,5 @@
 sessionname environmentmicrobedb
+setenv ROOT $PWD
 screen -t environmentmicrobedb
 screen -t server
 screen -t autotest
@@ -24,6 +25,9 @@ screen -t config
 chdir ../log
 screen -t log
 chdir ..
+chdir db/migrate
+screen -t migrate
+chdir $ROOT
 screen -t man
 screen -t console
 screen -t root

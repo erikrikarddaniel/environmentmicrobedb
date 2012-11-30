@@ -8,7 +8,6 @@
 #  n_unspecific :float
 #  created_at   :datetime        not null
 #  updated_at   :datetime        not null
-#  otu_id       :integer
 #
 
 class Amplicon < Nucleotide  
