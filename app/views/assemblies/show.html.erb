@@ -15,6 +15,12 @@
   <%= @assembly.project.name %>
 </p>
 
+<p>
+  <b>ORF sets:</b><br/>
+  <% @assembly.orf_sets.each do |orf_set| %>
+    <%= orf_set.name %>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_assembly_path(@assembly) %> |
 <%= link_to 'Back', assemblies_path %>
