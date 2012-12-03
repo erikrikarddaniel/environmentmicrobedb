@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(:version => 20121203064233) do
   create_table "functions", :force => true do |t|
     t.string   "name"
     t.integer  "parent_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "annotation_source_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "otus", :force => true do |t|

@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :annotation_source do
+    dbname 'Annotation db'
+    dbversion '1.0'
+    algorithm 'Assembly, FGS, blastp, Megan'
+    algorithm_parameters 'Assembly: Velvet-Oasis'
+  end
+
   factory :project_property do
     name "proj_prop_type"
     value "proj_prop_value"

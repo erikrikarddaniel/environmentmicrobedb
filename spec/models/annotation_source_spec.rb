@@ -14,5 +14,23 @@
 require 'spec_helper'
 
 describe AnnotationSource do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    @annotation_source = AnnotationSource.new(dbname: 'DB', dbversion: '1.0', algorithm: 'test', algorithm_parameters: 'test')
+  end
+
+  subject { @annotation_source }
+
+  it { should respond_to(:dbname) }
+  it { should respond_to(:dbversion) }
+  it { should respond_to(:algorithm) }
+  it { should respond_to(:algorithm_parameters) }
+  it { should respond_to(:otus) }
+  it { should respond_to(:functions) }
+
+  describe 'name is required' do
+    before do
+      @annotation_source.dbname = ''
+    end
+    it { should_not be_valid }
+  end
 end

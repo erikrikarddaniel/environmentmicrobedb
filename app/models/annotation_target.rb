@@ -8,10 +8,11 @@
 #  annotation_source_id   :integer
 class AnnotationTarget < ActiveRecord::Base
   self.abstract_class = true
-  attr_accessible :name, :annotation_source_id
+  attr_accessible :name
   has_many :amplicons
   belongs_to :annotation_source
-  validates :name, :annotation_source_id, :presence => true
+  validates :annotation_source_id, :presence => true
+  validates :name, presence: true, uniqueness: { scope: :annotation_source_id }
 end
 
 
