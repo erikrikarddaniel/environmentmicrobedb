@@ -1,4 +1,5 @@
 Environmentmicrobedb::Application.routes.draw do
+  resources :annotation_sources
   resources :functions
 
   root to: 'static#home'

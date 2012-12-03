@@ -41,7 +41,6 @@ class FunctionsController < ApplicationController
   # POST /functions.json
   def create
     annotation_source_id = params[:function].delete(:annotation_source_id)
-    warn "#{__FILE__}:#{__LINE__}: annotation_source_id: #{annotation_source_id}, params[:function]: #{params[:function].inspect}"
     if annotation_source_id
       @function = AnnotationSource.find(annotation_source_id).functions.new(params[:function])
     else
