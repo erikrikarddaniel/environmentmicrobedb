@@ -1,4 +1,6 @@
 Environmentmicrobedb::Application.routes.draw do
+  resources :functions
+
   root to: 'static#home'
   match '/about', to: 'static#about'
   match '/help', to: 'static#help'
