@@ -13,7 +13,8 @@
 
 class AnnotationSource < ActiveRecord::Base
   attr_accessible :dbname, :dbversion, :algorithm, :algorithm_parameters
-  has_many :otus
   has_many :functions
+  has_many :otus
+  has_many :taxons
   validates :dbname, :dbversion, :algorithm, :algorithm_parameters, :presence => true
 end
