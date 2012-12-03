@@ -11,5 +11,5 @@
 #  otu_id       :integer
 #
 
-class Amplicon < Nucleotide  
+class Amplicon < NucleotideObservation
 end
