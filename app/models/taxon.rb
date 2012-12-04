@@ -10,6 +10,7 @@
 #  rank                 :string(255)
 #  parent_id            :integer
 #  annotation_source_id :integer
+#  source_db            :string(255)
 #
 
 class Taxon < CdnaAnnotationTarget

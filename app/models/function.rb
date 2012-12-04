@@ -10,6 +10,7 @@
 #  updated_at           :datetime        not null
 #  source_db            :string(255)
 #  rank                 :string(255)
+#  source_identifier    :string(255)
 #
 
 class Function < CdnaAnnotationTarget

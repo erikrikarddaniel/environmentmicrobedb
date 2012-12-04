@@ -10,6 +10,7 @@
 #  updated_at           :datetime        not null
 #  source_db            :string(255)
 #  rank                 :string(255)
+#  source_identifier    :string(255)
 #
 
 require 'spec_helper'
@@ -24,12 +25,14 @@ describe Function do
 
   subject { @seed_child0 }
 
-  it { should respond_to(:name) }
   it { should respond_to(:annotation_source) }
-  it { should respond_to(:parent) }
   it { should respond_to(:children) }
+  it { should respond_to(:name) }
+  it { should respond_to(:observations) }
+  it { should respond_to(:parent) }
   it { should respond_to(:rank) }
   it { should respond_to(:source_db) }
+  it { should respond_to(:source_identifier) }
 
   describe "Should not be valid when name is not present" do
     before { @seed_child0.name = "" }

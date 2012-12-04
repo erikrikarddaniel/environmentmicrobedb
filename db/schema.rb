@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204090532) do
+ActiveRecord::Schema.define(:version => 20121204120156) do
 
   create_table "amplicons", :force => true do |t|
     t.integer  "sample_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20121204090532) do
     t.datetime "updated_at",           :null => false
     t.string   "source_db"
     t.string   "rank"
+    t.string   "source_identifier"
   end
 
   create_table "otus", :force => true do |t|
@@ -142,6 +143,7 @@ ActiveRecord::Schema.define(:version => 20121204090532) do
     t.string   "rank"
     t.integer  "parent_id"
     t.integer  "annotation_source_id"
+    t.string   "source_db"
   end
 
 end
