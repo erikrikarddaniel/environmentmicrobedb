@@ -8,6 +8,8 @@
 #  annotation_source_id :integer
 #  created_at           :datetime        not null
 #  updated_at           :datetime        not null
+#  source_db            :string(255)
+#  rank                 :string(255)
 #
 
 require 'spec_helper'
@@ -26,6 +28,8 @@ describe Function do
   it { should respond_to(:annotation_source) }
   it { should respond_to(:parent) }
   it { should respond_to(:children) }
+  it { should respond_to(:rank) }
+  it { should respond_to(:source_db) }
 
   describe "Should not be valid when name is not present" do
     before { @seed_child0.name = "" }
