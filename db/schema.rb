@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203092209) do
+ActiveRecord::Schema.define(:version => 20121204062346) do
 
   create_table "amplicons", :force => true do |t|
     t.integer  "sample_id"
@@ -31,15 +31,31 @@ ActiveRecord::Schema.define(:version => 20121203092209) do
     t.datetime "updated_at",           :null => false
   end
 
+  create_table "cdna_observation_functions", :force => true do |t|
+    t.integer  "cdna_observation_id"
+    t.integer  "function_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "cdna_observation_otus", :force => true do |t|
+    t.integer  "cdna_observation_id"
+    t.integer  "otu_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  create_table "cdna_observation_taxons", :force => true do |t|
+    t.integer  "cdna_observation_id"
+    t.integer  "taxon_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
   create_table "cdna_observations", :force => true do |t|
     t.integer  "sample_id"
     t.integer  "n_specific"
     t.float    "n_unspecific"
-    t.integer  "otu_id"
-    t.integer  "function0_id"
-    t.integer  "function1_id"
-    t.integer  "taxon0_id"
-    t.integer  "taxon1_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

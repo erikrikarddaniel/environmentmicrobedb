@@ -6,14 +6,15 @@
 #  sample_id    :integer
 #  n_specific   :integer
 #  n_unspecific :float
-#  otu_id       :integer
-#  function0_id :integer
-#  function1_id :integer
-#  taxon0_id    :integer
-#  taxon1_id    :integer
 #  created_at   :datetime        not null
 #  updated_at   :datetime        not null
 #
 
 class CdnaObservation < NucleotideObservation
+  has_many :cdna_observation_otus
+  has_many :cdna_observation_functions
+  has_many :cdna_observation_taxons
+  has_many :otus, through: :cdna_observation_otus
+  has_many :functions, through: :cdna_observation_functions
+  has_many :taxons, through: :cdna_observation_taxons
 end

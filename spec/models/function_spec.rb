@@ -52,4 +52,12 @@ describe Function do
     subject { @f }
     it { should_not be_valid }
   end
+
+  describe "CdnaObservation associations" do
+    before do
+      @cdna = FactoryGirl.create(:cdna_observation)
+      @seed_child0.cdna_observations << @cdna
+    end
+    its(:observations) { should == [ @cdna ] }
+  end
 end

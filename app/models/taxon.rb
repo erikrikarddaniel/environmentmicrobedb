@@ -12,10 +12,10 @@
 #  annotation_source_id :integer
 #
 
-class Taxon < AnnotationTarget
+class Taxon < CdnaAnnotationTarget
   attr_accessible :parent_id
   belongs_to :parent, :class_name => "Taxon", foreign_key: :parent_id
   has_many :children, :class_name => "Taxon", foreign_key: :parent_id
-  has_many :cdna_observation0s, class_name: "CdnaObservation", foreign_key: :taxon0_id
-  has_many :cdna_observation1s, class_name: "CdnaObservation", foreign_key: :taxon1_id
+  has_many :cdna_observations, through: :cdna_observation_taxons
+  has_many :cdna_observation_taxons
 end

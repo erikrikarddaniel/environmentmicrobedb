@@ -57,9 +57,8 @@ describe Taxon do
   describe "CdnaObservation associations" do
     before do
       @cdna = FactoryGirl.create(:cdna_observation)
-      @ncbi_child0.cdna_observation0s << @cdna
+      @ncbi_child0.cdna_observations << @cdna
     end
-    its(:cdna_observation0s) { should == [ @cdna ] }
     its(:observations) { should == [ @cdna ] }
   end
 end
