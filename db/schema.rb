@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204120156) do
+ActiveRecord::Schema.define(:version => 20121204131017) do
 
   create_table "amplicons", :force => true do |t|
     t.integer  "sample_id"
@@ -63,18 +63,16 @@ ActiveRecord::Schema.define(:version => 20121204120156) do
   create_table "functions", :force => true do |t|
     t.string   "name"
     t.integer  "parent_id"
-    t.integer  "annotation_source_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "source_db"
     t.string   "rank"
     t.string   "source_identifier"
   end
 
   create_table "otus", :force => true do |t|
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
-    t.integer  "annotation_source_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "name"
   end
 
@@ -137,12 +135,11 @@ ActiveRecord::Schema.define(:version => 20121204120156) do
 
   create_table "taxons", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "source_identifier"
     t.string   "rank"
     t.integer  "parent_id"
-    t.integer  "annotation_source_id"
     t.string   "source_db"
   end
 

@@ -2,30 +2,28 @@
 #
 # Table name: taxons
 #
-#  id                   :integer         not null, primary key
-#  name                 :string(255)
-#  created_at           :datetime        not null
-#  updated_at           :datetime        not null
-#  source_identifier    :string(255)
-#  rank                 :string(255)
-#  parent_id            :integer
-#  annotation_source_id :integer
-#  source_db            :string(255)
+#  id                :integer         not null, primary key
+#  name              :string(255)
+#  created_at        :datetime        not null
+#  updated_at        :datetime        not null
+#  source_identifier :string(255)
+#  rank              :string(255)
+#  parent_id         :integer
+#  source_db         :string(255)
 #
 
 require 'spec_helper'
 
 describe Taxon do
-  let (:annotation_source) { FactoryGirl.create(:annotation_source) }
-
   before do
-    @ncbi_root = annotation_source.taxons.create(name: 'NCBI root')
-    @ncbi_child0 = annotation_source.taxons.create(name: 'NCBI child 0', parent_id: @ncbi_root.id)
+    @ncbi_root = Taxon.create(name: 'NCBI root')
+    @ncbi_child0 = Taxon.create(name: 'NCBI child 0', parent_id: @ncbi_root.id)
   end
 
   subject { @ncbi_child0 }
 
-  it { should respond_to(:annotation_source) }
+  it { should_not respond_to(:annotation_source_id) }
+  it { should_not respond_to(:annotation_source) }
   it { should respond_to(:children) }
   it { should respond_to(:name) }
   it { should respond_to(:observations) }
@@ -39,18 +37,13 @@ describe Taxon do
     it { should_not be_valid }
   end
 
-  describe "Should not be valid when annotation_source is not present" do
-    before { @ncbi_child0.annotation_source = nil }
-    it { should_not be_valid }
-  end
-
   describe "parent should be another Taxon" do
     its(:parent) { should == @ncbi_root }
   end
 
-  describe "only one name per annotation_source" do
+  describe "name is unique" do
     before do
-      @t = @ncbi_child0.annotation_source.taxons.new(name: @ncbi_child0.name)
+      @t = Taxon.new(name: @ncbi_child0.name)
     end
     subject { @t }
 

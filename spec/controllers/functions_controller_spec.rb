@@ -19,10 +19,6 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe FunctionsController do
-  before do
-    @annotation_source = FactoryGirl.create(:annotation_source)
-  end
-
   # This should return the minimal set of attributes required to create a valid
   # Function. As you add validations to Function, be sure to
   # update the return value of this method accordingly.
@@ -41,7 +37,7 @@ describe FunctionsController do
 
   describe "GET index" do
     it "assigns all functions as @functions" do
-      function = @annotation_source.functions.create! valid_attributes
+      function = Function.create! valid_attributes
       get :index, {}, valid_session
       assigns(:functions).should eq([function])
     end
@@ -49,7 +45,7 @@ describe FunctionsController do
 
   describe "GET show" do
     it "assigns the requested function as @function" do
-      function = @annotation_source.functions.create! valid_attributes
+      function = Function.create! valid_attributes
       get :show, {:id => function.to_param}, valid_session
       assigns(:function).should eq(function)
     end
@@ -64,7 +60,7 @@ describe FunctionsController do
 
   describe "GET edit" do
     it "assigns the requested function as @function" do
-      function = @annotation_source.functions.create! valid_attributes
+      function = Function.create! valid_attributes
       get :edit, {:id => function.to_param}, valid_session
       assigns(:function).should eq(function)
     end
@@ -74,18 +70,18 @@ describe FunctionsController do
     describe "with valid params" do
       it "creates a new Function" do
         expect {
-          post :create, {:function => valid_attributes.merge(annotation_source_id: @annotation_source.id)}, valid_session
+          post :create, {:function => valid_attributes}, valid_session
         }.to change(Function, :count).by(1)
       end
 
       it "assigns a newly created function as @function" do
-        post :create, {:function => valid_attributes.merge(annotation_source_id: @annotation_source.id)}, valid_session
+        post :create, {:function => valid_attributes}, valid_session
         assigns(:function).should be_a(Function)
         assigns(:function).should be_persisted
       end
 
       it "redirects to the created function" do
-        post :create, {:function => valid_attributes.merge(annotation_source_id: @annotation_source.id)}, valid_session
+        post :create, {:function => valid_attributes}, valid_session
         response.should redirect_to(Function.last)
       end
     end
@@ -110,9 +106,9 @@ describe FunctionsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested function" do
-        function = @annotation_source.functions.create! valid_attributes
+        function = Function.create! valid_attributes
         # Assuming there are no other functions in the database, this
-        # specifies that the @annotation_source.functions.created on the previous line
+        # specifies that the Function.created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Function.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
@@ -120,13 +116,13 @@ describe FunctionsController do
       end
 
       it "assigns the requested function as @function" do
-        function = @annotation_source.functions.create! valid_attributes
+        function = Function.create! valid_attributes
         put :update, {:id => function.to_param, :function => valid_attributes}, valid_session
         assigns(:function).should eq(function)
       end
 
       it "redirects to the function" do
-        function = @annotation_source.functions.create! valid_attributes
+        function = Function.create! valid_attributes
         put :update, {:id => function.to_param, :function => valid_attributes}, valid_session
         response.should redirect_to(function)
       end
@@ -134,7 +130,7 @@ describe FunctionsController do
 
     describe "with invalid params" do
       it "assigns the function as @function" do
-        function = @annotation_source.functions.create! valid_attributes
+        function = Function.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Function.any_instance.stub(:save).and_return(false)
         put :update, {:id => function.to_param, :function => {}}, valid_session
@@ -142,7 +138,7 @@ describe FunctionsController do
       end
 
       it "re-renders the 'edit' template" do
-        function = @annotation_source.functions.create! valid_attributes
+        function = Function.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Function.any_instance.stub(:save).and_return(false)
         put :update, {:id => function.to_param, :function => {}}, valid_session
@@ -153,14 +149,14 @@ describe FunctionsController do
 
   describe "DELETE destroy" do
     it "destroys the requested function" do
-      function = @annotation_source.functions.create! valid_attributes
+      function = Function.create! valid_attributes
       expect {
         delete :destroy, {:id => function.to_param}, valid_session
       }.to change(Function, :count).by(-1)
     end
 
     it "redirects to the functions list" do
-      function = @annotation_source.functions.create! valid_attributes
+      function = Function.create! valid_attributes
       delete :destroy, {:id => function.to_param}, valid_session
       response.should redirect_to(functions_url)
     end

@@ -2,15 +2,14 @@
 #
 # Table name: functions
 #
-#  id                   :integer         not null, primary key
-#  name                 :string(255)
-#  parent_id            :integer
-#  annotation_source_id :integer
-#  created_at           :datetime        not null
-#  updated_at           :datetime        not null
-#  source_db            :string(255)
-#  rank                 :string(255)
-#  source_identifier    :string(255)
+#  id                :integer         not null, primary key
+#  name              :string(255)
+#  parent_id         :integer
+#  created_at        :datetime        not null
+#  updated_at        :datetime        not null
+#  source_db         :string(255)
+#  rank              :string(255)
+#  source_identifier :string(255)
 #
 
 class Function < CdnaAnnotationTarget

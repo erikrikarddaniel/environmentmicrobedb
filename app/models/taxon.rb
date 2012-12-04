@@ -2,15 +2,14 @@
 #
 # Table name: taxons
 #
-#  id                   :integer         not null, primary key
-#  name                 :string(255)
-#  created_at           :datetime        not null
-#  updated_at           :datetime        not null
-#  source_identifier    :string(255)
-#  rank                 :string(255)
-#  parent_id            :integer
-#  annotation_source_id :integer
-#  source_db            :string(255)
+#  id                :integer         not null, primary key
+#  name              :string(255)
+#  created_at        :datetime        not null
+#  updated_at        :datetime        not null
+#  source_identifier :string(255)
+#  rank              :string(255)
+#  parent_id         :integer
+#  source_db         :string(255)
 #
 
 class Taxon < CdnaAnnotationTarget

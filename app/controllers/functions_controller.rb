@@ -40,12 +40,7 @@ class FunctionsController < ApplicationController
   # POST /functions
   # POST /functions.json
   def create
-    annotation_source_id = params[:function].delete(:annotation_source_id)
-    if annotation_source_id
-      @function = AnnotationSource.find(annotation_source_id).functions.new(params[:function])
-    else
-      @function = Function.new
-    end
+    @function = Function.new(params[:function])
 
     respond_to do |format|
       if @function.save
