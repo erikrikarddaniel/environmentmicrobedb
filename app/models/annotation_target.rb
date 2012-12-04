@@ -9,12 +9,17 @@
 class AnnotationTarget < ActiveRecord::Base
   self.abstract_class = true
   attr_accessible :name
-  has_many :amplicons
   belongs_to :annotation_source
   validates :annotation_source_id, :presence => true
   validates :name, presence: true, uniqueness: { scope: :annotation_source_id }
+
+  def observations
+    cdna_observations
+  end
+
+private
+
+  def cdna_observations
+    cdna_observation0s + cdna_observation1s 
+  end
 end
-
-
-
-

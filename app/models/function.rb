@@ -14,4 +14,5 @@ class Function < AnnotationTarget
   attr_accessible :parent_id
   belongs_to :parent, :class_name => "Function", :foreign_key => "parent_id"
   has_many :children, :class_name => "Function", :foreign_key => "parent_id"
+  has_many :amplicons
 end

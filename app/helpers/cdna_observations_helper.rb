@@ -1,0 +1,2 @@
+module CdnaObservationsHelper
+end

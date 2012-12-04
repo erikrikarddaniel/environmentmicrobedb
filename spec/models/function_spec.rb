@@ -50,7 +50,6 @@ describe Function do
       @f = @seed_child0.annotation_source.functions.new(name: @seed_child0.name)
     end
     subject { @f }
-
     it { should_not be_valid }
   end
 end

@@ -14,6 +14,8 @@
 
 class Taxon < AnnotationTarget
   attr_accessible :parent_id
-  belongs_to :parent, :class_name => "Function", :foreign_key => "parent_id"
-  has_many :children, :class_name => "Function", :foreign_key => "parent_id"
+  belongs_to :parent, :class_name => "Taxon", foreign_key: :parent_id
+  has_many :children, :class_name => "Taxon", foreign_key: :parent_id
+  has_many :cdna_observation0s, class_name: "CdnaObservation", foreign_key: :taxon0_id
+  has_many :cdna_observation1s, class_name: "CdnaObservation", foreign_key: :taxon1_id
 end

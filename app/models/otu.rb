@@ -10,4 +10,5 @@
 #
 
 class Otu < AnnotationTarget
+  has_many :amplicons
 end

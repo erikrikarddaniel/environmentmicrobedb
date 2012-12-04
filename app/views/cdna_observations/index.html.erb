@@ -1,0 +1,33 @@
+<h1>Listing cdna_observations</h1>
+
+<table>
+  <tr>
+    <th>N specific</th>
+    <th>N unspecific</th>
+    <th>Otu</th>
+    <th>Function0</th>
+    <th>Function1</th>
+    <th>Taxon0</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cdna_observations.each do |cdna_observation| %>
+  <tr>
+    <td><%= cdna_observation.n_specific %></td>
+    <td><%= cdna_observation.n_unspecific %></td>
+    <td><%= cdna_observation.otu_id %></td>
+    <td><%= cdna_observation.function0_id %></td>
+    <td><%= cdna_observation.function1_id %></td>
+    <td><%= cdna_observation.taxon0_id %></td>
+    <td><%= link_to 'Show', cdna_observation %></td>
+    <td><%= link_to 'Edit', edit_cdna_observation_path(cdna_observation) %></td>
+    <td><%= link_to 'Destroy', cdna_observation, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cdna observation', new_cdna_observation_path %>

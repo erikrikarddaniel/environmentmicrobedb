@@ -1,0 +1,41 @@
+<%= form_for(@cdna_observation) do |f| %>
+  <% if @cdna_observation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cdna_observation.errors.count, "error") %> prohibited this cdna_observation from being saved:</h2>
+
+      <ul>
+      <% @cdna_observation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :n_specific %><br />
+    <%= f.number_field :n_specific %>
+  </div>
+  <div class="field">
+    <%= f.label :n_unspecific %><br />
+    <%= f.text_field :n_unspecific %>
+  </div>
+  <div class="field">
+    <%= f.label :otu_id %><br />
+    <%= f.number_field :otu_id %>
+  </div>
+  <div class="field">
+    <%= f.label :function0_id %><br />
+    <%= f.number_field :function0_id %>
+  </div>
+  <div class="field">
+    <%= f.label :function1_id %><br />
+    <%= f.number_field :function1_id %>
+  </div>
+  <div class="field">
+    <%= f.label :taxon0_id %><br />
+    <%= f.number_field :taxon0_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

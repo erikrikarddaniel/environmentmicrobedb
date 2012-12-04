@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>N specific:</b>
+  <%= @cdna_observation.n_specific %>
+</p>
+
+<p>
+  <b>N unspecific:</b>
+  <%= @cdna_observation.n_unspecific %>
+</p>
+
+<p>
+  <b>Otu:</b>
+  <%= @cdna_observation.otu_id %>
+</p>
+
+<p>
+  <b>Function0:</b>
+  <%= @cdna_observation.function0_id %>
+</p>
+
+<p>
+  <b>Function1:</b>
+  <%= @cdna_observation.function1_id %>
+</p>
+
+<p>
+  <b>Taxon0:</b>
+  <%= @cdna_observation.taxon0_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_cdna_observation_path(@cdna_observation) %> |
+<%= link_to 'Back', cdna_observations_path %>

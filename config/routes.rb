@@ -1,4 +1,6 @@
 Environmentmicrobedb::Application.routes.draw do
+  resources :cdna_observations
+
   resources :annotation_sources
   resources :functions
 
