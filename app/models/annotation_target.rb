@@ -7,7 +7,7 @@
 #  name                   :string
 class AnnotationTarget < ActiveRecord::Base
   self.abstract_class = true
-  attr_accessible :name
+  attr_accessible :name, :source_db, :source_identifier
   validates :name, presence: true, uniqueness: true
 
   def observations

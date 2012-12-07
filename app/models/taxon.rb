@@ -20,10 +20,19 @@
 #  species           :string(255)
 #
 
+require 'biosql_web'
+
 class Taxon < AnnotationTarget
   attr_accessible :parent_id
   belongs_to :parent, :class_name => "Taxon", foreign_key: :parent_id
   has_many :children, :class_name => "Taxon", foreign_key: :parent_id
   has_many :cdna_observations, through: :cdna_observation_taxons
   has_many :cdna_observation_taxons
+
+  def lookup!
+    if source_db == 'NCBI' and ncbi_taxon_id = source_identifier.to_i
+      hierarchy = BiosqlWeb.ncbi_taxon_id2full_taxon_hierarchy(ncbi_taxon_id)
+      warn "#{__FILE__}:#{__LINE__}: hierarchy: #{hierarchy.inspect}"
+    end
+  end
 end

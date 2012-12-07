@@ -11,6 +11,7 @@
 #
 
 require 'spec_helper'
+require 'file_parsers'
 
 describe CdnaObservation do
   let(:kegg) { FactoryGirl.create(:kegg_child0) }
@@ -39,5 +40,15 @@ describe CdnaObservation do
   describe "annotation associations" do
     its(:functions) { should == [ kegg, seed ] }
     its(:taxons) { should == [ ncbi ] }
+  end
+
+  describe "json import" do
+    before do
+      @n_inserted = FileParsers.import_cdna_json(fixture_file_upload("/cdna_observations.json"))
+    end
+
+    subject { @n_inserted }
+
+    it { should == 2 }
   end
 end

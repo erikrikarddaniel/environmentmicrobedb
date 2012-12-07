@@ -47,6 +47,7 @@ describe Taxon do
   it { should respond_to(:family) }
   it { should respond_to(:genus) }
   it { should respond_to(:species) }
+  it { should respond_to(:lookup!) }
 
   describe "Should not be valid when name is not present" do
     before { @ncbi_child0.name = "" }
@@ -72,5 +73,16 @@ describe Taxon do
       @ncbi_child0.cdna_observations << @cdna
     end
     its(:observations) { should == [ @cdna ] }
+  end
+
+  describe "lookup should populate the object with data from Biosql" do
+    before do
+      @taxon = Taxon.create(name: "Escherichia coli K-12", source_db: "NCBI", source_identifier: "83333")
+      @taxon.lookup!
+    end
+
+    subject { @taxon }
+
+    its(:species) { should == "Escherichia coli" }
   end
 end

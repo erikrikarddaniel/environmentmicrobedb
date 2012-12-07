@@ -8,6 +8,7 @@ gem 'bootstrap-will_paginate', '0.0.5'
 gem 'rb-readline', '0.4.2'
 gem 'best_in_place', '1.1.1'
 gem 'activerecord-import'
+gem 'httparty'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

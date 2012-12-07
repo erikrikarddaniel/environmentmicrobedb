@@ -1,27 +1,29 @@
-annotation_source: {
-  dbname:"NCBI NR",
-  dbversion:"20121204",
-  algorithm:"Velvet assembly, FragGeneScan ORF calling, blastp, Megan LCA"
+{
+  "annotation_source": {
+    "dbname": "NCBI NR",
+    "dbversion": "20121204",
+    "algorithm": "Velvet assembly, FragGeneScan ORF calling, blastp, Megan LCA"
+  },
+  "cdna_observations": [
+    { 
+      "n_specific": 40, 
+      "taxons": [ 
+	{ "name": "Escherichia coli", "source_db": "NCBI", "source_identifier": "562" }
+      ], 
+      "functions": [ 
+	{ "name": "Manganese superoxide dismutase (EC 1.15.1.1)", "source_db": "SEED", "rank": "leaf" }, 
+	{ "name": "K00266", "source_db": "KEGG", "rank": "leaf" } 
+      ] 
+    },
+    { 
+      "n_specific": 20, 
+      "taxons": [ 
+	{ "name": "Escherichia coli K-12", "source_db": "NCBI", "source_identifier": "83333" }
+      ], 
+      "functions": [ 
+	{ "name": "Manganese superoxide dismutase (EC 1.15.1.1)", "source_db": "KEGG", "rank": "leaf" }, 
+	{ "name": "K00266", "source_db": "KEGG", "rank": "leaf" } 
+      ] 
+    }
+  ]
 }
-cdna_observations: [
-  { 
-    n_specific:40, 
-    taxons:[ 
-      { name:"Escherichia coli", source_identifier:"562" }
-    ], 
-    functions:[ 
-      { name:"Manganese superoxide dismutase (EC 1.15.1.1)", source_db:"SEED", rank:"leaf" }, 
-      { name:"K00266", source_db:"KEGG", rank:"leaf" } 
-    ] 
-  },
-  { 
-    n_specific:40, 
-    taxons:[ 
-      { name:"Escherichia coli K-12", source_identifier:"83333" }
-    ], 
-    functions:[ 
-      { name:"Manganese superoxide dismutase (EC 1.15.1.1)", source_db:"KEGG", rank:"leaf" }, 
-      { name:"K00266", source_db:"KEGG", rank:"leaf" } 
-    ] 
-  },
-]

@@ -1,7 +1,9 @@
+require 'json'
+
 module FileParsers
   IMPORT_N_SEQS = 1000
 
-  def import_frag_gene_scan(assembly, io)
+  def FileParsers.import_frag_gene_scan(assembly, io)
     nseqs = 0
     Assembly.transaction do
       @orf_aas = []
@@ -21,5 +23,16 @@ module FileParsers
     end
 
     nseqs
+  end
+
+  def FileParsers.import_cdna_json(io)
+    n_cdnas = 0
+    AnnotationSource.transaction do
+      cdna_data = JSON.parse(io.read)
+      @annotation_source = AnnotationSource.create(cdna_data['annotation_source'])
+      cdna_data['cdna_observations'].each do |obs|
+	warn "#{__FILE__}:#{__LINE__}: obs: #{obs}"
+      end
+    end
   end
 end
