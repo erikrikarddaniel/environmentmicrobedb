@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204131017) do
+ActiveRecord::Schema.define(:version => 20121207063113) do
 
   create_table "amplicons", :force => true do |t|
     t.integer  "sample_id"
@@ -68,6 +68,12 @@ ActiveRecord::Schema.define(:version => 20121204131017) do
     t.string   "source_db"
     t.string   "rank"
     t.string   "source_identifier"
+    t.string   "level0"
+    t.string   "level1"
+    t.string   "level2"
+    t.string   "level3"
+    t.string   "level4"
+    t.string   "leaf"
   end
 
   create_table "otus", :force => true do |t|
@@ -141,6 +147,14 @@ ActiveRecord::Schema.define(:version => 20121204131017) do
     t.string   "rank"
     t.integer  "parent_id"
     t.string   "source_db"
+    t.string   "domain"
+    t.string   "kingdom"
+    t.string   "phylum"
+    t.string   "organism_class"
+    t.string   "order"
+    t.string   "family"
+    t.string   "genus"
+    t.string   "species"
   end
 
 end

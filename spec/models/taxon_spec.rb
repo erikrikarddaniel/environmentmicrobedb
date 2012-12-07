@@ -10,6 +10,14 @@
 #  rank              :string(255)
 #  parent_id         :integer
 #  source_db         :string(255)
+#  domain            :string(255)
+#  kingdom           :string(255)
+#  phylum            :string(255)
+#  organism_class    :string(255)
+#  order             :string(255)
+#  family            :string(255)
+#  genus             :string(255)
+#  species           :string(255)
 #
 
 require 'spec_helper'
@@ -31,6 +39,14 @@ describe Taxon do
   it { should respond_to(:rank) }
   it { should respond_to(:source_db) }
   it { should respond_to(:source_identifier) }
+  it { should respond_to(:domain) }
+  it { should respond_to(:kingdom) }
+  it { should respond_to(:phylum) }
+  it { should respond_to(:organism_class) }
+  it { should respond_to(:order) }
+  it { should respond_to(:family) }
+  it { should respond_to(:genus) }
+  it { should respond_to(:species) }
 
   describe "Should not be valid when name is not present" do
     before { @ncbi_child0.name = "" }
