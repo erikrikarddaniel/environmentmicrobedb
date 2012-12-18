@@ -23,7 +23,18 @@
 require 'biosql_web'
 
 class Taxon < AnnotationTarget
-  attr_accessible :parent_id
+  RECOGNIZED_RANKS = {
+    'superkingdom' =>	:domain,
+    'kingdom' =>	:kingdom,
+    'phylum' =>		:phylum,
+    'class' =>		:organism_class,
+    'order' =>		:order,
+    'family' =>		:family,
+    'genus' =>		:genus,
+    'species' =>	:species
+  }
+ 
+  attr_accessible :parent_id, :rank, :domain, :kingdom, :phylum, :organism_class, :order, :family, :genus
   belongs_to :parent, :class_name => "Taxon", foreign_key: :parent_id
   has_many :children, :class_name => "Taxon", foreign_key: :parent_id
   has_many :cdna_observations, through: :cdna_observation_taxons
@@ -32,7 +43,14 @@ class Taxon < AnnotationTarget
   def lookup!
     if source_db == 'NCBI' and ncbi_taxon_id = source_identifier.to_i
       hierarchy = BiosqlWeb.ncbi_taxon_id2full_taxon_hierarchy(ncbi_taxon_id)
-      warn "#{__FILE__}:#{__LINE__}: hierarchy: #{hierarchy.inspect}"
+      self.rank = hierarchy[0]['node_rank']
+      hierarchy.each do |tentry|
+	if RECOGNIZED_RANKS[tentry['node_rank']]
+	  eval "self.#{RECOGNIZED_RANKS[tentry['node_rank']]} = \"#{tentry['scientific_name']}\""
+	end
+      end
+    else
+      logger.warn "Do not know how to lookup for source_db #{source_db} and NCBI taxon id #{ncbi_taxon_id}"
     end
   end
 end

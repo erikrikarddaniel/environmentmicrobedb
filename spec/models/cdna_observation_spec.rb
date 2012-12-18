@@ -49,6 +49,6 @@ describe CdnaObservation do
 
     subject { @n_inserted }
 
-    it { should == 2 }
+    its(:length) { should == 2 }
   end
 end

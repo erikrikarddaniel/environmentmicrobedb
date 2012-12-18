@@ -31,7 +31,10 @@ module FileParsers
       cdna_data = JSON.parse(io.read)
       @annotation_source = AnnotationSource.create(cdna_data['annotation_source'])
       cdna_data['cdna_observations'].each do |obs|
-	warn "#{__FILE__}:#{__LINE__}: obs: #{obs}"
+	obs['functions'].each do |function|
+	end
+	obs['taxons'].each do |taxon|
+	end
       end
     end
   end
