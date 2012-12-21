@@ -19,10 +19,42 @@
 #
 
 class Function < AnnotationTarget
+  LAST_LEVEL = 4
+  QUERY_KEYS = %w(source_db name)
+
   attr_accessible :parent_id
   belongs_to :parent, :class_name => "Function", :foreign_key => "parent_id"
   has_many :children, :class_name => "Function", :foreign_key => "parent_id"
   has_many :cdna_observations, through: :cdna_observation_functions
   has_many :cdna_observation_functions
   #has_many :amplicons Make as above; no time now...
+
+  after_initialize do |f|
+    f.lookup!
+  end
+
+  def lookup!
+    if source_db
+      hierarchy = BiosqlWeb.functional_hierarchy(source_db, name)
+      unless hierarchy.length > 0
+	self.leaf = name
+	return
+      end
+      self.rank = hierarchy[0]['rank']
+      self.leaf = hierarchy[0]['name']
+      hierarchy.reverse.each_with_index do |tentry, i|
+	if i <= LAST_LEVEL
+	  eval "self.level#{i} = \"#{tentry['name']}\""
+	end
+      end
+    else
+      logger.warn "Can't lookup #{name} without source_db"
+    end
+  end
+
+private
+
+  def self._query_keys
+    QUERY_KEYS
+  end
 end

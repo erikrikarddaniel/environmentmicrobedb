@@ -44,9 +44,19 @@ describe Function do
   it { should respond_to(:level4) }
   it { should respond_to(:leaf) }
 
-  describe "Should not be valid when name is not present" do
-    before { @seed_child0.name = "" }
-    it { should_not be_valid }
+  describe "Required attributes" do
+    it "should not be valid without name" do
+      @seed_child0.name = ""
+      @seed_child0.should_not be_valid
+    end
+    it "should not be valid without source_db" do
+      @seed_child0.source_db = ""
+      @seed_child0.should_not be_valid
+    end
+  end
+
+  describe "parent should be another Function" do
+    its(:parent) { should == @ncbi_root }
   end
 
   describe "name is unique" do
@@ -63,5 +73,55 @@ describe Function do
       @seed_child0.cdna_observations << @cdna
     end
     its(:observations) { should == [ @cdna ] }
+  end
+
+  describe "create from parsed json" do
+    before do
+      @function = Function.find_or_create_from_json(JSON.parse(<<JSON
+{ "name": "Manganese superoxide dismutase (EC 1.15.1.1)", "source_db": "SEED", "rank": "leaf" }
+JSON
+      ))
+    end
+
+    subject { @function }
+
+    its(:name) { should == 'Manganese superoxide dismutase (EC 1.15.1.1)' }
+    its(:source_db) { should == 'SEED' }
+  end
+
+  describe "find from parsed json" do
+    before do
+      @old_function = Function.create(name: "Nitrosative_stress", source_db: "SEED")
+    end
+
+    it "should find the already existing object" do
+      @new_function = Function.find_or_create_from_json(JSON.parse(<<JSON
+{ "name": "Nitrosative_stress", "source_db": "SEED", "rank": "leaf" }
+JSON
+      ))
+      @new_function.should == @old_function
+    end
+  end
+
+  describe "given a name and a source_db the object should be populated with data from Biosql" do
+    before do
+      @no_stress = Function.create(name: "Nitrosative_stress", source_db: "SEED")
+    end
+
+    subject { @no_stress }
+
+    its(:leaf) { should == @no_stress.name }
+    its(:level0) { should == 'SEED' }
+  end
+
+  describe "given a non-existing name and a source_db object should not fail" do
+    before do
+      @no_stress = Function.create(name: "does not exist", source_db: "SEED")
+    end
+
+    subject { @no_stress }
+
+    its(:leaf) { should == @no_stress.name }
+    its(:level0) { should == nil }
   end
 end

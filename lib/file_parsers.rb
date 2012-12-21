@@ -25,17 +25,24 @@ module FileParsers
     nseqs
   end
 
-  def FileParsers.import_cdna_json(io)
+  def self.import_cdna_json(io)
     n_cdnas = 0
     AnnotationSource.transaction do
       cdna_data = JSON.parse(io.read)
-      @annotation_source = AnnotationSource.create(cdna_data['annotation_source'])
+      raise "Can't store observations without project data" unless cdna_data['project']
+      @sample = Project.find_or_create_from_json(cdna_data['project']).samples.detect { |s| s.code == cdna_data['project']['sample_sets'][0]['samples'][0]['code'] }
+      @annotation_source = AnnotationSource.create!(cdna_data['annotation_source'])
       cdna_data['cdna_observations'].each do |obs|
-	obs['functions'].each do |function|
-	end
-	obs['taxons'].each do |taxon|
-	end
+	functions = obs.delete('functions').map { |f| Function.find_or_create_from_json(f) }
+	taxons = obs.delete('taxons').map { |f| Taxon.find_or_create_from_json(f) }
+	cdna_observation = @sample.cdna_observations.create!(obs)
+	cdna_observation.functions = functions
+	cdna_observation.taxons = taxons
+	cdna_observation.annotation_source = @annotation_source
+	cdna_observation.save
+	n_cdnas += 1
       end
     end
+    n_cdnas
   end
 end

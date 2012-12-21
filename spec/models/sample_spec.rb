@@ -13,15 +13,14 @@
 require 'spec_helper'
 
 describe Sample do
-  let!(:sample) { FactoryGirl.create(:sample) }
-
-  let!(:sample_property){ FactoryGirl.create(:sample_property, sample: sample) }
-  describe "#attributes" do
-    it "has :code" do
-      sample.code.should be
-    end
-    it "has :properties" do
-      sample.properties.length.should  == 1
-    end
+  before do
+    @sample = FactoryGirl.create(:sample)
   end
+
+  subject { @sample }
+
+  it { should respond_to(:code) }
+  it { should respond_to(:project) }
+  it { should respond_to(:properties) }
+  it { should respond_to(:cdna_observations) }
 end

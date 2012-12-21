@@ -13,8 +13,10 @@
 class Sample < ActiveRecord::Base
   attr_accessible :code, :subject_id
   has_many :properties, class_name: "SampleProperty", dependent: :destroy
-  has_many :amplicons, class_name: "Amplicon" ,dependent: :destroy
+  has_many :amplicons, dependent: :destroy
+  has_many :cdna_observations, dependent: :destroy
   belongs_to :sample_set
+  has_one :project, through: :sample_set
   validates_presence_of :code, :sample_set_id
   accepts_nested_attributes_for :properties, reject_if: lambda { |a| a[:name].blank? }, allow_destroy: true
   

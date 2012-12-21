@@ -2,12 +2,13 @@
 #
 # Table name: cdna_observations
 #
-#  id           :integer         not null, primary key
-#  sample_id    :integer
-#  n_specific   :integer
-#  n_unspecific :float
-#  created_at   :datetime        not null
-#  updated_at   :datetime        not null
+#  id                   :integer         not null, primary key
+#  sample_id            :integer
+#  n_specific           :integer
+#  n_unspecific         :float
+#  created_at           :datetime        not null
+#  updated_at           :datetime        not null
+#  annotation_source_id :integer
 #
 
 class CdnaObservation < NucleotideObservation

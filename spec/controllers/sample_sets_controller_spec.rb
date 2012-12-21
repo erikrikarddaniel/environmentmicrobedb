@@ -19,8 +19,6 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe SampleSetsController do
-  let!(:project) { FactoryGirl.create(:project) }
-  let!(:sample_set) { FactoryGirl.create(:sample_set) }
   before(:each) do
     @project = Project.create!(name: "Test Project")
   end

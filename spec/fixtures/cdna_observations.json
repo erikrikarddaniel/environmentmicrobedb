@@ -1,4 +1,15 @@
 {
+  "project": {
+    "name": "LNU:Atlantic_2010",
+    "sample_sets": [
+      {
+	"name": "Metatranscriptomes",
+	"samples": [
+	  { "code": "Ca" }
+	]
+      }
+    ]
+  },
   "annotation_source": {
     "dbname": "NCBI NR",
     "dbversion": "20121204",
@@ -22,7 +33,7 @@
       ], 
       "functions": [ 
 	{ "name": "Manganese superoxide dismutase (EC 1.15.1.1)", "source_db": "KEGG", "rank": "leaf" }, 
-	{ "name": "K00266", "source_db": "KEGG", "rank": "leaf" } 
+	{ "name": "K02667", "source_db": "KEGG", "rank": "leaf" } 
       ] 
     }
   ]

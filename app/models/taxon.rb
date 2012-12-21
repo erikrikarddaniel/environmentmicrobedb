@@ -33,7 +33,12 @@ class Taxon < AnnotationTarget
     'genus' =>		:genus,
     'species' =>	:species
   }
+  QUERY_KEYS = %w(source_db source_identifier)
  
+  after_initialize do |t|
+    t.lookup! if t.source_identifier
+  end
+
   attr_accessible :parent_id, :rank, :domain, :kingdom, :phylum, :organism_class, :order, :family, :genus
   belongs_to :parent, :class_name => "Taxon", foreign_key: :parent_id
   has_many :children, :class_name => "Taxon", foreign_key: :parent_id
@@ -52,5 +57,11 @@ class Taxon < AnnotationTarget
     else
       logger.warn "Do not know how to lookup for source_db #{source_db} and NCBI taxon id #{ncbi_taxon_id}"
     end
+  end
+
+private
+
+  def self._query_keys
+    QUERY_KEYS
   end
 end

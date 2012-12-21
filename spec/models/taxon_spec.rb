@@ -24,8 +24,8 @@ require 'spec_helper'
 
 describe Taxon do
   before do
-    @ncbi_root = Taxon.create(name: 'NCBI root')
-    @ncbi_child0 = Taxon.create(name: 'NCBI child 0', parent_id: @ncbi_root.id)
+    @ncbi_root = Taxon.create(name: 'NCBI root', source_db: 'NCBI')
+    @ncbi_child0 = Taxon.create(name: 'NCBI child 0', parent_id: @ncbi_root.id, source_db: 'NCBI')
   end
 
   subject { @ncbi_child0 }
@@ -47,11 +47,16 @@ describe Taxon do
   it { should respond_to(:family) }
   it { should respond_to(:genus) }
   it { should respond_to(:species) }
-  it { should respond_to(:lookup!) }
 
-  describe "Should not be valid when name is not present" do
-    before { @ncbi_child0.name = "" }
-    it { should_not be_valid }
+  describe "Required attributes" do
+    it "should not be valid without name" do
+      @ncbi_child0.name = ""
+      @ncbi_child0.should_not be_valid
+    end
+    it "should not be valid without source_db" do
+      @ncbi_child0.source_db = ""
+      @ncbi_child0.should_not be_valid
+    end
   end
 
   describe "parent should be another Taxon" do
@@ -75,14 +80,28 @@ describe Taxon do
     its(:observations) { should == [ @cdna ] }
   end
 
-  describe "lookup should populate the object with data from Biosql" do
+  describe "given a source_identifier the object should be populated with data from Biosql" do
     before do
       @taxon = Taxon.create(name: "Escherichia coli K-12", source_db: "NCBI", source_identifier: "83333")
-      @taxon.lookup!
     end
 
     subject { @taxon }
 
     its(:species) { should == "Escherichia coli" }
+  end
+
+  describe "create or find from parsed json" do
+    before do
+      @taxon = Taxon.find_or_create_from_json(JSON.parse(<<JSON
+{ "name": "Escherichia coli", "source_db": "NCBI", "source_identifier": "562" }
+JSON
+      ))
+    end
+
+    subject { @taxon }
+
+    its(:name) { should == 'Escherichia coli' }
+    its(:source_db) { should == 'NCBI' }
+    its(:source_identifier) { should == '562' }
   end
 end

@@ -19,8 +19,6 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ProjectPropertiesController do
-  let!(:project) { FactoryGirl.create(:project) }
-  let!(:project_property) { FactoryGirl.create(:project_property) }
   before(:each) do
     @project = Project.create!(name: "Test Project")
   end

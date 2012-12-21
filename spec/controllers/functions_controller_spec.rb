@@ -24,7 +24,8 @@ describe FunctionsController do
   # update the return value of this method accordingly.
   def valid_attributes
     {
-      name: 'Test function'
+      name: 'Test function',
+      source_db: 'TEST'
     }
   end
   
