@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20121221121049) do
-=======
-ActiveRecord::Schema.define(:version => 20121128101237) do
->>>>>>> master
 
   create_table "amplicons", :force => true do |t|
     t.integer  "sample_id"
@@ -41,7 +37,6 @@ ActiveRecord::Schema.define(:version => 20121128101237) do
     t.datetime "updated_at",          :null => false
   end
 
-<<<<<<< HEAD
   create_table "cdna_observation_otus", :force => true do |t|
     t.integer  "cdna_observation_id"
     t.integer  "otu_id"
@@ -85,13 +80,6 @@ ActiveRecord::Schema.define(:version => 20121128101237) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
-=======
-  create_table "otus", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
-    t.integer  "annotation_source_id"
->>>>>>> master
   end
 
   create_table "project_properties", :force => true do |t|
@@ -101,6 +89,12 @@ ActiveRecord::Schema.define(:version => 20121128101237) do
     t.datetime "updated_at", :null => false
     t.integer  "project_id"
     t.string   "datatype"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sample_properties", :force => true do |t|
