@@ -8,7 +8,7 @@
 class AnnotationTarget < ActiveRecord::Base
   self.abstract_class = true
   attr_accessible :name, :source_db, :source_identifier, :rank
-  validates :name, presence: true, uniqueness: { scope: [ :source_db, :rank ] }
+  validates :name, presence: true, uniqueness: { scope: [ :source_db, :rank, :source_identifier ] }
   validates :source_db, presence: true
 
   def self.find_or_create_from_json(parsed_json)
