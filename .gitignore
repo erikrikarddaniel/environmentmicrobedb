@@ -21,7 +21,5 @@
 # Ignore database settings file
 config/database.yml
 
-Gemfile.lock
-
 # Ignore Aptana Studio project file:
 .project

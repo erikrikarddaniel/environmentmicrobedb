@@ -1,3 +1,17 @@
+require "rvm/capistrano" # http://beginrescueend.com/integration/capistrano/
+require "bundler/capistrano"
+
+# rvm-capistrano settings
+set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
+
+namespace :rvm do
+  task :create_bundle_wrapper, roles: :app do
+    run "rvm wrapper #{rvm_ruby_string} bundle bundle"
+  end  
+end
+
+after "deploy:create_symlink", "rvm:create_bundle_wrapper"
+
 set :application, "environmentmicrobedb"
 set :repository,  "set your repository location here"
 
