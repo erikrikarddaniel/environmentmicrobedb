@@ -84,16 +84,14 @@ describe Taxon do
     before do
       @taxon = Taxon.create(name: "Escherichia coli K-12", source_db: "NCBI", source_identifier: "83333")
     end
-
     subject { @taxon }
-
     its(:species) { should == "Escherichia coli" }
   end
 
   describe "create or find from parsed json" do
     before do
       @taxon = Taxon.find_or_create_from_json(JSON.parse(<<JSON
-{ "name": "Escherichia coli", "source_db": "NCBI", "source_identifier": "562" }
+{ "source_db": "NCBI", "source_identifier": "562" }
 JSON
       ))
     end

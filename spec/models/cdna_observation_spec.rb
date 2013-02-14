@@ -54,17 +54,17 @@ describe CdnaObservation do
     end
 
     it 'should be correctly imported' do
-      @n_inserted.should == 2
-      @cdna_observations.map { |co| co.n_specific }.sort.should == [ 20, 40 ]
-      @cdna_observations.map { |co| co.sample.code }.sort.should == [ 'Ca', 'Ca' ]
-      @cdna_observations.map { |co| co.taxons[0].name }.sort.should == [ 'Escherichia coli', 'Escherichia coli K-12' ]
-      @cdna_observations.map { |co| co.taxons[0].genus }.sort.should == [ 'Escherichia', 'Escherichia' ]
-      @cdna_observations.map { |co| co.functions[0].leaf }.sort.should == [ 'Manganese superoxide dismutase (EC 1.15.1.1)', 'Manganese superoxide dismutase (EC 1.15.1.1)' ]
-      @cdna_observations.map { |co| co.functions[1].leaf }.sort.should == [ 'K00266', 'K02667' ].sort
-      @cdna_observations.map { |co| co.functions[1].level1 }.sort.should == [ 'Metabolism', 'Environmental Information Processing' ].sort
-      @cdna_observations.map { |co| co.functions[1].level2 }.sort.should == [ 'Energy Metabolism', 'Signal Transduction' ].sort
-      @cdna_observations.map { |co| co.functions[1].level3 }.sort.should == [ 'Nitrogen metabolism', 'Two-component system' ].sort
-      @cdna_observations.map { |co| co.functions[1].level4 }.sort.should == [ 'K00266', 'K02667' ].sort
+      @n_inserted.should == 3
+      @cdna_observations.map { |co| co.n_specific }.sort.should == [ 20, 20, 40 ]
+      @cdna_observations.map { |co| co.sample.code }.sort.should == [ 'Ca', 'Ca', 'Ca' ]
+      @cdna_observations.map { |co| co.taxons[0].name }.sort.should == [ 'Escherichia coli', 'Escherichia coli K-12', 'Homo sapiens' ]
+      @cdna_observations.map { |co| co.taxons[0].genus }.sort.should == [ 'Escherichia', 'Escherichia', 'Homo' ]
+      @cdna_observations.map { |co| co.functions[0].leaf }.sort.should == [ 'Manganese superoxide dismutase (EC 1.15.1.1)', 'Manganese superoxide dismutase (EC 1.15.1.1)', 'Manganese superoxide dismutase (EC 1.15.1.1)' ]
+      @cdna_observations.map { |co| co.functions[1].leaf }.sort.should == [ 'K00266', 'K02667', 'K02667' ].sort
+      @cdna_observations.map { |co| co.functions[1].level1 }.sort.should == [ 'Metabolism', 'Environmental Information Processing', 'Environmental Information Processing' ].sort
+      @cdna_observations.map { |co| co.functions[1].level2 }.sort.should == [ 'Energy Metabolism', 'Signal Transduction', 'Signal Transduction' ].sort
+      @cdna_observations.map { |co| co.functions[1].level3 }.sort.should == [ 'Nitrogen metabolism', 'Two-component system', 'Two-component system' ].sort
+      @cdna_observations.map { |co| co.functions[1].level4 }.sort.should == [ 'K00266', 'K02667', 'K02667' ].sort
       @cdna_observations[0].annotation_source.should == @cdna_observations[1].annotation_source
       @cdna_observations[0].annotation_source.dbname.should == "NCBI NR"
       @cdna_observations[0].annotation_source.dbversion.should == "20121204"

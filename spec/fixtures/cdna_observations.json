@@ -35,6 +35,16 @@
 	{ "name": "Manganese superoxide dismutase (EC 1.15.1.1)", "source_db": "KEGG", "rank": "leaf" }, 
 	{ "name": "K02667", "source_db": "KEGG", "rank": "leaf" } 
       ] 
+    },
+    { 
+      "n_specific": 20, 
+      "taxons": [ 
+	{ "source_db": "NCBI", "source_identifier": "9606" }
+      ], 
+      "functions": [ 
+	{ "name": "Manganese superoxide dismutase (EC 1.15.1.1)", "source_db": "KEGG", "rank": "leaf" }, 
+	{ "name": "K02667", "source_db": "KEGG", "rank": "leaf" } 
+      ] 
     }
   ]
 }

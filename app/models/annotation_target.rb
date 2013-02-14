@@ -17,7 +17,10 @@ class AnnotationTarget < ActiveRecord::Base
       qdata[key] = parsed_json[key]
     end
     instance = self.where(qdata).first
-    instance ||= self.create!(parsed_json)
+    instance ||= self.new(parsed_json)
+    instance.lookup!
+    instance.save!
+    instance
   end
 
   def observations

@@ -48,6 +48,7 @@ class Taxon < AnnotationTarget
   def lookup!
     if source_db == 'NCBI' and ncbi_taxon_id = source_identifier.to_i
       hierarchy = BiosqlWeb.ncbi_taxon_id2full_taxon_hierarchy(ncbi_taxon_id)
+      self.name ||= hierarchy[0]['scientific_name']
       self.rank = hierarchy[0]['node_rank']
       hierarchy.each do |tentry|
 	if RECOGNIZED_RANKS[tentry['node_rank']]
