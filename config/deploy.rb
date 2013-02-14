@@ -56,3 +56,4 @@ end
 after "deploy:finalize_update", "db:db_config"
 #This is neccessary, this will precompile assets. If this is missing we will get strange problems with no errors in the logs.
 load 'deploy/assets'
+load 'deploy' if respond_to?(:namespace) # cap2 differentiator
