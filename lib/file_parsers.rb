@@ -32,7 +32,7 @@ module FileParsers
       raise "Can't store observations without project data" unless cdna_data['project']
       @sample = Project.find_or_create_from_json(cdna_data['project']).samples.detect { |s| s.code == cdna_data['project']['sample_sets'][0]['samples'][0]['code'] }
       @annotation_source = AnnotationSource.create!(cdna_data['annotation_source'])
-      cdna_data['cdna_observations'].each do |obs|
+      cdna_data['cdna_observations'].each_with_index do |obs, obsnum|
 	functions = obs.delete('functions').map { |f| Function.find_or_create_from_json(f) }
 	taxons = obs.delete('taxons').map { |f| Taxon.find_or_create_from_json(f) }
 	cdna_observation = @sample.cdna_observations.create!(obs)
