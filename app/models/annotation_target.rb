@@ -8,7 +8,7 @@
 class AnnotationTarget < ActiveRecord::Base
   self.abstract_class = true
   attr_accessible :name, :source_db, :source_identifier, :rank
-  validates :name, presence: true, uniqueness: { scope: :source_db }
+  validates :name, presence: true, uniqueness: { scope: [ :source_db, :rank ] }
   validates :source_db, presence: true
 
   def self.find_or_create_from_json(parsed_json)
@@ -19,6 +19,7 @@ class AnnotationTarget < ActiveRecord::Base
     instance = self.where(qdata).first
     instance ||= self.new(parsed_json)
     instance.lookup!
+    logger.debug "Saving #{instance.inspect}"
     instance.save!
     instance
   end

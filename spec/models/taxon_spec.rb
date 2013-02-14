@@ -63,13 +63,12 @@ describe Taxon do
     its(:parent) { should == @ncbi_root }
   end
 
-  describe "name is unique" do
+  describe "name is unique but only within the same source_db and rank" do
     before do
-      @t = Taxon.new(name: @ncbi_child0.name)
+      @t = Taxon.new(name: @ncbi_child0.name, source_db: @ncbi_child0.source_db, rank: 'another rank')
     end
     subject { @t }
-
-    it { should_not be_valid }
+    it { should be_valid }
   end
 
   describe "CdnaObservation associations" do
