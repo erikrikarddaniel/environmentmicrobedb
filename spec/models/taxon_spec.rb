@@ -80,14 +80,14 @@ describe Taxon do
   end
 
   describe "given a source_identifier the object should be populated with data from Biosql" do
-    before do
+    it "gets the right species even if it points at a strain" do
       @taxon = Taxon.create(name: "Escherichia coli K-12", source_db: "NCBI", source_identifier: "83333")
+      @taxon.species.should == "Escherichia coli"
     end
-    subject { @taxon }
-    its(:species) { should == "Escherichia coli" }
 
-    it "should not fail on missing source identifiers" do
-      @t = Taxon.create(name: "No real name", source_db: "NCBI", source_identifier: "999999999999")
+    it "also with non-existing identifiers" do
+      @taxon = Taxon.new(source_db: "NCBI", source_identifier: "-1")
+      @taxon.should be_valid
     end
   end
 
