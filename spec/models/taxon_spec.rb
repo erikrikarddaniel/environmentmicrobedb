@@ -85,6 +85,10 @@ describe Taxon do
     end
     subject { @taxon }
     its(:species) { should == "Escherichia coli" }
+
+    it "should not fail on missing source identifiers" do
+      @t = Taxon.create(name: "No real name", source_db: "NCBI", source_identifier: "999999999999")
+    end
   end
 
   describe "create or find from parsed json" do

@@ -48,8 +48,12 @@ class Taxon < AnnotationTarget
   def lookup!
     if source_db == 'NCBI' and ncbi_taxon_id = source_identifier.to_i
       hierarchy = BiosqlWeb.ncbi_taxon_id2full_taxon_hierarchy(ncbi_taxon_id)
-      if ( not hierarchy ) or hierarchy.length == 0 or not hierarchy[0]['scientific_name']
-	logger.warn "Couldn't lookup hierarchy for NCBI taxon id: #{ncbi_taxon_id}, hierarchy: #{hierarchy ? hierarchy.inspect : "hierarchy nil"}"
+      if ( not hierarchy ) or hierarchy.length == 0 
+	logger.warn "#{__FILE__}:#{__LINE__}: Couldn't lookup hierarchy for NCBI taxon id: #{ncbi_taxon_id}, hierarchy: #{hierarchy ? hierarchy.inspect : "hierarchy nil"}"
+	return
+      end
+      if not hierarchy[0]['scientific_name']
+	logger.warn "#{__FILE__}:#{__LINE__}: Couldn't lookup hierarchy for NCBI taxon id: #{ncbi_taxon_id}, hierarchy: #{hierarchy ? hierarchy.inspect : "hierarchy nil"}"
 	return
       end
       self.name ||= hierarchy[0]['scientific_name']

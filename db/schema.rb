@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20121221121049) do
     t.float    "n_unspecific"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "otu_id"
   end
 
   create_table "annotation_sources", :force => true do |t|
